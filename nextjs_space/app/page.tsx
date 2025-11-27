@@ -2,7 +2,8 @@
 
 import { useEffect, useState, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { Star, Calendar as CalendarIcon, Volume2, VolumeX } from 'lucide-react';
+import Link from 'next/link';
+import { Star, Calendar as CalendarIcon, Volume2, VolumeX, Menu, Sparkles, Snowflake } from 'lucide-react';
 import type { AdventData, AdventDay } from '@/lib/types';
 import { isDayUnlocked } from '@/lib/date-utils';
 import { Snowflakes } from '@/components/snowflakes';
@@ -11,14 +12,54 @@ import { ContentModal } from '@/components/content-modal';
 import { LockedMessage } from '@/components/locked-message';
 import { useSound } from '@/hooks/use-sound';
 
+// Helper function to determine header decoration based on date
+function getHeaderDecoration(currentDate: Date = new Date()) {
+  const month = currentDate.getMonth(); // 0-indexed
+  const day = currentDate.getDate();
+  
+  // After December 31: Snowman
+  if (month > 11 || (month === 0 && day > 0)) {
+    return { type: 'snowman', count: 1 };
+  }
+  
+  // December 31: Fireworks
+  if (month === 11 && day === 31) {
+    return { type: 'fireworks', count: 1 };
+  }
+  
+  // December: Stars based on Advent Sundays
+  // 1st Advent: Nov 30, so after that until Dec 6: 1 star
+  // 2nd Advent: Dec 7, so after that until Dec 13: 2 stars
+  // 3rd Advent: Dec 14, so after that until Dec 20: 3 stars
+  // 4th Advent: Dec 21, so after that until Dec 30: 4 stars
+  if (month === 11) {
+    if (day >= 1 && day <= 6) return { type: 'stars', count: 1 };
+    if (day >= 7 && day <= 13) return { type: 'stars', count: 2 };
+    if (day >= 14 && day <= 20) return { type: 'stars', count: 3 };
+    if (day >= 21 && day <= 30) return { type: 'stars', count: 4 };
+  }
+  
+  // November (after First Advent on Nov 30): 1 star
+  if (month === 10 && day === 30) {
+    return { type: 'stars', count: 1 };
+  }
+  
+  // Default: 1 star
+  return { type: 'stars', count: 1 };
+}
+
 export default function HomePage() {
   const [adventData, setAdventData] = useState<AdventData | null>(null);
   const [selectedDay, setSelectedDay] = useState<AdventDay | null>(null);
   const [showLockedMessage, setShowLockedMessage] = useState<string | null>(null);
   const [unlockedDays, setUnlockedDays] = useState<number[]>([]);
   const [isMusicPlaying, setIsMusicPlaying] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
   const { play: playSound } = useSound();
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  
+  // Get current decoration (use test date from date-utils)
+  const decoration = getHeaderDecoration(new Date('2025-12-08'));
 
   useEffect(() => {
     fetch('/advent_data.json')
@@ -195,18 +236,64 @@ export default function HomePage() {
       </button>
 
       <div className="relative z-10 container mx-auto px-4 py-8">
+        {/* Navigation Menu */}
+        <motion.nav
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="flex justify-end gap-4 mb-6"
+        >
+          <Link
+            href="/how-to"
+            className="px-4 py-2 rounded-lg font-semibold transition-all hover:scale-105"
+            style={{ backgroundColor: 'rgba(0, 51, 102, 0.7)', color: '#FFFFFF' }}
+          >
+            How-to
+          </Link>
+          <Link
+            href="/impressum"
+            className="px-4 py-2 rounded-lg font-semibold transition-all hover:scale-105"
+            style={{ backgroundColor: 'rgba(0, 51, 102, 0.7)', color: '#FFFFFF' }}
+          >
+            Impressum
+          </Link>
+        </motion.nav>
+
         {/* Header */}
         <motion.header
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-12"
         >
+          {/* Dynamic Header Decoration */}
           <motion.div
             animate={{ rotate: [0, 10, -10, 0] }}
             transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
-            className="inline-block mb-4"
+            className="inline-flex gap-4 mb-4"
           >
-            <Star className="w-16 h-16 fill-current" style={{ color: '#B59410' }} />
+            {decoration.type === 'stars' && Array.from({ length: decoration.count }).map((_, i) => (
+              <Star key={i} className="w-16 h-16 fill-current" style={{ color: '#B59410' }} />
+            ))}
+            {decoration.type === 'fireworks' && (
+              <motion.div
+                animate={{ 
+                  scale: [1, 1.2, 1],
+                  opacity: [1, 0.8, 1]
+                }}
+                transition={{ duration: 1, repeat: Infinity }}
+              >
+                <Sparkles className="w-20 h-20" style={{ color: '#FFD700' }} />
+              </motion.div>
+            )}
+            {decoration.type === 'snowman' && (
+              <motion.div
+                animate={{ 
+                  y: [0, -5, 0]
+                }}
+                transition={{ duration: 2, repeat: Infinity }}
+              >
+                <Snowflake className="w-16 h-16" style={{ color: '#E0F7FA' }} />
+              </motion.div>
+            )}
           </motion.div>
           
           <h1
