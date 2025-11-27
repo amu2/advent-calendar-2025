@@ -55,7 +55,7 @@ export function LockedMessage({ date, onClose }: LockedMessageProps) {
           className="px-6 py-2 rounded-lg font-medium text-white transition-colors hover:opacity-90"
           style={{ backgroundColor: '#B3001B' }}
         >
-          Verstanden
+          Understood
         </button>
       </motion.div>
     </motion.div>

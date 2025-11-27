@@ -1,8 +1,8 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { Star, Calendar as CalendarIcon } from 'lucide-react';
+import { Star, Calendar as CalendarIcon, Volume2, VolumeX } from 'lucide-react';
 import type { AdventData, AdventDay } from '@/lib/types';
 import { isDayUnlocked } from '@/lib/date-utils';
 import { Snowflakes } from '@/components/snowflakes';
@@ -16,7 +16,9 @@ export default function HomePage() {
   const [selectedDay, setSelectedDay] = useState<AdventDay | null>(null);
   const [showLockedMessage, setShowLockedMessage] = useState<string | null>(null);
   const [unlockedDays, setUnlockedDays] = useState<number[]>([]);
+  const [isMusicPlaying, setIsMusicPlaying] = useState(false);
   const { play: playSound } = useSound();
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
     fetch('/advent_data.json')
@@ -34,6 +36,36 @@ export default function HomePage() {
         console.error('Failed to load advent data:', error);
       });
   }, []);
+
+  // Initialize background music
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      audioRef.current = new Audio('/sounds/background-music.mp3');
+      audioRef.current.loop = true;
+      audioRef.current.volume = 0.3;
+    }
+
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current = null;
+      }
+    };
+  }, []);
+
+  const toggleMusic = () => {
+    if (audioRef.current) {
+      if (isMusicPlaying) {
+        audioRef.current.pause();
+        setIsMusicPlaying(false);
+      } else {
+        audioRef.current.play().catch((error) => {
+          console.error('Failed to play music:', error);
+        });
+        setIsMusicPlaying(true);
+      }
+    }
+  };
 
   const handleDoorClick = (day: AdventDay) => {
     const isUnlocked = isDayUnlocked(day?.date ?? '');
@@ -112,6 +144,20 @@ export default function HomePage() {
   return (
     <div className="min-h-screen relative" style={{ backgroundColor: '#FEFEFE' }}>
       <Snowflakes />
+
+      {/* Music Toggle Button */}
+      <button
+        onClick={toggleMusic}
+        className="fixed top-6 right-6 z-50 p-3 rounded-full shadow-lg hover:scale-110 transition-transform"
+        style={{ backgroundColor: '#B3001B' }}
+        aria-label={isMusicPlaying ? 'Pause music' : 'Play music'}
+      >
+        {isMusicPlaying ? (
+          <Volume2 className="w-6 h-6 text-white" />
+        ) : (
+          <VolumeX className="w-6 h-6 text-white" />
+        )}
+      </button>
 
       <div className="relative z-10 container mx-auto px-4 py-8">
         {/* Header */}

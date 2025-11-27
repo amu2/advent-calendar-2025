@@ -192,7 +192,7 @@ export function ContentModal({
                 }}
               >
                 <ChevronLeft className="w-5 h-5" />
-                <span>Vorheriger Tag</span>
+                <span>Previous</span>
               </button>
 
               <button
@@ -200,7 +200,7 @@ export function ContentModal({
                 className="px-6 py-2 rounded-lg font-medium transition-colors hover:bg-gray-200"
                 style={{ color: '#B3001B' }}
               >
-                Zurück zum Kalender
+                Back to Calendar
               </button>
 
               <button
@@ -211,7 +211,7 @@ export function ContentModal({
                   color: hasNext ? '#B3001B' : '#999',
                 }}
               >
-                <span>Nächster Tag</span>
+                <span>Next</span>
                 <ChevronRight className="w-5 h-5" />
               </button>
             </div>
