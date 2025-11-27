@@ -41,8 +41,13 @@ export default function HomePage() {
   useEffect(() => {
     if (typeof window !== 'undefined') {
       audioRef.current = new Audio('/sounds/background-music.mp3');
-      audioRef.current.loop = true;
+      audioRef.current.loop = false; // Play only once
       audioRef.current.volume = 0.3;
+      
+      // Auto-stop music when it ends
+      audioRef.current.addEventListener('ended', () => {
+        setIsMusicPlaying(false);
+      });
     }
 
     return () => {
@@ -67,10 +72,40 @@ export default function HomePage() {
     }
   };
 
-  const handleDoorClick = (day: AdventDay) => {
+  // Fade out background music
+  const fadeOutMusic = (): Promise<void> => {
+    return new Promise((resolve) => {
+      if (!audioRef.current || !isMusicPlaying) {
+        resolve();
+        return;
+      }
+
+      const audio = audioRef.current;
+      const fadeOutDuration = 500; // 500ms fade out
+      const fadeOutSteps = 20;
+      const volumeStep = audio.volume / fadeOutSteps;
+      const stepDuration = fadeOutDuration / fadeOutSteps;
+
+      const fadeInterval = setInterval(() => {
+        if (audio.volume > volumeStep) {
+          audio.volume = Math.max(0, audio.volume - volumeStep);
+        } else {
+          audio.volume = 0;
+          audio.pause();
+          setIsMusicPlaying(false);
+          clearInterval(fadeInterval);
+          resolve();
+        }
+      }, stepDuration);
+    });
+  };
+
+  const handleDoorClick = async (day: AdventDay) => {
     const isUnlocked = isDayUnlocked(day?.date ?? '');
     
     if (isUnlocked) {
+      // Fade out music first, then play door sound
+      await fadeOutMusic();
       playSound();
       setSelectedDay(day);
     } else {
