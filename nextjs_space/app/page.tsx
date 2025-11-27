@@ -16,7 +16,7 @@ export default function HomePage() {
   const [selectedDay, setSelectedDay] = useState<AdventDay | null>(null);
   const [showLockedMessage, setShowLockedMessage] = useState<string | null>(null);
   const [unlockedDays, setUnlockedDays] = useState<number[]>([]);
-  const { play: playSound } = useSound('/sounds/door-open.mp3');
+  const { play: playSound } = useSound();
 
   useEffect(() => {
     fetch('/advent_data.json')

@@ -2,59 +2,58 @@
 
 import { useEffect, useState } from 'react';
 
-interface Snowflake {
-  id: number;
-  left: number;
-  animationDuration: number;
-  size: number;
-  delay: number;
-}
-
 export function Snowflakes() {
-  const [snowflakes, setSnowflakes] = useState<Snowflake[]>([]);
+  const [snowflakes, setSnowflakes] = useState<Array<{
+    id: number;
+    left: number;
+    animationDuration: number;
+    size: number;
+    delay: number;
+  }>>([]);
 
   useEffect(() => {
-    const flakes: Snowflake[] = [];
-    for (let i = 0; i < 50; i++) {
-      flakes.push({
-        id: i,
-        left: Math.random() * 100,
-        animationDuration: 10 + Math.random() * 20,
-        size: 0.5 + Math.random() * 1,
-        delay: Math.random() * 10,
-      });
-    }
+    const flakes = Array.from({ length: 50 }, (_, i) => ({
+      id: i,
+      left: Math.random() * 100,
+      animationDuration: 10 + Math.random() * 20,
+      size: 16 + Math.random() * 24, // Viel größer: 16-40px
+      delay: Math.random() * 10,
+    }));
     setSnowflakes(flakes);
   }, []);
 
   return (
-    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-      {snowflakes?.map((flake) => (
-        <div
-          key={flake?.id}
-          className="absolute text-white/70"
-          style={{
-            left: `${flake?.left ?? 0}%`,
-            fontSize: `${flake?.size ?? 1}rem`,
-            animation: `fall ${flake?.animationDuration ?? 15}s linear infinite`,
-            animationDelay: `${flake?.delay ?? 0}s`,
-          }}
-        >
-          ❄
-        </div>
-      ))}
-      <style jsx>{`
-        @keyframes fall {
+    <>
+      <style jsx global>{`
+        @keyframes snowfall {
           0% {
-            top: -10%;
+            transform: translateY(-10vh) rotate(0deg);
             opacity: 1;
           }
           100% {
-            top: 110%;
-            opacity: 0.3;
+            transform: translateY(110vh) rotate(360deg);
+            opacity: 0.8;
           }
         }
       `}</style>
-    </div>
+      <div className="fixed inset-0 pointer-events-none z-10 overflow-hidden">
+        {snowflakes.map((flake) => (
+          <div
+            key={flake.id}
+            className="absolute text-white font-bold" 
+            style={{
+              left: `${flake.left}%`,
+              fontSize: `${flake.size}px`,
+              animation: `snowfall ${flake.animationDuration}s linear infinite`,
+              animationDelay: `${flake.delay}s`,
+              textShadow: '0 0 5px rgba(0,0,0,0.5), 0 0 10px rgba(0,0,0,0.3)',
+              opacity: 0.9,
+            }}
+          >
+            ❄
+          </div>
+        ))}
+      </div>
+    </>
   );
 }

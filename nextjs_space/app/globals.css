@@ -2,83 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
+:root {
+  --advent-red: #B3001B;
+  --advent-blue: #003366;
+  --advent-green: #006633;
+  --advent-gold: #B59410;
+  --background: #F0F8F0;
+  --text: #1A1A1A;
 }
 
-/* Math content styling */
-.math-content {
-  @apply text-gray-800;
+body {
+  background: linear-gradient(to bottom, #0A4025 0%, #0D5A35 50%, #0A4025 100%);
+  background-attachment: fixed;
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
 }
 
-.math-content h3 {
-  @apply text-2xl font-bold mt-8 mb-4;
-  color: #003366;
+* {
+  box-sizing: border-box;
 }
 
-.math-content h4 {
-  @apply text-xl font-semibold mt-6 mb-3;
-  color: #006633;
-}
-
-.math-content p {
-  @apply mb-4 leading-relaxed;
-}
-
-.math-content ul,
-.math-content ol {
-  @apply mb-4 ml-6 space-y-2;
-}
-
-.math-content ul {
-  @apply list-disc;
-}
-
-.math-content ol {
-  @apply list-decimal;
-}
-
-.math-content li {
-  @apply leading-relaxed;
-}
-
-.math-content strong,
-.math-content em {
-  @apply font-semibold;
-}
-
-.math-content em {
-  @apply italic;
-}
-
-.math-content dl {
-  @apply my-4;
-}
-
-.math-content dt {
-  @apply font-bold mt-4;
-  color: #B3001B;
-}
-
-.math-content dd {
-  @apply ml-6 mb-2;
-}
-
-/* KaTeX styling */
-.katex-display {
-  @apply my-6 overflow-x-auto;
-}
-
-.katex {
-  @apply text-base md:text-lg;
-}
-
-/* Smooth scrolling */
 html {
   scroll-behavior: smooth;
 }
@@ -86,33 +29,66 @@ html {
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 10px;
-  height: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: rgba(0, 0, 0, 0.1);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #B3001B;
+  background: var(--advent-green);
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #8B0000;
+  background: var(--advent-red);
+}
+
+/* Math content styling */
+.math-content {
+  line-height: 1.8;
+}
+
+.math-content p {
+  margin-bottom: 1rem;
+}
+
+.math-content h3 {
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.math-content ul {
+  margin-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.math-content li {
+  margin-bottom: 0.5rem;
+}
+
+/* KaTeX formula spacing */
+.katex-display {
+  margin: 1.5rem 0;
+}
+
+.katex {
+  font-size: 1.1em;
 }
 
 /* Print styles */
 @media print {
-  .no-print {
-    display: none !important;
-  }
-  
   body {
     background: white;
   }
   
-  .math-content {
-    max-width: 100%;
+  .no-print {
+    display: none;
   }
+}
+
+/* Smooth transitions */
+.transition-all {
+  transition: all 0.3s ease;
 }

@@ -1,7 +1,6 @@
 export function isDayUnlocked(dayDate: string): boolean {
   try {
-    // TEST MODE: Simuliert 8. Dezember 2025
-    const today = new Date('2025-12-08');
+    const today = new Date();
     today.setHours(0, 0, 0, 0);
     
     const unlockDate = new Date(dayDate);
