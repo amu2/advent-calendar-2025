@@ -1,0 +1,118 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Math content styling */
+.math-content {
+  @apply text-gray-800;
+}
+
+.math-content h3 {
+  @apply text-2xl font-bold mt-8 mb-4;
+  color: #003366;
+}
+
+.math-content h4 {
+  @apply text-xl font-semibold mt-6 mb-3;
+  color: #006633;
+}
+
+.math-content p {
+  @apply mb-4 leading-relaxed;
+}
+
+.math-content ul,
+.math-content ol {
+  @apply mb-4 ml-6 space-y-2;
+}
+
+.math-content ul {
+  @apply list-disc;
+}
+
+.math-content ol {
+  @apply list-decimal;
+}
+
+.math-content li {
+  @apply leading-relaxed;
+}
+
+.math-content strong,
+.math-content em {
+  @apply font-semibold;
+}
+
+.math-content em {
+  @apply italic;
+}
+
+.math-content dl {
+  @apply my-4;
+}
+
+.math-content dt {
+  @apply font-bold mt-4;
+  color: #B3001B;
+}
+
+.math-content dd {
+  @apply ml-6 mb-2;
+}
+
+/* KaTeX styling */
+.katex-display {
+  @apply my-6 overflow-x-auto;
+}
+
+.katex {
+  @apply text-base md:text-lg;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #B3001B;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #8B0000;
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  body {
+    background: white;
+  }
+  
+  .math-content {
+    max-width: 100%;
+  }
+}
