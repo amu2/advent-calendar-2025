@@ -4,7 +4,7 @@ export function useSound() {
   const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
 
   useEffect(() => {
-    const sound = new Audio('/sounds/sleigh-bells.mp3');
+    const sound = new Audio('/sounds/door-open.mp3');
     sound.preload = 'auto';
     setAudio(sound);
   }, []);

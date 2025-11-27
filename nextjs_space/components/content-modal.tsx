@@ -61,102 +61,110 @@ export function ContentModal({
             className="relative w-full max-w-4xl max-h-[90vh] bg-white rounded-xl shadow-2xl overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Header */}
-            <div
-              className="sticky top-0 z-10 p-6 text-white"
-              style={{
-                background: day?.special?.includes('Advent')
-                  ? 'linear-gradient(135deg, #B59410 0%, #D4AF37 100%)'
-                  : 'linear-gradient(135deg, #B3001B 0%, #8B0000 100%)',
-              }}
+            {/* Close Button */}
+            <button
+              onClick={onClose}
+              className="absolute top-4 right-4 z-20 p-2 hover:bg-gray-200 rounded-lg transition-colors"
+              style={{ color: '#B3001B' }}
+              aria-label="Close"
             >
-              <div className="flex items-start justify-between gap-4">
-                <div className="flex-1">
-                  <div className="flex items-center gap-3 mb-2">
-                    <motion.div
-                      initial={{ scale: 0 }}
-                      animate={{ scale: 1 }}
-                      transition={{ type: 'spring', duration: 0.6 }}
-                      className="text-5xl font-bold"
-                    >
-                      {day?.day ?? 0}
-                    </motion.div>
-                    <div className="flex items-center gap-2 text-sm opacity-90">
-                      <Calendar className="w-4 h-4" />
-                      <span>{formatDate(day?.date ?? '')}</span>
-                    </div>
-                  </div>
-                  <h2 className="text-2xl font-bold mb-1">
-                    <FallingText delay={0.3}>{day?.title ?? ''}</FallingText>
-                  </h2>
-                  {day?.subtitle && (
-                    <p className="text-sm opacity-90">
-                      <FallingText delay={0.5}>{day.subtitle}</FallingText>
-                    </p>
-                  )}
-                  {day?.special && (
-                    <motion.div
-                      initial={{ x: -20, opacity: 0 }}
-                      animate={{ x: 0, opacity: 1 }}
-                      transition={{ delay: 0.7 }}
-                      className="mt-2 inline-block px-3 py-1 bg-white/20 rounded-full text-sm"
-                    >
-                      {day.special}
-                    </motion.div>
-                  )}
-                </div>
-                <button
-                  onClick={onClose}
-                  className="p-2 hover:bg-white/20 rounded-lg transition-colors"
-                  aria-label="Schließen"
-                >
-                  <X className="w-6 h-6" />
-                </button>
-              </div>
-            </div>
+              <X className="w-6 h-6" />
+            </button>
 
-            {/* Content */}
-            <div className="overflow-y-auto max-h-[calc(90vh-180px)] p-6">
+            {/* AdventFrameTop - Header Section */}
+            <div
+              className="p-8 rounded-t-xl"
+              style={{ backgroundColor: 'rgba(0, 102, 51, 0.02)' }}
+            >
+              {/* AdventTitleBlock */}
+              <div className="text-center mb-4">
+                <motion.div
+                  initial={{ y: -20, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ delay: 0.2 }}
+                  className="text-xl font-bold mb-1"
+                  style={{ color: '#B3001B' }}
+                >
+                  {formatDate(day?.date ?? '')}
+                  {day?.special && <span className="ml-2">• {day.special}</span>}
+                </motion.div>
+                
+                <motion.h2
+                  initial={{ y: -20, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ delay: 0.3 }}
+                  className="text-3xl font-bold mb-2"
+                  style={{ color: '#003366' }}
+                >
+                  {day?.title ?? ''}
+                </motion.h2>
+                
+                {day?.subtitle && (
+                  <motion.p
+                    initial={{ y: -20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ delay: 0.4 }}
+                    className="text-base font-semibold"
+                    style={{ color: '#000' }}
+                  >
+                    {day.subtitle}
+                  </motion.p>
+                )}
+              </div>
+
+              {/* AdventKeyInsight */}
               {day?.keyInsight && (
                 <motion.div
                   initial={{ y: 20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: 0.4 }}
-                  className="mb-6 p-4 bg-blue-50 border-l-4 border-blue-600 rounded"
-                >
-                  <h3 className="font-semibold text-blue-900 mb-2">Kernaussage:</h3>
-                  <p className="text-blue-800">{day.keyInsight}</p>
-                </motion.div>
-              )}
-
-              {day?.centralFormula && (
-                <motion.div
-                  initial={{ y: 20, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.5 }}
-                  className="mb-6 p-4 bg-yellow-50 border-l-4 border-yellow-600 rounded"
+                  className="p-4 rounded"
+                  style={{ backgroundColor: 'rgba(179, 0, 27, 0.08)' }}
                 >
-                  <h3 className="font-semibold text-yellow-900 mb-2">Zentrale Formel:</h3>
-                  <p className="text-yellow-800 font-mono">{day.centralFormula}</p>
+                  <span className="font-bold" style={{ color: '#B3001B' }}>
+                    Key Insight.{' '}
+                  </span>
+                  <span style={{ color: '#000' }}>{day.keyInsight}</span>
                 </motion.div>
               )}
+            </div>
 
+            {/* AdventStarRule */}
+            <div className="flex items-center justify-center py-4">
+              <div
+                className="h-[1px] w-1/4"
+                style={{ backgroundColor: '#B59410' }}
+              />
+              <div className="px-3" style={{ color: '#B59410' }}>
+                ★ ★ ★
+              </div>
+              <div
+                className="h-[1px] w-1/4"
+                style={{ backgroundColor: '#B59410' }}
+              />
+            </div>
+
+            {/* Content */}
+            <div className="overflow-y-auto max-h-[calc(90vh-180px)] px-8 pb-6">
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.6 }}
+                className="prose prose-lg max-w-none"
               >
                 <MathRenderer content={day?.content ?? ''} />
               </motion.div>
 
+              {/* AdventClosing */}
               {day?.closing && (
                 <motion.div
                   initial={{ y: 20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.8 }}
-                  className="mt-6 p-4 bg-green-50 border-l-4 border-green-600 rounded"
+                  className="mt-8 text-center italic text-lg"
+                  style={{ color: '#006633' }}
                 >
-                  <p className="text-green-800 italic">{day.closing}</p>
+                  {day.closing}
                 </motion.div>
               )}
 
@@ -165,14 +173,19 @@ export function ContentModal({
                   initial={{ y: 20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.9 }}
-                  className="mt-8 pt-6 border-t border-gray-200"
+                  className="mt-8 pt-6"
+                  style={{ borderTop: '1px solid rgba(0, 102, 51, 0.2)' }}
                 >
-                  <h3 className="text-lg font-semibold mb-4">Literatur</h3>
-                  <ul className="space-y-2 text-sm">
+                  <h3 
+                    className="text-lg font-semibold mb-4"
+                    style={{ color: '#003366' }}
+                  >
+                    References
+                  </h3>
+                  <ul className="space-y-2 text-sm text-gray-700">
                     {day.references.map((ref, idx) => (
                       <li
                         key={ref?.key ?? idx}
-                        className="text-gray-700"
                         dangerouslySetInnerHTML={{ __html: ref?.text ?? '' }}
                       />
                     ))}
