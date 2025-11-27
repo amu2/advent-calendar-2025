@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ChevronLeft, ChevronRight, Calendar } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight, Calendar, Download } from 'lucide-react';
 import { useEffect } from 'react';
 import type { AdventDay } from '@/lib/types';
 import { MathRenderer } from './math-renderer';
@@ -65,15 +65,38 @@ export function ContentModal({
             }}
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Close Button */}
-            <button
-              onClick={onClose}
-              className="absolute top-4 right-4 z-20 p-2 hover:bg-gray-200 rounded-lg transition-colors"
-              style={{ color: '#B3001B' }}
-              aria-label="Close"
-            >
-              <X className="w-6 h-6" />
-            </button>
+            {/* Action Buttons */}
+            <div className="absolute top-4 right-4 z-20 flex gap-2">
+              {/* PDF Download Button */}
+              <button
+                onClick={() => {
+                  const pdfPath = `/pdfs/advent${String(day?.day ?? 0).padStart(2, '0')}.pdf`;
+                  const link = document.createElement('a');
+                  link.href = pdfPath;
+                  link.download = `advent_day_${day?.day ?? 0}.pdf`;
+                  link.target = '_blank';
+                  document.body.appendChild(link);
+                  link.click();
+                  document.body.removeChild(link);
+                }}
+                className="p-2 hover:bg-gray-200 rounded-lg transition-colors"
+                style={{ color: '#006633' }}
+                aria-label="Download PDF"
+                title="Download as PDF"
+              >
+                <Download className="w-6 h-6" />
+              </button>
+
+              {/* Close Button */}
+              <button
+                onClick={onClose}
+                className="p-2 hover:bg-gray-200 rounded-lg transition-colors"
+                style={{ color: '#B3001B' }}
+                aria-label="Close"
+              >
+                <X className="w-6 h-6" />
+              </button>
+            </div>
 
             {/* AdventFrameTop - Header Section */}
             <div
@@ -86,8 +109,11 @@ export function ContentModal({
                   initial={{ y: -20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.2 }}
-                  className="text-xl font-bold mb-1"
-                  style={{ color: '#B3001B' }}
+                  className="text-2xl font-bold mb-2"
+                  style={{ 
+                    color: '#B3001B',
+                    fontFamily: '"Times New Roman", Times, serif',
+                  }}
                 >
                   {formatDate(day?.date ?? '')}
                   {day?.special && <span className="ml-2">• {day.special}</span>}
@@ -97,8 +123,11 @@ export function ContentModal({
                   initial={{ y: -20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.3 }}
-                  className="text-3xl font-bold mb-2"
-                  style={{ color: '#003366' }}
+                  className="text-4xl font-bold mb-3 leading-tight"
+                  style={{ 
+                    color: '#003366',
+                    fontFamily: '"Times New Roman", Times, serif',
+                  }}
                 >
                   {day?.title ?? ''}
                 </motion.h2>
@@ -108,8 +137,11 @@ export function ContentModal({
                     initial={{ y: -20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ delay: 0.4 }}
-                    className="text-base font-semibold"
-                    style={{ color: '#000' }}
+                    className="text-xl font-semibold"
+                    style={{ 
+                      color: '#000',
+                      fontFamily: '"Times New Roman", Times, serif',
+                    }}
                   >
                     {day.subtitle}
                   </motion.p>
@@ -122,8 +154,11 @@ export function ContentModal({
                   initial={{ y: 20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.5 }}
-                  className="p-4 rounded"
-                  style={{ backgroundColor: 'rgba(179, 0, 27, 0.08)' }}
+                  className="p-4 rounded text-base"
+                  style={{ 
+                    backgroundColor: 'rgba(179, 0, 27, 0.08)',
+                    fontFamily: '"Times New Roman", Times, serif',
+                  }}
                 >
                   <span className="font-bold" style={{ color: '#B3001B' }}>
                     Key Insight.{' '}
@@ -154,12 +189,12 @@ export function ContentModal({
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.6 }}
-                className="prose prose-base max-w-none"
+                className="prose prose-base max-w-none advent-content"
                 style={{
                   columnCount: 2,
                   columnGap: '2rem',
-                  fontSize: '0.95rem',
-                  lineHeight: '1.6',
+                  fontSize: '1rem',
+                  lineHeight: '1.65',
                 }}
               >
                 <MathRenderer content={day?.content ?? ''} />
