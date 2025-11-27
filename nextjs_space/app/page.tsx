@@ -353,7 +353,12 @@ export default function HomePage() {
           className="mt-16 text-center text-sm text-gray-600"
         >
           <p className="mb-2">
-            {adventData?.metadata?.author ?? ''}
+            <a 
+              href="mailto:andreas.mueller@hs-kempten.de" 
+              className="hover:text-blue-600 transition-colors"
+            >
+              {adventData?.metadata?.author ?? ''}
+            </a>
           </p>
           <p className="opacity-70">
             {adventData?.metadata?.description ?? ''}

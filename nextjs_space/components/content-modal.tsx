@@ -184,7 +184,7 @@ export function ContentModal({
             </div>
 
             {/* Content - Two Column Layout */}
-            <div className="overflow-y-auto max-h-[calc(90vh-180px)] px-8 pb-6">
+            <div className="overflow-y-auto max-h-[calc(90vh-180px)] px-8 pb-32">
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}

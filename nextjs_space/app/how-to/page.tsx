@@ -8,7 +8,7 @@ import { Snowflakes } from '@/components/snowflakes';
 
 export default function HowToPage() {
   const content = `
-### How to read this Advent calendar
+## How to read this Advent calendar
 
 This Advent calendar is written for readers who are comfortably fluent in theoretical physics and mathematics, but who may or may not have worked with octonions and exceptional algebras before. Each day is a self-contained sheet, but together they tell a single story:
 
@@ -17,7 +17,7 @@ This Advent calendar is written for readers who are comfortably fluent in theore
 
 You do *not* need to accept every step as "the" final truth to benefit from the journey. The purpose is to make plausible that there is a coherent algebraic backbone behind the zoo of fields, couplings and generations.
 
-### Structure of the four weeks
+## Structure of the four weeks
 
 The four Advent Sundays mark the main milestones:
 
@@ -31,7 +31,7 @@ The four Advent Sundays mark the main milestones:
 
 In between the Sundays, the weekday sheets focus on specific mechanisms, numerical prototypes and "what-if" universes based on alternative algebras.
 
-### What you can expect (and what not)
+## What you can expect (and what not)
 
 This calendar is intentionally modest and ambitious at the same time:
 
@@ -44,7 +44,7 @@ You should *not* expect precise numeric predictions for every mass and mixing an
 2. concrete numerical prototypes: explicit eigenvalue patterns from simple vacua in $H_3(\\mathbb{O})$;
 3. a comparative view: what is lost when we replace the exceptional algebras by more conventional ones.
 
-### Who this is written for
+## Who this is written for
 
 These sheets deliberately sit in between a technical paper and a popular article:
 
@@ -53,7 +53,7 @@ These sheets deliberately sit in between a technical paper and a popular article
 
 References at the bottom of each sheet point to the underlying literature. You do not need to read them to follow the calendar, but they are there if you want to see how the pieces connect to mainstream work on division algebras, Jordan algebras and noncommutative geometry.
 
-### An invitation rather than a conclusion
+## An invitation rather than a conclusion
 
 Finally, this Advent calendar should be read as an invitation, not as a finished doctrine. There are many open questions:
 
@@ -76,19 +76,19 @@ If, by Christmas, you feel that these questions are worth spending serious time 
           className="mb-8"
         >
           <div className="flex items-center justify-between mb-6">
-            <h1 className="text-4xl font-bold" style={{ color: '#FFD700', fontFamily: '"Times New Roman", Times, serif' }}>
+            <h1 className="text-4xl font-bold" style={{ color: '#FFD700' }}>
               Advent Calendar 2025
             </h1>
             <Link
               href="/"
-              className="flex items-center gap-2 px-4 py-2 rounded-lg transition-colors"
-              style={{ backgroundColor: 'rgba(255, 215, 0, 0.1)', color: '#FFD700' }}
+              className="flex items-center gap-2 px-4 py-2 rounded-lg transition-colors hover:scale-105"
+              style={{ backgroundColor: 'rgba(0, 51, 102, 0.7)', color: '#FFFFFF' }}
             >
               <Home className="w-5 h-5" />
               <span>Back to Calendar</span>
             </Link>
           </div>
-          <h2 className="text-2xl font-semibold" style={{ color: '#B3001B', fontFamily: '"Times New Roman", Times, serif' }}>
+          <h2 className="text-2xl font-semibold" style={{ color: '#B3001B' }}>
             An exceptional algebraic walk through particle physics
           </h2>
         </motion.div>
@@ -101,7 +101,7 @@ If, by Christmas, you feel that these questions are worth spending serious time 
           className="bg-white rounded-xl p-8 shadow-2xl"
           style={{ border: '3px solid rgba(0, 102, 51, 0.8)' }}
         >
-          <div className="advent-content prose prose-lg max-w-none" style={{ fontFamily: '"Times New Roman", Times, serif' }}>
+          <div className="prose prose-lg max-w-none">
             <MathRenderer content={content} />
           </div>
         </motion.div>

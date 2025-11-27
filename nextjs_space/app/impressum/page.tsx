@@ -18,13 +18,13 @@ export default function ImpressumPage() {
           className="mb-8"
         >
           <div className="flex items-center justify-between mb-6">
-            <h1 className="text-4xl font-bold" style={{ color: '#FFD700', fontFamily: '"Times New Roman", Times, serif' }}>
+            <h1 className="text-4xl font-bold" style={{ color: '#FFD700' }}>
               Impressum
             </h1>
             <Link
               href="/"
-              className="flex items-center gap-2 px-4 py-2 rounded-lg transition-colors"
-              style={{ backgroundColor: 'rgba(255, 215, 0, 0.1)', color: '#FFD700' }}
+              className="flex items-center gap-2 px-4 py-2 rounded-lg transition-colors hover:scale-105"
+              style={{ backgroundColor: 'rgba(0, 51, 102, 0.7)', color: '#FFFFFF' }}
             >
               <Home className="w-5 h-5" />
               <span>Zurück zum Kalender</span>
@@ -40,7 +40,7 @@ export default function ImpressumPage() {
           className="bg-white rounded-xl p-8 shadow-2xl"
           style={{ border: '3px solid rgba(0, 102, 51, 0.8)' }}
         >
-          <div style={{ fontFamily: '"Times New Roman", Times, serif' }}>
+          <div>
             <h2 className="text-2xl font-bold mb-6" style={{ color: '#003366' }}>Angaben gemäß § 5 TMG</h2>
             
             <div className="space-y-6">
@@ -49,7 +49,7 @@ export default function ImpressumPage() {
                 <div className="text-gray-700 leading-relaxed space-y-1">
                   <p>Prof. Dr. Andreas Müller</p>
                   <p>Hochschule Kempten</p>
-                  <p>Fakultät für Elektrotechnik</p>
+                  <p>Fakultät für Betriebswirtschaft</p>
                   <p>Bahnhofstraße 61</p>
                   <p>87435 Kempten (Allgäu)</p>
                   <p>Deutschland</p>
