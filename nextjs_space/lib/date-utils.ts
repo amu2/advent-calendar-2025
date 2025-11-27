@@ -25,8 +25,8 @@ export function isDayUnlocked(dayDate: string): boolean {
 export function formatDate(dateString: string): string {
   try {
     const date = new Date(dateString);
-    return date.toLocaleDateString('de-DE', {
-      day: '2-digit',
+    return date.toLocaleDateString('en-US', {
+      day: 'numeric',
       month: 'long',
       year: 'numeric'
     });

@@ -170,7 +170,7 @@ export default function HomePage() {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin w-12 h-12 border-4 border-red-600 border-t-transparent rounded-full mx-auto mb-4" />
-          <p className="text-gray-600">Lade Adventskalender...</p>
+          <p className="text-gray-600">Loading Advent Calendar...</p>
         </div>
       </div>
     );
@@ -213,7 +213,7 @@ export default function HomePage() {
             className="text-4xl md:text-6xl font-bold mb-4"
             style={{ color: '#B3001B' }}
           >
-            Adventskalender {adventData?.metadata?.year ?? 2025}
+            Advent Calendar {adventData?.metadata?.year ?? 2025}
           </h1>
           
           <p
@@ -239,7 +239,7 @@ export default function HomePage() {
           >
             <CalendarIcon className="w-5 h-5" style={{ color: '#B3001B' }} />
             <span className="font-semibold">
-              {unlockedDays?.length ?? 0} von {adventData?.days?.length ?? 0} Türchen geöffnet
+              {unlockedDays?.length ?? 0} of {adventData?.days?.length ?? 0} doors opened
             </span>
           </motion.div>
         </motion.header>

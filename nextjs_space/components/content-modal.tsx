@@ -58,7 +58,11 @@ export function ContentModal({
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.9, opacity: 0 }}
             transition={{ type: 'spring', duration: 0.5 }}
-            className="relative w-full max-w-4xl max-h-[90vh] bg-white rounded-xl shadow-2xl overflow-hidden"
+            className="relative w-full max-w-5xl max-h-[90vh] bg-white shadow-2xl overflow-hidden"
+            style={{
+              borderRadius: '12px',
+              border: '3px solid rgba(0, 102, 51, 0.8)',
+            }}
             onClick={(e) => e.stopPropagation()}
           >
             {/* Close Button */}
@@ -144,25 +148,34 @@ export function ContentModal({
               />
             </div>
 
-            {/* Content */}
+            {/* Content - Two Column Layout */}
             <div className="overflow-y-auto max-h-[calc(90vh-180px)] px-8 pb-6">
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.6 }}
-                className="prose prose-lg max-w-none"
+                className="prose prose-base max-w-none"
+                style={{
+                  columnCount: 2,
+                  columnGap: '2rem',
+                  fontSize: '0.95rem',
+                  lineHeight: '1.6',
+                }}
               >
                 <MathRenderer content={day?.content ?? ''} />
               </motion.div>
 
-              {/* AdventClosing */}
+              {/* AdventClosing - outside columns */}
               {day?.closing && (
                 <motion.div
                   initial={{ y: 20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.8 }}
-                  className="mt-8 text-center italic text-lg"
-                  style={{ color: '#006633' }}
+                  className="mt-8 text-center italic text-lg break-before-column"
+                  style={{ 
+                    color: '#006633',
+                    columnSpan: 'all',
+                  }}
                 >
                   {day.closing}
                 </motion.div>
