@@ -15,6 +15,16 @@ export function AdventDoor({ day, isUnlocked, onClick }: AdventDoorProps) {
   const [isHovered, setIsHovered] = useState(false);
 
   const isSpecialDay = day?.special?.includes('Advent') || day?.type?.includes('Adventssonntag');
+  
+  // Determine number of stars based on day number
+  const getStarCount = (dayNum: number): number => {
+    if (dayNum === 7) return 2;
+    if (dayNum === 14) return 3;
+    if (dayNum === 21) return 4;
+    return 1; // Default for other special days
+  };
+  
+  const starCount = isSpecialDay ? getStarCount(day?.day ?? 0) : 0;
 
   return (
     <motion.div
@@ -51,9 +61,13 @@ export function AdventDoor({ day, isUnlocked, onClick }: AdventDoorProps) {
             {day?.day ?? 0}
           </div>
 
-          {/* Special indicator */}
-          {isSpecialDay && (
-            <Star className="w-6 h-6 fill-current" />
+          {/* Special indicator - multiple stars */}
+          {isSpecialDay && starCount > 0 && (
+            <div className="flex gap-0.5">
+              {Array.from({ length: starCount }).map((_, i) => (
+                <Star key={i} className="w-5 h-5 fill-current" />
+              ))}
+            </div>
           )}
 
           {/* Lock icon for locked days */}
