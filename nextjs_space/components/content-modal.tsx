@@ -43,6 +43,13 @@ export function ContentModal({
       // Start door opening music
       setIsAnimating(true);
       if (typeof window !== 'undefined') {
+        // Stop any existing audio first
+        if (audioRef.current) {
+          audioRef.current.pause();
+          audioRef.current.currentTime = 0;
+          audioRef.current = null;
+        }
+        
         audioRef.current = new Audio('/sounds/door-open.mp3');
         audioRef.current.volume = 0.5;
         audioRef.current.play().catch((error) => {
@@ -57,9 +64,10 @@ export function ContentModal({
         return () => {
           clearTimeout(timer);
           document.removeEventListener('keydown', handleEscape);
-          document.body.style.overflow = 'unset';
+          document.body.style.overflow = '';
           if (audioRef.current) {
             audioRef.current.pause();
+            audioRef.current.currentTime = 0;
             audioRef.current = null;
           }
         };
@@ -68,9 +76,10 @@ export function ContentModal({
 
     return () => {
       document.removeEventListener('keydown', handleEscape);
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = '';
       if (audioRef.current) {
         audioRef.current.pause();
+        audioRef.current.currentTime = 0;
         audioRef.current = null;
       }
     };
@@ -291,7 +300,7 @@ export function ContentModal({
               </motion.div>
             )}
 
-            {/* Content - Two Column Layout */}
+            {/* Content - Two Column Layout with References */}
             <div className="overflow-y-auto max-h-[calc(90vh-180px)] px-8 pb-32">
               <motion.div
                 initial={{ y: -60, opacity: 0 }}
@@ -306,46 +315,68 @@ export function ContentModal({
                 }}
               >
                 <MathRenderer content={day?.content ?? ''} />
+                
+                {/* References integrated into content */}
+                {day?.references && day.references.length > 0 && (
+                  <div
+                    className="mt-8 pt-6"
+                    style={{ 
+                      borderTop: '1px solid rgba(0, 102, 51, 0.2)',
+                      columnSpan: 'all'
+                    }}
+                  >
+                    <h3 
+                      className="text-lg font-semibold mb-4"
+                      style={{ color: '#003366' }}
+                    >
+                      References
+                    </h3>
+                    <ul className="space-y-2 text-sm text-gray-700">
+                      {day.references.map((ref, idx) => (
+                        <li
+                          key={ref?.key ?? idx}
+                          dangerouslySetInnerHTML={{ __html: ref?.text ?? '' }}
+                        />
+                      ))}
+                    </ul>
+                  </div>
+                )}
               </motion.div>
 
-              {/* AdventClosing - outside columns */}
+              {/* Star separator before closing */}
+              {day?.closing && (
+                <motion.div 
+                  initial={{ scaleX: 0, opacity: 0 }}
+                  animate={{ scaleX: 1, opacity: 1 }}
+                  transition={{ delay: 2.6, duration: 0.6 }}
+                  className="flex items-center justify-center py-6 mt-6"
+                >
+                  <div
+                    className="h-[1px] w-1/4"
+                    style={{ backgroundColor: '#B59410' }}
+                  />
+                  <div className="px-3" style={{ color: '#B59410' }}>
+                    ★ ★ ★
+                  </div>
+                  <div
+                    className="h-[1px] w-1/4"
+                    style={{ backgroundColor: '#B59410' }}
+                  />
+                </motion.div>
+              )}
+
+              {/* AdventClosing - after star separator */}
               {day?.closing && (
                 <motion.div
                   initial={{ y: -40, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: 2.6, duration: 0.8, type: 'spring', stiffness: 80 }}
-                  className="mt-8 text-center italic text-lg break-before-column"
+                  transition={{ delay: 2.8, duration: 0.8, type: 'spring', stiffness: 80 }}
+                  className="text-center italic text-lg px-4"
                   style={{ 
                     color: '#006633',
-                    columnSpan: 'all',
                   }}
                 >
                   <MathRenderer content={day.closing} />
-                </motion.div>
-              )}
-
-              {day?.references && day.references.length > 0 && (
-                <motion.div
-                  initial={{ y: -30, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: 2.8, duration: 0.7, type: 'spring', stiffness: 80 }}
-                  className="mt-8 pt-6"
-                  style={{ borderTop: '1px solid rgba(0, 102, 51, 0.2)' }}
-                >
-                  <h3 
-                    className="text-lg font-semibold mb-4"
-                    style={{ color: '#003366' }}
-                  >
-                    References
-                  </h3>
-                  <ul className="space-y-2 text-sm text-gray-700">
-                    {day.references.map((ref, idx) => (
-                      <li
-                        key={ref?.key ?? idx}
-                        dangerouslySetInnerHTML={{ __html: ref?.text ?? '' }}
-                      />
-                    ))}
-                  </ul>
                 </motion.div>
               )}
             </div>

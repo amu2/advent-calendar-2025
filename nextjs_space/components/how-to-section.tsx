@@ -9,20 +9,20 @@ export function HowToSection() {
   const [isOpen, setIsOpen] = useState(false);
 
   const content = `
-<h3>How to read this Advent calendar</h3>
+<h3>Welcome to the Exceptional Advent</h3>
 
-<p>This Advent calendar is written for readers who are comfortably fluent in theoretical physics and mathematics, but who may or may not have worked with octonions and exceptional algebras before. Each day is a self-contained sheet, but together they tell a single story:</p>
+<p>This calendar invites you on a journey through the mathematical structures underlying particle physics. Whether you're already familiar with octonions and exceptional algebras or encountering them for the first time, each day offers a self-contained exploration. Together, the 31 sheets tell one coherent story:</p>
 
 <ul>
   <li>that the Standard Model and gravity can be seen as low-energy expressions of a more rigid exceptional structure, and</li>
   <li>that many familiar "facts" of particle physics look less arbitrary when viewed from this perspective.</li>
 </ul>
 
-<p>You do <em>not</em> need to accept every step as "the" final truth to benefit from the journey. The purpose is to make plausible that there is a coherent algebraic backbone behind the zoo of fields, couplings and generations.</p>
+<p>Think of this as an exploratory expedition rather than a final theorem. The goal is to reveal a plausible algebraic backbone beneath the seemingly arbitrary collection of particles, forces, and symmetries we observe in nature.</p>
 
-<h3>Structure of the four weeks</h3>
+<h3>The Journey Through Four Weeks</h3>
 
-<p>The four Advent Sundays mark the main milestones:</p>
+<p>Each Advent Sunday opens a new chapter in our story:</p>
 
 <dl style="margin-left: 1rem;">
   <dt style="font-weight: bold; margin-top: 0.75rem;"><strong>First Sunday (today):</strong></dt>
@@ -38,11 +38,11 @@ export function HowToSection() {
   <dd style="margin-left: 1.5rem; margin-bottom: 0.75rem;">We step back and ask what kind of "attractor universe" is selected by this geometry, and how robust the picture is under deformations.</dd>
 </dl>
 
-<p>In between the Sundays, the weekday sheets focus on specific mechanisms, numerical prototypes and "what-if" universes based on alternative algebras.</p>
+<p>Between these Sunday milestones, weekday sheets dive into specific mechanisms, numerical examples, and thought experiments exploring alternative algebraic foundations.</p>
 
-<h3>What you can expect (and what not)</h3>
+<h3>What Awaits You</h3>
 
-<p>This calendar is intentionally modest and ambitious at the same time:</p>
+<p>This calendar balances ambition with humility:</p>
 
 <ul>
   <li><strong>Modest</strong>, because it does not pretend to deliver a full, rigorous theory with all details worked out. Many steps are presented at the level of structure and plausibility rather than polished theorems.</li>
@@ -57,28 +57,28 @@ export function HowToSection() {
   <li>a comparative view: what is lost when we replace the exceptional algebras by more conventional ones.</li>
 </ol>
 
-<h3>Who this is written for</h3>
+<h3>For Whom Is This Written?</h3>
 
-<p>These sheets deliberately sit in between a technical paper and a popular article:</p>
+<p>These sheets bridge the gap between research papers and popular science:</p>
 
 <ul>
-  <li>If you are a working physicist or mathematician, you will find enough structure to connect the ideas to your own toolbox: Lie groups, representation theory, spectral geometry, operator algebras.</li>
-  <li>If you come from a neighbouring field, you might treat the technical points as signposts rather than obstacles, and focus on the emerging picture: a universe whose internal order is exceptional in a very literal sense.</li>
+  <li><strong>For specialists:</strong> You'll find connections to familiar mathematical structures—Lie groups, representation theory, spectral geometry—presented in a new light.</li>
+  <li><strong>For curious outsiders:</strong> Technical details serve as guideposts, not barriers. Follow the conceptual thread and discover how exceptional mathematics might organize our physical reality.</li>
 </ul>
 
-<p>References at the bottom of each sheet point to the underlying literature. You do not need to read them to follow the calendar, but they are there if you want to see how the pieces connect to mainstream work on division algebras, Jordan algebras and noncommutative geometry.</p>
+<p>Each sheet includes references to the research literature. These are optional reading—the calendar stands on its own—but they're there if you want to explore the connections to mainstream work in division algebras, Jordan algebras, and noncommutative geometry.</p>
 
-<h3>An invitation rather than a conclusion</h3>
+<h3>An Invitation to Explore</h3>
 
-<p>Finally, this Advent calendar should be read as an invitation, not as a finished doctrine. There are many open questions:</p>
+<p>This calendar is a beginning, not an endpoint. Many questions remain open:</p>
 
 <ul>
   <li>How unique is the proposed exceptional backbone?</li>
-  <li>How far can the numerical fits to real-world data be pushed?</li>
-  <li>Which aspects of the nonassociative structure survive quantisation?</li>
+  <li>How far can numerical predictions match experimental data?</li>
+  <li>Which aspects survive the transition to quantum theory?</li>
 </ul>
 
-<p>If, by Christmas, you feel that these questions are worth spending serious time on, the calendar has achieved its goal.</p>
+<p>If by December 31st you find yourself pondering these questions, considering new connections, or simply seeing the Standard Model through fresh eyes, then this advent journey has succeeded.</p>
   `;
 
   return (
@@ -86,12 +86,13 @@ export function HowToSection() {
       {/* Toggle Button */}
       <motion.button
         onClick={() => setIsOpen(!isOpen)}
-        whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.98 }}
-        className="w-full flex items-center justify-between px-6 py-4 rounded-lg shadow-lg transition-all"
+        whileHover={{ scale: 1.01 }}
+        whileTap={{ scale: 0.99 }}
+        className="w-full flex items-center justify-between px-5 py-3 rounded-lg shadow-md transition-all"
         style={{ 
-          backgroundColor: '#006633',
-          color: '#FFFFFF'
+          backgroundColor: 'rgba(0, 102, 51, 0.15)',
+          border: '1px solid rgba(0, 102, 51, 0.3)',
+          color: '#003366'
         }}
       >
         <div className="flex items-center gap-3">
@@ -100,15 +101,15 @@ export function HowToSection() {
             transition={{ duration: 0.3 }}
           >
             {isOpen ? (
-              <ChevronUp className="w-6 h-6" />
+              <ChevronUp className="w-5 h-5" />
             ) : (
-              <ChevronDown className="w-6 h-6" />
+              <ChevronDown className="w-5 h-5" />
             )}
           </motion.div>
-          <span className="text-xl font-semibold">How to read this Advent calendar</span>
+          <span className="text-lg font-medium">Guide to the Calendar</span>
         </div>
-        <div className="text-sm opacity-80">
-          {isOpen ? 'Click to close' : 'Click to open'}
+        <div className="text-sm opacity-70">
+          {isOpen ? 'Hide' : 'Read more'}
         </div>
       </motion.button>
 
