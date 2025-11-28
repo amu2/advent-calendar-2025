@@ -237,20 +237,6 @@ export default function HomePage() {
       </button>
 
       <div className="relative z-10 container mx-auto px-4 py-8">
-        {/* Navigation Menu */}
-        <motion.nav
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="flex justify-end gap-4 mb-6"
-        >
-          <Link
-            href="/impressum"
-            className="px-4 py-2 rounded-lg font-semibold transition-all hover:scale-105"
-            style={{ backgroundColor: 'rgba(0, 51, 102, 0.7)', color: '#FFFFFF' }}
-          >
-            Impressum
-          </Link>
-        </motion.nav>
 
         {/* Header */}
         <motion.header
@@ -325,16 +311,6 @@ export default function HomePage() {
           </motion.div>
         </motion.header>
 
-        {/* How-to Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.7 }}
-          className="max-w-7xl mx-auto"
-        >
-          <HowToSection />
-        </motion.div>
-
         {/* Calendar Grid */}
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-4 md:gap-6">
@@ -348,6 +324,16 @@ export default function HomePage() {
             ))}
           </div>
         </div>
+
+        {/* How-to Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.7 }}
+          className="max-w-7xl mx-auto mt-12"
+        >
+          <HowToSection />
+        </motion.div>
 
         {/* Footer */}
         <motion.footer
@@ -364,14 +350,28 @@ export default function HomePage() {
               {adventData?.metadata?.author ?? ''}
             </a>
           </p>
-          <p className="opacity-70">
+          <p className="opacity-70 mb-6">
             {adventData?.metadata?.description ?? ''}
           </p>
+          
+          {/* Impressum Button */}
+          <Link
+            href="/impressum"
+            className="inline-block px-6 py-3 rounded-lg transition-all hover:scale-105"
+            style={{ 
+              backgroundColor: '#FFFFFF', 
+              color: '#006633',
+              border: '2px solid #006633'
+            }}
+          >
+            Impressum
+          </Link>
         </motion.footer>
       </div>
 
       {/* Modals */}
       <ContentModal
+        key={selectedDay?.day ?? 0}
         day={selectedDay}
         onClose={() => setSelectedDay(null)}
         onPrevious={handlePrevious}

@@ -9,60 +9,76 @@ export function HowToSection() {
   const [isOpen, setIsOpen] = useState(false);
 
   const content = `
-## How to read this Advent calendar
+<h3>How to read this Advent calendar</h3>
 
-This Advent calendar is written for readers who are comfortably fluent in theoretical physics and mathematics, but who may or may not have worked with octonions and exceptional algebras before. Each day is a self-contained sheet, but together they tell a single story:
+<p>This Advent calendar is written for readers who are comfortably fluent in theoretical physics and mathematics, but who may or may not have worked with octonions and exceptional algebras before. Each day is a self-contained sheet, but together they tell a single story:</p>
 
-- that the Standard Model and gravity can be seen as low-energy expressions of a more rigid exceptional structure, and
-- that many familiar "facts" of particle physics look less arbitrary when viewed from this perspective.
+<ul>
+  <li>that the Standard Model and gravity can be seen as low-energy expressions of a more rigid exceptional structure, and</li>
+  <li>that many familiar "facts" of particle physics look less arbitrary when viewed from this perspective.</li>
+</ul>
 
-You do *not* need to accept every step as "the" final truth to benefit from the journey. The purpose is to make plausible that there is a coherent algebraic backbone behind the zoo of fields, couplings and generations.
+<p>You do <em>not</em> need to accept every step as "the" final truth to benefit from the journey. The purpose is to make plausible that there is a coherent algebraic backbone behind the zoo of fields, couplings and generations.</p>
 
-## Structure of the four weeks
+<h3>Structure of the four weeks</h3>
 
-The four Advent Sundays mark the main milestones:
+<p>The four Advent Sundays mark the main milestones:</p>
 
-**First Sunday:** We introduce the octonionic stage, the group $G_2$ and triality, and explain why an $8$-dimensional, nonassociative number system is a natural candidate for internal degrees of freedom.
+<dl style="margin-left: 1rem;">
+  <dt style="font-weight: bold; margin-top: 0.75rem;"><strong>First Sunday (today):</strong></dt>
+  <dd style="margin-left: 1.5rem; margin-bottom: 0.75rem;">We introduce the octonionic stage, the group $G_2$ and triality, and explain why an $8$-dimensional, nonassociative number system is a natural candidate for internal degrees of freedom.</dd>
 
-**Second Sunday:** We move to the Albert algebra $H_3(\\mathbb{O})$, the unified transport equation $D\\Psi=0$ and the idea that Dirac, Yang–Mills and Einstein equations can all be read as projections or consistency conditions of this single operator.
+  <dt style="font-weight: bold; margin-top: 0.75rem;"><strong>Second Sunday:</strong></dt>
+  <dd style="margin-left: 1.5rem; margin-bottom: 0.75rem;">We move to the Albert algebra $H_3(\\mathbb{O})$, the unified transport equation $D\\Psi=0$ and the idea that Dirac, Yang–Mills and Einstein equations can all be read as projections or consistency conditions of this single operator.</dd>
 
-**Third Sunday:** We look at flavour: three generations, CKM and PMNS mixing, and how these structures appear as different charts on the same internal exceptional space.
+  <dt style="font-weight: bold; margin-top: 0.75rem;"><strong>Third Sunday:</strong></dt>
+  <dd style="margin-left: 1.5rem; margin-bottom: 0.75rem;">We look at flavour: three generations, CKM and PMNS mixing, and how these structures appear as different charts on the same internal exceptional space.</dd>
 
-**Fourth Sunday:** We step back and ask what kind of "attractor universe" is selected by this geometry, and how robust the picture is under deformations.
+  <dt style="font-weight: bold; margin-top: 0.75rem;"><strong>Fourth Sunday:</strong></dt>
+  <dd style="margin-left: 1.5rem; margin-bottom: 0.75rem;">We step back and ask what kind of "attractor universe" is selected by this geometry, and how robust the picture is under deformations.</dd>
+</dl>
 
-In between the Sundays, the weekday sheets focus on specific mechanisms, numerical prototypes and "what-if" universes based on alternative algebras.
+<p>In between the Sundays, the weekday sheets focus on specific mechanisms, numerical prototypes and "what-if" universes based on alternative algebras.</p>
 
-## What you can expect (and what not)
+<h3>What you can expect (and what not)</h3>
 
-This calendar is intentionally modest and ambitious at the same time:
+<p>This calendar is intentionally modest and ambitious at the same time:</p>
 
-- **Modest**, because it does not pretend to deliver a full, rigorous theory with all details worked out. Many steps are presented at the level of structure and plausibility rather than polished theorems.
-- **Ambitious**, because it aims to show that a surprisingly small set of algebraic ingredients — octonions, $H_3(\\mathbb{O})$, an $\\mathfrak{so}(8)$-connection and a vacuum configuration $\\langle H\\rangle$ — can organise a large portion of what we know as the Standard Model plus gravity.
+<ul>
+  <li><strong>Modest</strong>, because it does not pretend to deliver a full, rigorous theory with all details worked out. Many steps are presented at the level of structure and plausibility rather than polished theorems.</li>
+  <li><strong>Ambitious</strong>, because it aims to show that a surprisingly small set of algebraic ingredients — octonions, $H_3(\\mathbb{O})$, an $\\mathfrak{so}(8)$-connection and a vacuum configuration $\\langle H\\rangle$ — can organise a large portion of what we know as the Standard Model plus gravity.</li>
+</ul>
 
-You should *not* expect precise numeric predictions for every mass and mixing angle on these pages. What you can expect are:
+<p>You should <em>not</em> expect precise numeric predictions for every mass and mixing angle on these pages. What you can expect are:</p>
 
-1. clear structural links: why three generations, why particular charge assignments, why certain patterns of couplings;
-2. concrete numerical prototypes: explicit eigenvalue patterns from simple vacua in $H_3(\\mathbb{O})$;
-3. a comparative view: what is lost when we replace the exceptional algebras by more conventional ones.
+<ol>
+  <li>clear structural links: why three generations, why particular charge assignments, why certain patterns of couplings;</li>
+  <li>concrete numerical prototypes: explicit eigenvalue patterns from simple vacua in $H_3(\\mathbb{O})$;</li>
+  <li>a comparative view: what is lost when we replace the exceptional algebras by more conventional ones.</li>
+</ol>
 
-## Who this is written for
+<h3>Who this is written for</h3>
 
-These sheets deliberately sit in between a technical paper and a popular article:
+<p>These sheets deliberately sit in between a technical paper and a popular article:</p>
 
-- If you are a working physicist or mathematician, you will find enough structure to connect the ideas to your own toolbox: Lie groups, representation theory, spectral geometry, operator algebras.
-- If you come from a neighbouring field, you might treat the technical points as signposts rather than obstacles, and focus on the emerging picture: a universe whose internal order is exceptional in a very literal sense.
+<ul>
+  <li>If you are a working physicist or mathematician, you will find enough structure to connect the ideas to your own toolbox: Lie groups, representation theory, spectral geometry, operator algebras.</li>
+  <li>If you come from a neighbouring field, you might treat the technical points as signposts rather than obstacles, and focus on the emerging picture: a universe whose internal order is exceptional in a very literal sense.</li>
+</ul>
 
-References at the bottom of each sheet point to the underlying literature. You do not need to read them to follow the calendar, but they are there if you want to see how the pieces connect to mainstream work on division algebras, Jordan algebras and noncommutative geometry.
+<p>References at the bottom of each sheet point to the underlying literature. You do not need to read them to follow the calendar, but they are there if you want to see how the pieces connect to mainstream work on division algebras, Jordan algebras and noncommutative geometry.</p>
 
-## An invitation rather than a conclusion
+<h3>An invitation rather than a conclusion</h3>
 
-Finally, this Advent calendar should be read as an invitation, not as a finished doctrine. There are many open questions:
+<p>Finally, this Advent calendar should be read as an invitation, not as a finished doctrine. There are many open questions:</p>
 
-- How unique is the proposed exceptional backbone?
-- How far can the numerical fits to real-world data be pushed?
-- Which aspects of the nonassociative structure survive quantisation?
+<ul>
+  <li>How unique is the proposed exceptional backbone?</li>
+  <li>How far can the numerical fits to real-world data be pushed?</li>
+  <li>Which aspects of the nonassociative structure survive quantisation?</li>
+</ul>
 
-If, by Christmas, you feel that these questions are worth spending serious time on, the calendar has achieved its goal.
+<p>If, by Christmas, you feel that these questions are worth spending serious time on, the calendar has achieved its goal.</p>
   `;
 
   return (
@@ -74,7 +90,7 @@ If, by Christmas, you feel that these questions are worth spending serious time 
         whileTap={{ scale: 0.98 }}
         className="w-full flex items-center justify-between px-6 py-4 rounded-lg shadow-lg transition-all"
         style={{ 
-          backgroundColor: 'rgba(0, 51, 102, 0.9)',
+          backgroundColor: '#006633',
           color: '#FFFFFF'
         }}
       >

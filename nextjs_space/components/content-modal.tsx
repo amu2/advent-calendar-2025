@@ -56,6 +56,8 @@ export function ContentModal({
         
         return () => {
           clearTimeout(timer);
+          document.removeEventListener('keydown', handleEscape);
+          document.body.style.overflow = 'unset';
           if (audioRef.current) {
             audioRef.current.pause();
             audioRef.current = null;
@@ -170,7 +172,7 @@ export function ContentModal({
                 </motion.h2>
                 
                 {day?.subtitle && (
-                  <motion.p
+                  <motion.div
                     initial={{ y: -100, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ delay: 1.6, duration: 0.8, type: 'spring', stiffness: 80 }}
@@ -180,8 +182,8 @@ export function ContentModal({
                       fontFamily: '"Times New Roman", Times, serif',
                     }}
                   >
-                    {day.subtitle}
-                  </motion.p>
+                    <MathRenderer content={day.subtitle} />
+                  </motion.div>
                 )}
               </div>
 
@@ -200,30 +202,94 @@ export function ContentModal({
                   <span className="font-bold" style={{ color: '#B3001B' }}>
                     Key Insight.{' '}
                   </span>
-                  <span style={{ color: '#000' }}>{day.keyInsight}</span>
+                  <MathRenderer content={day.keyInsight} />
                 </motion.div>
               )}
             </div>
 
-            {/* AdventStarRule */}
-            <motion.div 
-              initial={{ scaleX: 0, opacity: 0 }}
-              animate={{ scaleX: 1, opacity: 1 }}
-              transition={{ delay: 2.0, duration: 0.6 }}
-              className="flex items-center justify-center py-4"
-            >
-              <div
-                className="h-[1px] w-1/4"
-                style={{ backgroundColor: '#B59410' }}
-              />
-              <div className="px-3" style={{ color: '#B59410' }}>
-                ★ ★ ★
+            {/* First Star Rule (before intro) */}
+            {day?.intro && (
+              <motion.div 
+                initial={{ scaleX: 0, opacity: 0 }}
+                animate={{ scaleX: 1, opacity: 1 }}
+                transition={{ delay: 2.0, duration: 0.6 }}
+                className="flex items-center justify-center py-4"
+              >
+                <div
+                  className="h-[1px] w-1/4"
+                  style={{ backgroundColor: '#B59410' }}
+                />
+                <div className="px-3" style={{ color: '#B59410' }}>
+                  ★ ★ ★
+                </div>
+                <div
+                  className="h-[1px] w-1/4"
+                  style={{ backgroundColor: '#B59410' }}
+                />
+              </motion.div>
+            )}
+
+            {/* Intro section (single column) */}
+            {day?.intro && (
+              <div className="px-8 pb-4">
+                <motion.div
+                  initial={{ y: -60, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ delay: 2.2, duration: 1.0, type: 'spring', stiffness: 70 }}
+                  className="prose prose-base max-w-none"
+                  style={{
+                    fontSize: '1rem',
+                    lineHeight: '1.65',
+                  }}
+                >
+                  <MathRenderer content={day.intro} />
+                </motion.div>
               </div>
-              <div
-                className="h-[1px] w-1/4"
-                style={{ backgroundColor: '#B59410' }}
-              />
-            </motion.div>
+            )}
+
+            {/* Second Star Rule (after intro, before main content) */}
+            {day?.intro && (
+              <motion.div 
+                initial={{ scaleX: 0, opacity: 0 }}
+                animate={{ scaleX: 1, opacity: 1 }}
+                transition={{ delay: 2.4, duration: 0.6 }}
+                className="flex items-center justify-center py-4"
+              >
+                <div
+                  className="h-[1px] w-1/4"
+                  style={{ backgroundColor: '#B59410' }}
+                />
+                <div className="px-3" style={{ color: '#B59410' }}>
+                  ★ ★ ★
+                </div>
+                <div
+                  className="h-[1px] w-1/4"
+                  style={{ backgroundColor: '#B59410' }}
+                />
+              </motion.div>
+            )}
+
+            {/* Default star rule if no intro */}
+            {!day?.intro && (
+              <motion.div 
+                initial={{ scaleX: 0, opacity: 0 }}
+                animate={{ scaleX: 1, opacity: 1 }}
+                transition={{ delay: 2.0, duration: 0.6 }}
+                className="flex items-center justify-center py-4"
+              >
+                <div
+                  className="h-[1px] w-1/4"
+                  style={{ backgroundColor: '#B59410' }}
+                />
+                <div className="px-3" style={{ color: '#B59410' }}>
+                  ★ ★ ★
+                </div>
+                <div
+                  className="h-[1px] w-1/4"
+                  style={{ backgroundColor: '#B59410' }}
+                />
+              </motion.div>
+            )}
 
             {/* Content - Two Column Layout */}
             <div className="overflow-y-auto max-h-[calc(90vh-180px)] px-8 pb-32">
@@ -254,7 +320,7 @@ export function ContentModal({
                     columnSpan: 'all',
                   }}
                 >
-                  {day.closing}
+                  <MathRenderer content={day.closing} />
                 </motion.div>
               )}
 

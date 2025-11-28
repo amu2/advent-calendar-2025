@@ -5,6 +5,7 @@ export interface AdventDay {
   title: string;
   subtitle?: string;
   keyInsight?: string;
+  intro?: string;
   content: string;
   closing?: string;
   type?: string;
