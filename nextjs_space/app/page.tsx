@@ -10,6 +10,7 @@ import { Snowflakes } from '@/components/snowflakes';
 import { AdventDoor } from '@/components/advent-door';
 import { ContentModal } from '@/components/content-modal';
 import { LockedMessage } from '@/components/locked-message';
+import { HowToSection } from '@/components/how-to-section';
 import { useSound } from '@/hooks/use-sound';
 
 // Helper function to determine header decoration based on date
@@ -145,9 +146,9 @@ export default function HomePage() {
     const isUnlocked = isDayUnlocked(day?.date ?? '');
     
     if (isUnlocked) {
-      // Fade out music first, then play door sound
+      // Fade out background music first
       await fadeOutMusic();
-      playSound();
+      // Door sound is now played inside the modal after it opens
       setSelectedDay(day);
     } else {
       setShowLockedMessage(day?.date ?? '');
@@ -243,13 +244,6 @@ export default function HomePage() {
           className="flex justify-end gap-4 mb-6"
         >
           <Link
-            href="/how-to"
-            className="px-4 py-2 rounded-lg font-semibold transition-all hover:scale-105"
-            style={{ backgroundColor: 'rgba(0, 51, 102, 0.7)', color: '#FFFFFF' }}
-          >
-            How-to
-          </Link>
-          <Link
             href="/impressum"
             className="px-4 py-2 rounded-lg font-semibold transition-all hover:scale-105"
             style={{ backgroundColor: 'rgba(0, 51, 102, 0.7)', color: '#FFFFFF' }}
@@ -330,6 +324,16 @@ export default function HomePage() {
             </span>
           </motion.div>
         </motion.header>
+
+        {/* How-to Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.7 }}
+          className="max-w-7xl mx-auto"
+        >
+          <HowToSection />
+        </motion.div>
 
         {/* Calendar Grid */}
         <div className="max-w-7xl mx-auto">

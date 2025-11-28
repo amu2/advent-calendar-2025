@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ChevronLeft, ChevronRight, Calendar, Download } from 'lucide-react';
-import { useEffect } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import type { AdventDay } from '@/lib/types';
 import { MathRenderer } from './math-renderer';
 import { FallingText } from './falling-text';
@@ -25,6 +25,10 @@ export function ContentModal({
   hasPrevious,
   hasNext,
 }: ContentModalProps) {
+  const [isAnimating, setIsAnimating] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const ANIMATION_DURATION = 3500; // 3.5 seconds for the full opening animation
+
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
@@ -35,11 +39,38 @@ export function ContentModal({
     if (day) {
       document.addEventListener('keydown', handleEscape);
       document.body.style.overflow = 'hidden';
+      
+      // Start door opening music
+      setIsAnimating(true);
+      if (typeof window !== 'undefined') {
+        audioRef.current = new Audio('/sounds/door-open.mp3');
+        audioRef.current.volume = 0.5;
+        audioRef.current.play().catch((error) => {
+          console.error('Failed to play door sound:', error);
+        });
+        
+        // Animation completes after music
+        const timer = setTimeout(() => {
+          setIsAnimating(false);
+        }, ANIMATION_DURATION);
+        
+        return () => {
+          clearTimeout(timer);
+          if (audioRef.current) {
+            audioRef.current.pause();
+            audioRef.current = null;
+          }
+        };
+      }
     }
 
     return () => {
       document.removeEventListener('keydown', handleEscape);
       document.body.style.overflow = 'unset';
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current = null;
+      }
     };
   }, [day, onClose]);
 
@@ -50,14 +81,20 @@ export function ContentModal({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
+          transition={{ duration: 0.6 }}
           className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
           onClick={onClose}
         >
           <motion.div
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
+            initial={{ scale: 0.5, opacity: 0, rotateY: -15 }}
+            animate={{ scale: 1, opacity: 1, rotateY: 0 }}
             exit={{ scale: 0.9, opacity: 0 }}
-            transition={{ type: 'spring', duration: 0.5 }}
+            transition={{ 
+              type: 'spring',
+              stiffness: 60,
+              damping: 15,
+              duration: 1.5
+            }}
             className="relative w-full max-w-5xl max-h-[90vh] bg-white shadow-2xl overflow-hidden"
             style={{
               borderRadius: '12px',
@@ -106,9 +143,9 @@ export function ContentModal({
               {/* AdventTitleBlock */}
               <div className="text-center mb-4">
                 <motion.div
-                  initial={{ y: -20, opacity: 0 }}
+                  initial={{ y: -100, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: 0.2 }}
+                  transition={{ delay: 1.2, duration: 0.8, type: 'spring', stiffness: 80 }}
                   className="text-2xl font-bold mb-2"
                   style={{ 
                     color: '#B3001B',
@@ -120,9 +157,9 @@ export function ContentModal({
                 </motion.div>
                 
                 <motion.h2
-                  initial={{ y: -20, opacity: 0 }}
+                  initial={{ y: -120, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: 0.3 }}
+                  transition={{ delay: 1.4, duration: 0.9, type: 'spring', stiffness: 80 }}
                   className="text-4xl font-bold mb-3 leading-tight"
                   style={{ 
                     color: '#003366',
@@ -134,9 +171,9 @@ export function ContentModal({
                 
                 {day?.subtitle && (
                   <motion.p
-                    initial={{ y: -20, opacity: 0 }}
+                    initial={{ y: -100, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
-                    transition={{ delay: 0.4 }}
+                    transition={{ delay: 1.6, duration: 0.8, type: 'spring', stiffness: 80 }}
                     className="text-xl font-semibold"
                     style={{ 
                       color: '#000',
@@ -151,9 +188,9 @@ export function ContentModal({
               {/* AdventKeyInsight */}
               {day?.keyInsight && (
                 <motion.div
-                  initial={{ y: 20, opacity: 0 }}
+                  initial={{ y: -80, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: 0.5 }}
+                  transition={{ delay: 1.8, duration: 0.8, type: 'spring', stiffness: 80 }}
                   className="p-4 rounded text-base"
                   style={{ 
                     backgroundColor: 'rgba(179, 0, 27, 0.08)',
@@ -169,7 +206,12 @@ export function ContentModal({
             </div>
 
             {/* AdventStarRule */}
-            <div className="flex items-center justify-center py-4">
+            <motion.div 
+              initial={{ scaleX: 0, opacity: 0 }}
+              animate={{ scaleX: 1, opacity: 1 }}
+              transition={{ delay: 2.0, duration: 0.6 }}
+              className="flex items-center justify-center py-4"
+            >
               <div
                 className="h-[1px] w-1/4"
                 style={{ backgroundColor: '#B59410' }}
@@ -181,14 +223,14 @@ export function ContentModal({
                 className="h-[1px] w-1/4"
                 style={{ backgroundColor: '#B59410' }}
               />
-            </div>
+            </motion.div>
 
             {/* Content - Two Column Layout */}
             <div className="overflow-y-auto max-h-[calc(90vh-180px)] px-8 pb-32">
               <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.6 }}
+                initial={{ y: -60, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 2.2, duration: 1.0, type: 'spring', stiffness: 70 }}
                 className="prose prose-base max-w-none advent-content"
                 style={{
                   columnCount: 2,
@@ -203,9 +245,9 @@ export function ContentModal({
               {/* AdventClosing - outside columns */}
               {day?.closing && (
                 <motion.div
-                  initial={{ y: 20, opacity: 0 }}
+                  initial={{ y: -40, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: 0.8 }}
+                  transition={{ delay: 2.6, duration: 0.8, type: 'spring', stiffness: 80 }}
                   className="mt-8 text-center italic text-lg break-before-column"
                   style={{ 
                     color: '#006633',
@@ -218,9 +260,9 @@ export function ContentModal({
 
               {day?.references && day.references.length > 0 && (
                 <motion.div
-                  initial={{ y: 20, opacity: 0 }}
+                  initial={{ y: -30, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: 0.9 }}
+                  transition={{ delay: 2.8, duration: 0.7, type: 'spring', stiffness: 80 }}
                   className="mt-8 pt-6"
                   style={{ borderTop: '1px solid rgba(0, 102, 51, 0.2)' }}
                 >

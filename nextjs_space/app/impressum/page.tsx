@@ -7,7 +7,7 @@ import { Snowflakes } from '@/components/snowflakes';
 
 export default function ImpressumPage() {
   return (
-    <div className="min-h-screen relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #003366 0%, #006633 100%)' }}>
+    <div className="min-h-screen relative overflow-hidden" style={{ backgroundColor: '#FEFEFE' }}>
       <Snowflakes />
       
       <div className="relative z-10 container mx-auto px-4 py-8 max-w-4xl">
@@ -18,12 +18,12 @@ export default function ImpressumPage() {
           className="mb-8"
         >
           <div className="flex items-center justify-between mb-6">
-            <h1 className="text-4xl font-bold" style={{ color: '#FFD700' }}>
+            <h1 className="text-4xl font-bold" style={{ color: '#B3001B' }}>
               Impressum
             </h1>
             <Link
               href="/"
-              className="flex items-center gap-2 px-4 py-2 rounded-lg transition-colors hover:scale-105"
+              className="flex items-center gap-2 px-4 py-2 rounded-lg font-semibold transition-all hover:scale-105"
               style={{ backgroundColor: 'rgba(0, 51, 102, 0.7)', color: '#FFFFFF' }}
             >
               <Home className="w-5 h-5" />
