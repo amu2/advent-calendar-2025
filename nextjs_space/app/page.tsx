@@ -60,8 +60,8 @@ export default function HomePage() {
   const { play: playSound } = useSound();
   const audioRef = useRef<HTMLAudioElement | null>(null);
   
-  // Get current decoration (use test date from date-utils)
-  const decoration = getHeaderDecoration(new Date('2025-12-08'));
+  // Get current decoration
+  const decoration = getHeaderDecoration(new Date());
 
   useEffect(() => {
     fetch(getAssetPath('/advent_data.json'))
