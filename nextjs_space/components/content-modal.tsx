@@ -122,13 +122,7 @@ export function ContentModal({
                   // Map day 30 to advent00.pdf, all others to adventXX.pdf
                   const dayNumber = day?.day === 30 ? 0 : (day?.day ?? 0);
                   const pdfPath = getAssetPath(`/pdfs/advent${String(dayNumber).padStart(2, '0')}.pdf`);
-                  const link = document.createElement('a');
-                  link.href = pdfPath;
-                  link.download = `advent_day_${day?.day ?? 0}.pdf`;
-                  link.target = '_blank';
-                  document.body.appendChild(link);
-                  link.click();
-                  document.body.removeChild(link);
+                  window.open(pdfPath, '_blank');
                 }}
                 className="p-2 hover:bg-gray-200 rounded-lg transition-colors"
                 style={{ color: '#006633' }}
@@ -198,14 +192,17 @@ export function ContentModal({
                   </motion.div>
                 )}
               </div>
+            </div>
 
+            {/* Scrollable Content Area - includes key insight, intro, stars, content, closing */}
+            <div className="overflow-y-auto px-8 pb-8" style={{ maxHeight: 'calc(90vh - 250px)' }}>
               {/* AdventKeyInsight */}
               {day?.keyInsight && (
                 <motion.div
                   initial={{ y: -80, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 1.8, duration: 0.8, type: 'spring', stiffness: 80 }}
-                  className="p-4 rounded text-base"
+                  className="p-4 rounded text-base mb-6"
                   style={{ 
                     backgroundColor: 'rgba(179, 0, 27, 0.08)',
                     fontFamily: '"Times New Roman", Times, serif',
@@ -217,10 +214,7 @@ export function ContentModal({
                   <MathRenderer content={day.keyInsight} />
                 </motion.div>
               )}
-            </div>
 
-            {/* Scrollable Content Area - includes intro, stars, content, closing */}
-            <div className="overflow-y-auto px-8 pb-8" style={{ maxHeight: 'calc(90vh - 250px)' }}>
               {/* First Star Rule (before intro) */}
               {day?.intro && (
                 <motion.div 
