@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { Star, Calendar as CalendarIcon, Volume2, VolumeX, Menu, Sparkles, Snowflake } from 'lucide-react';
 import type { AdventData, AdventDay } from '@/lib/types';
 import { isDayUnlocked } from '@/lib/date-utils';
+import { getAssetPath } from '@/lib/paths';
 import { Snowflakes } from '@/components/snowflakes';
 import { AdventDoor } from '@/components/advent-door';
 import { ContentModal } from '@/components/content-modal';
@@ -63,7 +64,7 @@ export default function HomePage() {
   const decoration = getHeaderDecoration(new Date('2025-12-08'));
 
   useEffect(() => {
-    fetch('/advent_data.json')
+    fetch(getAssetPath('/advent_data.json'))
       .then((res) => res.json())
       .then((data: AdventData) => {
         setAdventData(data);
@@ -82,7 +83,7 @@ export default function HomePage() {
   // Initialize background music
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      audioRef.current = new Audio('/sounds/background-music.mp3');
+      audioRef.current = new Audio(getAssetPath('/sounds/background-music.mp3'));
       audioRef.current.loop = false; // Play only once
       audioRef.current.volume = 0.3;
       

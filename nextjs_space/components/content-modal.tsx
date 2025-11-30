@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, ChevronLeft, ChevronRight, Calendar, Download } from 'lucide-react';
 import { useEffect, useState, useRef } from 'react';
 import type { AdventDay } from '@/lib/types';
+import { getAssetPath } from '@/lib/paths';
 import { MathRenderer } from './math-renderer';
 import { FallingText } from './falling-text';
 import { formatDate } from '@/lib/date-utils';
@@ -50,7 +51,7 @@ export function ContentModal({
           audioRef.current = null;
         }
         
-        audioRef.current = new Audio('/sounds/door-open.mp3');
+        audioRef.current = new Audio(getAssetPath('/sounds/door-open.mp3'));
         audioRef.current.volume = 0.5;
         audioRef.current.play().catch((error) => {
           console.error('Failed to play door sound:', error);
