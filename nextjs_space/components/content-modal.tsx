@@ -119,7 +119,9 @@ export function ContentModal({
               {/* PDF Download Button */}
               <button
                 onClick={() => {
-                  const pdfPath = getAssetPath(`/pdfs/advent${String(day?.day ?? 0).padStart(2, '0')}.pdf`);
+                  // Map day 30 to advent00.pdf, all others to adventXX.pdf
+                  const dayNumber = day?.day === 30 ? 0 : (day?.day ?? 0);
+                  const pdfPath = getAssetPath(`/pdfs/advent${String(dayNumber).padStart(2, '0')}.pdf`);
                   const link = document.createElement('a');
                   link.href = pdfPath;
                   link.download = `advent_day_${day?.day ?? 0}.pdf`;
