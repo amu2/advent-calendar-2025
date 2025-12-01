@@ -122,7 +122,29 @@ export function ContentModal({
                   // Map day 30 to advent00.pdf, all others to adventXX.pdf
                   const dayNumber = day?.day === 30 ? 0 : (day?.day ?? 0);
                   const pdfPath = getAssetPath(`/pdfs/advent${String(dayNumber).padStart(2, '0')}.pdf`);
-                  window.open(pdfPath, '_blank');
+                  
+                  // Download with obfuscated filename via fetch + blob
+                  fetch(pdfPath)
+                    .then(response => {
+                      if (!response.ok) throw new Error('PDF not found');
+                      return response.blob();
+                    })
+                    .then(blob => {
+                      const url = window.URL.createObjectURL(blob);
+                      const a = document.createElement('a');
+                      a.href = url;
+                      // Obfuscated filename: document_[timestamp].pdf
+                      a.download = `document_${Date.now()}.pdf`;
+                      document.body.appendChild(a);
+                      a.click();
+                      window.URL.revokeObjectURL(url);
+                      document.body.removeChild(a);
+                    })
+                    .catch(error => {
+                      console.error('Download failed:', error);
+                      // Fallback: direct link (will open in browser)
+                      window.open(pdfPath, '_blank');
+                    });
                 }}
                 className="p-2 hover:bg-gray-200 rounded-lg transition-colors"
                 style={{ color: '#006633' }}
