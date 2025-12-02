@@ -1,0 +1,226 @@
+% advent23.tex
+% December 23, 2025 – QFT foundations reloaded: what changes in an exceptional world?
+
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage{titlesec}
+\usepackage{lettrine}
+\usepackage{eso-pic}
+\usepackage{geometry}
+\usepackage{multicol}
+\usepackage{lmodern}
+
+\geometry{margin=2.0cm}
+
+\input{advent-layout}
+
+\begin{document}
+
+\AdventPageBackground
+\AdventAuthor
+
+\AdventSheetTwoCol
+  {December 23, 2025} % #1 Date
+  {}                  % #2 unused
+  {QFT foundations reloaded in an exceptional world} % #3 Main title
+  {What really changes – and what does not – with octonions, AQFT and spectra} % #4 Subtitle
+  {By now the calendar has introduced octonionic internal geometry,
+   rotor/compressor operators, spectral geometry and algebraic QFT. This
+   day steps back and asks: what does all this \emph{really} change in
+   quantum field theory? The answer is both modest and radical: the basic
+   probabilistic structure of QFT remains, but the kinematical stage,
+   the list of ``fundamental'' fields and the status of parameters are
+   reshaped by exceptional algebra and operator language.} % #5 Key Insight
+  { % #6 body (two columns)
+
+\section*{What survives untouched}
+
+\AdventInitial{D}{espite} octonions, Jordan algebras and spectral tricks,
+several pillars of QFT remain in place:
+
+\begin{itemize}
+  \item Locality and causality are still enforced via commutation
+        relations or, in AQFT language, via locality of the net
+        $\mathcal{O}\mapsto\mathcal{A}(\mathcal{O})$.
+  \item States are still positive linear functionals on an operator
+        algebra; probabilities are still given by expectation values and
+        Born's rule.
+  \item Renormalisation, running couplings and effective-field-theory
+        reasoning retain their conceptual role.
+\end{itemize}
+
+In that sense, the octonionic programme is not a revolution \emph{against}
+QFT; it is a reorganisation \emph{within} its operator framework.
+
+\section*{What changes in the kinematical stage}
+
+The radical part lies in the choice of underlying structures:
+
+\begin{itemize}
+  \item The internal Hilbert space is no longer an arbitrary finite tensor
+        product; it is tied to the representation theory of
+        $\mathbb{O}$ and $H_3(\mathbb{O})$.
+  \item Gauge groups are not postulated separately; they emerge from
+        automorphisms of these exceptional structures.
+  \item Mass and mixing operators (compressors, mass map) are not generic
+        matrices but constrained by the geometry of the Albert algebra.
+\end{itemize}
+
+Instead of a long list of independent fields and representations, we start
+from a \emph{single} exceptional stage and let its operator content
+unfold. QFT then lives on this stage rather than on an arbitrary internal
+tensor product.
+
+\section*{From Lagrangians to operator toolboxes}
+
+Traditional QFT is written in terms of Lagrangian densities:
+\[
+  \mathcal{L}
+  = \mathcal{L}_{\text{kinetic}}
+  + \mathcal{L}_{\text{gauge}}
+  + \mathcal{L}_{\text{Yukawa}}
+  + \cdots,
+\]
+with many a priori free couplings. In the octonionic/AQFT picture the
+primary objects are:
+
+\begin{itemize}
+  \item local algebras $\mathcal{A}(\mathcal{O})$ containing rotors,
+        compressors and $H$-fluctuation modes,
+  \item a Dirac operator $D$ (spectral geometry) encoding kinetic and
+        gauge structure,
+  \item a Jordan potential $V_J(H)$ encoding vacuum structure.
+\end{itemize}
+
+A Lagrangian can still be written down as an effective description, but it
+is now a \emph{derived summary} of spectral and algebraic data, not the
+fundamental starting point. This flips the usual order:
+
+\begin{quote}
+  Operator geometry first, Feynman rules later.
+\end{quote}
+
+\section*{Fields vs.\ modes of an exceptional vacuum}
+
+Another shift concerns what we call ``fundamental fields''. In the
+Standard Model language:
+
+\begin{itemize}
+  \item gauge fields $A_\mu$,
+  \item fermion fields $\psi$,
+  \item the Higgs scalar $H$,
+\end{itemize}
+appear side by side as basic degrees of freedom.
+
+In the exceptional picture:
+
+\begin{itemize}
+  \item Fermion multiplets arise as specific representations of
+        $H_3(\mathbb{O})$ and its rotor algebra.
+  \item Masses come from the spectrum of the mass map $\Pi(\langle H\rangle)$.
+  \item The Higgs becomes a fluctuation mode of the vacuum element
+        $\langle H\rangle$, not the origin of mass (11 December).
+\end{itemize}
+
+Gauge fields still appear as connections, but their group structure and
+couplings are read from rotor geometry. The distinction between ``matter''
+and ``mediator'' fields becomes partly a matter of which operators we
+choose to treat as background (vacuum) and which as excitations.
+
+\section*{Parameters vs.\ equilibrium data}
+
+From 22 December we learned to reclassify constants:
+
+\begin{itemize}
+  \item Many couplings and mass scales become equilibrium values:
+        minima of an $F_4$-symmetric potential or attractor radii.
+  \item Angles like $\theta_W$ become literal angles between rotor
+        directions.
+  \item Only a small core of numbers (notably those tied to gravity)
+        remain external in the current state of the model.
+\end{itemize}
+
+In QFT language this means: the space of possible Lagrangians is no longer
+a huge free parameter space; it is the image of a much smaller space of
+exceptional-geometric choices (vacuum embeddings, embeddings of the gauge
+group, spectral scales).
+
+\section*{AQFT and spectral geometry as consistency checks}
+
+Finally, AQFT and spectral geometry serve as consistency filters:
+
+\begin{itemize}
+  \item \textbf{AQFT} asks whether the operator content can be organised
+        into a local, covariant net of algebras with reasonable state
+        structure (18 and 21 December).
+  \item \textbf{Spectral geometry} asks whether there exists a Dirac
+        operator whose spectral action reproduces both the internal
+        dynamics and gravity in a controlled expansion (17 December).
+\end{itemize}
+
+Many aesthetically pleasing algebraic constructions fail one or both of
+these tests. The exceptional model sketched in this calendar is designed
+to at least plausibly pass them, even if the full computations are still
+pending.
+
+\section*{What this means for the next century of QFT}
+
+Seen from the long Heisenberg-to-now perspective, the 23 December message
+is:
+
+\begin{enumerate}
+  \item QFT is not in crisis; its operator foundation is robust enough to
+        host even nonassociative internal geometries.
+  \item The real opportunity lies in upgrading the internal stage from an
+        ad-hoc product of vector spaces to a rigid exceptional algebra
+        with built-in hierarchies and symmetry.
+  \item Spectral geometry and AQFT are not fringe formalisms but natural
+        languages for such a stage.
+\end{enumerate}
+
+If this programme succeeds, the textbooks of 2125 might still teach
+Feynman diagrams and path integrals—but as calculational tools built on
+top of a deeper story where octonions, spectra and local algebras quietly
+decide which Lagrangians are even allowed.
+
+\small
+\begin{thebibliography}{9}
+
+\bibitem{Haag1996}
+R.~Haag,
+\newblock {\em Local Quantum Physics},
+\newblock Springer, 1996.
+
+\bibitem{Connes1994}
+A.~Connes,
+\newblock {\em Noncommutative Geometry},
+\newblock Academic Press, 1994.
+
+\bibitem{Heisenberg1925}
+W.~Heisenberg,
+\newblock ``\"Uber quantentheoretische Umdeutung kinematischer und
+mechanischer Beziehungen,''
+\newblock {\em Z.\ Phys.} \textbf{33}, 879--893 (1925).
+
+\bibitem{Internal}
+[Internal notes on foundational aspects of the octonionic model:
+{\tt chap18\_neu.tex; chap21\_neu.tex; appF\_neu.tex}.]
+
+\end{thebibliography}
+\normalsize
+
+  } % end #6 body
+  {The exceptional programme does not overthrow QFT; it rewrites its
+   kinematical stage and parameter space in terms of octonionic geometry,
+   spectra and local algebras—leaving probability intact but reshaping
+   what counts as ``fundamental''.} % #7 Closing
+
+\end{document}

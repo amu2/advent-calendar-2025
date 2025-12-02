@@ -1,0 +1,179 @@
+% advent29.tex
+% December 20, 2025 – Dark matter as a shadow sector of compressors
+
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage{titlesec}
+\usepackage{lettrine}
+\usepackage{eso-pic}
+\usepackage{geometry}
+\usepackage{multicol}
+\usepackage{lmodern}
+
+\geometry{margin=2.0cm}
+
+\input{advent-layout}
+
+\begin{document}
+
+\AdventPageBackground
+\AdventAuthor
+
+\AdventSheetTwoCol
+  {December 19, 2025} % #1 Date
+  {}                 % #2 unused
+  {Scales as attractor fixed points} % #3 Main title
+  {Why nature ``chooses'' exactly three stable scales} % #4 Subtitle
+  {The three fundamental scales (Planck, electroweak, QCD) are not arbitrary
+   inputs but fixed points of an attractor mechanism linked to the radius
+   spectrum $(a_0,b_0,c_0)$. Renormalisation-group (RG) flow drives couplings
+   and masses towards these scales, which are stable under perturbations.
+   Nature ``chooses'' them because they are dynamically preferred, not because
+   they were inserted by hand.} % #5 Key Insight
+  { % #6 body
+
+\section*{From radius spectrum to preferred scales}
+
+\AdventInitial{E}{arlier} in the calendar, the radius operator $R$ was
+introduced with spectrum
+
+\[
+  \mathrm{spec}(R) = (a_0,b_0,c_0).
+\]
+
+Exponentials of these radii define three candidate scales,
+
+\[
+  \Lambda_i \sim e^{a_0},\quad
+  \Lambda_j \sim e^{b_0},\quad
+  \Lambda_k \sim e^{c_0},
+\]
+
+which were associated with the Planck, electroweak and QCD scales. So far
+this was a geometric correspondence. Today we add dynamics: these scales
+are not only present in the geometry, they are \emph{dynamically
+selected} by RG flow.
+
+\section*{RG flow and attractors}
+
+In Wilsonian renormalisation, a theory is described by a point in the
+space of couplings. Changing the energy scale $\mu$ corresponds to moving
+along a trajectory governed by $\beta$-functions,
+
+\[
+  \frac{d g_i}{d\ln\mu} = \beta_i(\{g\}).
+\]
+
+Fixed points are defined by $\beta_i(\{g^\ast\})=0$ and play a central role:
+
+\begin{itemize}
+  \item UV fixed points control short-distance behaviour.
+  \item IR fixed points control long-distance behaviour.
+  \item Some fixed points are \emph{attractors}: generic RG trajectories
+        are drawn towards them.
+\end{itemize}
+
+In the octonionic model, the radius spectrum $(a_0,b_0,c_0)$ enters the
+$\beta$-functions in a structured way, so that three distinguished
+energies become attractor scales.
+
+\section*{Qualitative picture of the attractor mechanism}
+
+Heuristically, one finds:
+
+\begin{itemize}
+  \item When $\mu$ is near $e^{a_0}$, RG flow of certain couplings slows
+        down and stabilises; this defines a Planck-like scale.
+  \item Near $e^{b_0}$, electroweak couplings and masses experience a
+        similar slowdown and stabilisation.
+  \item Near $e^{c_0}$, the strong coupling crosses order one and the
+        theory flows towards a confined regime.
+\end{itemize}
+
+The detailed form of $\beta$-functions is model-dependent, but the
+location and number of attractor scales are dictated by $(a_0,b_0,c_0)$.
+Arbitrary additional scales cannot be introduced without spoiling this
+structure.
+
+\section*{Stability instead of fine-tuning}
+
+Traditional fine-tuning problems (``Why is the electroweak scale so small
+compared to the Planck scale?'') are rephrased:
+
+\begin{quote}
+  Why are there stable RG attractors at such widely separated scales?
+\end{quote}
+
+The model answers:
+
+\begin{itemize}
+  \item Because $(a_0,b_0,c_0)$ are widely separated eigenvalues of $R$.
+  \item Because RG flow is structured in such a way that these eigenvalues
+        generate stable fixed points.
+\end{itemize}
+
+The hierarchy is no longer a coincidence between unrelated parameters but
+a built-in feature of the internal operator spectrum.
+
+\section*{Conceptual and phenomenological implications}
+
+Conceptually:
+
+\begin{enumerate}
+  \item \textbf{Fewer inputs:}
+    instead of three independent scale parameters, one internal operator
+    with three eigenvalues suffices.
+  \item \textbf{Dynamical selection:}
+    scales are not only present in the geometry but are dynamically
+    attractive under RG flow.
+  \item \textbf{Predictive structure:}
+    any attempt to introduce new fundamental scales must explain how they
+    fit into, or modify, the attractor pattern.
+\end{enumerate}
+
+Phenomenologically:
+
+\begin{itemize}
+  \item Small variations in UV initial conditions do not destroy the
+        large-scale structure: the flow is drawn back to the attractors.
+  \item This robustness is precisely what one expects from a realistic
+        description of the universe: observed scales should not be
+        hypersensitive to microscopic details.
+\end{itemize}
+
+\small
+\begin{thebibliography}{9}
+
+\bibitem{Wilson1971}
+K.~G.~Wilson,
+\newblock ``Renormalization group and critical phenomena,''
+\newblock {\em Phys.\ Rev.\ B} \textbf{4}, 3174--3183 (1971).
+
+\bibitem{Wetterich1988}
+C.~Wetterich,
+\newblock ``Cosmology and the fate of dilatation symmetry,''
+\newblock {\em Nucl.\ Phys.\ B} \textbf{302}, 668--696 (1988).
+
+\bibitem{Internal}
+[Internal notes on scale hierarchies and attractor mechanisms:
+{\tt chap16A\_neu.tex; appK\_neu.tex; konstanten-hierarchie.tex}.]
+
+\end{thebibliography}
+\normalsize
+
+  } % end #6 body
+  {The triple $(a_0,b_0,c_0)$ of radius eigenvalues does not only suggest
+   three important scales; it also defines RG attractors. Planck,
+   electroweak and QCD scales are dynamically preferred fixed points,
+   not arbitrary external inputs.} % #7 Closing
+
+
+\end{document}

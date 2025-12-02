@@ -1,0 +1,175 @@
+% advent08.tex
+% December 8, 2025 – Nonassociativity as origin of hierarchies
+
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage{titlesec}
+\usepackage{lettrine}
+\usepackage{eso-pic}
+\usepackage{geometry}
+\usepackage{multicol}
+\usepackage{lmodern}
+
+\geometry{margin=2.0cm}
+
+\input{advent-layout}
+
+\begin{document}
+
+\AdventPageBackground
+\AdventAuthor
+
+\AdventSheetTwoCol
+  {December 8, 2025} % #1 Date
+  {}                 % #2 unused
+  {Nonassociativity as the source of hierarchies} % #3 Main title
+  {When $(ab)c\neq a(bc)$ turns into mass and scale gaps} % #4 Subtitle
+  {Octonions are nonassociative: in general $(ab)c\neq a(bc)$. Far from a
+   nuisance, this failure of associativity can be measured by the
+   \emph{associator}, and its norm feeds directly into the size of
+   hierarchies. In the octonionic model, the huge gaps between electron
+   and top mass, or between Planck and electroweak scales, are not
+   independent miracles: they are controlled by how strongly the internal
+   multiplication fails to be associative in selected directions.} % #5 Key Insight
+  { % #6 body (two columns)
+
+\section*{Associativity lost, structure gained}
+
+\AdventInitial{I}{n} the complex numbers and quaternions we have
+\[
+  (ab)c = a(bc)
+  \quad\text{for all }a,b,c.
+\]
+For octonions $\mathbb{O}$ this is no longer true. The deviation is
+captured by the \emph{associator}
+\[
+  [a,b,c] := (ab)c - a(bc).
+\]
+Nonassociativity means $[a,b,c]\neq0$ for suitable triples $(a,b,c)$.
+
+At first sight this looks like a technical complication. But in an
+operator-based model, $[a,b,c]$ is a structured quantity whose norm can
+be used as a measure of ``how curved'' the internal multiplication is in a
+given region of the algebra.
+
+\section*{Associator norms as hierarchy seeds}
+
+The key idea is simple:
+
+\begin{quote}
+  Strong nonassociativity (large $||[a,b,c]||$) correlates with
+  \emph{large} hierarchies; near-associative directions correspond to
+  \emph{small} gaps.
+\end{quote}
+
+Schematically, for suitable triples $(a,b,c)$ associated with sectors
+of the internal space, one can write
+\[
+  \text{hierarchy factor} \;\sim\;
+  \exp\!\bigl(\gamma\,\|[a,b,c]\|\bigr),
+\]
+with a model-dependent constant $\gamma$. Large associator norms then
+naturally give exponentials of order $10^{10}$ or $10^{30}$—exactly the
+kind of huge ratios seen between Planck and electroweak scales, or between
+electron and top mass.
+
+\section*{Flat vs.\ curved internal directions}
+
+Not all directions in $\mathbb{O}$ are equally nonassociative:
+
+\begin{itemize}
+  \item Quaternion subalgebras inside $\mathbb{O}$ are associative:
+        $[a,b,c]=0$ whenever $a,b,c$ lie in the same quaternionic
+        subalgebra. These are ``flat'' directions.
+  \item Triples that genuinely probe the full octonionic structure
+        typically have $[a,b,c]\neq0$. These are ``curved'' directions.
+\end{itemize}
+
+This suggests a qualitative picture:
+
+\begin{itemize}
+  \item Light fermions and low-energy scales live predominantly in almost
+        quaternionic (nearly associative) directions.
+  \item Heavy fermions and high-energy scales probe strongly octonionic
+        (strongly nonassociative) directions.
+\end{itemize}
+
+The associator becomes a geometric dial between ``light'' and ``heavy''.
+
+\section*{From internal curvature to physical gaps}
+
+In curved spacetime geometry, curvature scalars control focusing of
+geodesics and tidal forces. In the octonionic internal geometry, the
+associator norm plays an analogous role:
+
+\begin{itemize}
+  \item It tells us how violently internal products deviate from the
+        naive, associative expectation.
+  \item Through the operator toolbox (rotors, compressors, radius
+        operator), this deviation feeds into eigenvalue spectra and hence
+        into physical scales and masses.
+\end{itemize}
+
+Symbolically one can write
+\[
+  m_{\text{heavy}}/m_{\text{light}}
+   \;\sim\; F\bigl(\|[a,b,c]\|\bigr),
+\]
+for some monotone function $F$ determined by the detailed embedding in
+$H_3(\mathbb{O})$.
+
+\section*{Why this matters conceptually}
+
+The nonassociativity day adds an important layer to the Advent story:
+
+\begin{enumerate}
+  \item It explains why large hierarchies are \emph{allowed} and
+        \emph{natural} in an octonionic setting: they are the rule, not
+        the exception, once associativity is dropped.
+  \item It connects an abstract algebraic property—failure of
+        associativity—to directly observable quantities: mass ratios and
+        scale separations.
+  \item It sharpens the contrast with associative models, where such large
+        gaps often have to be enforced by hand via fine-tuned potentials
+        or additional symmetries.
+\end{enumerate}
+
+If future work can make this link between associator norms and concrete
+hierarchies numerically sharp, nonassociativity would move from a curious
+mathematical footnote to a central player in explaining why the physical
+world has the extreme scales we observe.
+
+\small
+\begin{thebibliography}{9}
+
+\bibitem{Schafer1966}
+R.~D.~Schafer,
+\newblock {\em An Introduction to Nonassociative Algebras},
+\newblock Academic Press, 1966.
+
+\bibitem{Baez2002}
+J.~C.~Baez,
+\newblock ``The octonions,''
+\newblock {\em Bull.\ Amer.\ Math.\ Soc.} \textbf{39}, 145--205 (2002).
+
+\bibitem{Internal}
+[Internal notes on hierarchy patterns and associators, see
+{\tt chap02\_neu.tex; chap05\_neu.tex}.]
+
+\end{thebibliography}
+\normalsize
+
+  } % end #6 body
+  {In an octonionic world, huge hierarchies do not come from fine-tuning
+   potentials—they follow the size of the associator: how far internal
+   multiplication strays from associativity.} % #7 Closing
+
+\end{document}

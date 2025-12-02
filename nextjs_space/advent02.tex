@@ -1,0 +1,192 @@
+% advent02.tex
+% December 2, 2025 – Triality: three equal 8D representations
+
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage{titlesec}
+\usepackage{lettrine}
+\usepackage{eso-pic}
+\usepackage{geometry}
+\usepackage{multicol}
+\usepackage{lmodern}
+
+\geometry{margin=2.0cm}
+
+\input{advent-layout}
+
+\begin{document}
+
+\AdventPageBackground
+\AdventAuthor
+
+\AdventSheetTwoCol
+  {December 2, 2025} % #1 Date
+  {}                 % #2 unused
+  {Triality: three equal 8D representations} % #3 Main title
+  {When space, matter and antimatter share the same dimension} % #4 Subtitle
+  {Spin(8) has a unique feature: \emph{triality}. It admits three
+   equivalent 8-dimensional representations—one vector representation
+   $V_8$ and two chiral spinor representations $S_8^+$ and $S_8^-$. This
+   is not a decorative curiosity: it provides a geometric template for
+   three kinds of ``8-dimensional stuff'' that can later be read as
+   space, matter and antimatter. Today we meet triality as a symmetry
+   between representations; later days will turn it into the organising
+   principle behind three fermion generations.} % #5 Key Insight
+  { % #6 body (two columns)
+
+\section*{Three eights instead of one}
+
+\AdventInitial{I}{n} most Lie groups, vector and spinor representations
+look different and behave differently. Spin(8) is special: it has
+
+\[
+  V_8,\qquad S_8^+,\qquad S_8^-,
+\]
+
+three irreducible 8-dimensional representations that are related by a
+nontrivial outer automorphism group of order 6. This automorphism group
+acts by permuting $(V_8, S_8^+, S_8^-)$; its $\mathbb{Z}_3$-part is called
+\emph{triality}:
+
+\[
+  S:\quad V_8 \;\longrightarrow\; S_8^+ 
+         \;\longrightarrow\; S_8^- 
+         \;\longrightarrow\; V_8.
+\]
+
+Geometrically, the three representations are on equal footing: no one is
+more fundamental than the others.
+
+\section*{Why triality matters for an octonionic model}
+
+Octonions $\mathbb{O}$ naturally support an 8-dimensional real
+representation. In the model described by this calendar, one uses:
+
+\begin{itemize}
+  \item an 8D ``vector-like'' role associated with internal space
+        directions,
+  \item two 8D ``spinor-like'' roles associated with chiral matter and
+        antimatter sectors.
+\end{itemize}
+
+Triality then becomes the statement that there is an underlying symmetry
+relating these three roles. It is the reason why it is natural to package
+internal degrees of freedom in blocks of size 8 and why it is not absurd
+to think of space-like and matter-like sectors as different faces of the
+same algebraic coin.
+
+\section*{From three 8D reps to three generations}
+
+The XLS plan for the calendar reserves a later day (12 December) for the
+statement:
+
+\begin{quote}
+  ``Three fermion generations mirror the three triality
+  representations.''
+\end{quote}
+
+Today we prepare that statement conceptually:
+
+\begin{itemize}
+  \item If there is a symmetry that permutes $(V_8, S_8^+, S_8^-)$,
+        it is natural to try to attach one 8D ``copy'' of the internal
+        structure to each of them.
+  \item In particle language, this suggests three families of fermions
+        with identical gauge quantum numbers but different ``triality
+        label''.
+  \item The existence of \emph{exactly} three such representations
+        motivates the existence of \emph{exactly} three generations, not
+        one or four.
+\end{itemize}
+
+The details (how charges and masses are assigned in each block) are left
+to the later flavor and generation days. The conceptual point is simple:
+
+\begin{quote}
+  Three fermion generations are not an arbitrary count; they reflect a
+  built-in threefold symmetry of Spin(8).
+\end{quote}
+
+\section*{Link to octonions and G$_2$}
+
+Spin(8) and octonions are tightly linked:
+
+\begin{itemize}
+  \item The group $G_2$ is the automorphism group of the octonions
+        $\mathbb{O}$.
+  \item Spin(8) acts on $\mathbb{O}$ in ways compatible with this
+        $G_2$-structure.
+  \item Triality is a statement about how vector and spinor actions can be
+        interchanged without breaking the internal octonionic structure.
+\end{itemize}
+
+In the broader project, this becomes one ingredient in the
+\emph{symmetry atlas}:
+
+\begin{itemize}
+  \item $G_2$ as the minimal exceptional symmetry (tomorrow),
+  \item $F_4$ as the automorphism group of the Albert algebra $H_3(\mathbb{O})$,
+  \item triality as the bridge between space-like and spinor-like sectors.
+\end{itemize}
+
+\section*{Conceptual gain from triality}
+
+What is gained by taking triality seriously?
+
+\begin{enumerate}
+  \item \textbf{Symmetry-based multiplicity:}
+    the multiplicity ``three'' is not an afterthought but a symmetry
+    consequence.
+  \item \textbf{Unified treatment of sectors:}
+    space-like, matter-like and antimatter-like sectors share the same
+    dimension and are related by an actual group action.
+  \item \textbf{Constraints for model building:}
+    any attempt to modify the number of generations must explain how
+    triality is broken or extended.
+\end{enumerate}
+
+Instead of asking ``Why three generations?'' as a bare phenomenological
+question, the model asks a more geometric one:
+
+\begin{quote}
+  How does Spin(8) triality appear inside the octonionic/Albert
+  structure, and how does it force a threefold replication of internal
+  degrees of freedom?
+\end{quote}
+
+\small
+\begin{thebibliography}{9}
+
+\bibitem{Cartan1925}
+E.~Cartan,
+\newblock ``Le principe de dualit\'e et la th\'eorie des groupes simples et
+semi-simples,''
+\newblock {\em Bull.\ Sci.\ Math.} \textbf{49}, 361--374 (1925).
+
+\bibitem{Baez2002}
+J.~C.~Baez,
+\newblock ``The octonions,''
+\newblock {\em Bull.\ Amer.\ Math.\ Soc.} \textbf{39}, 145--205 (2002).
+
+\bibitem{Internal}
+[Internal notes on triality and its role in generation structure:
+{\tt chap01\_neu.tex; appA\_neu.tex; appN\_neu.tex}.]
+
+\end{thebibliography}
+\normalsize
+
+  } % end #6 body
+  {Triality of Spin(8) provides three equal 8D representations. In an
+   octonionic model, this becomes the natural algebraic source of the
+   threefold replication of fermion content that we observe as
+   ``three generations''.} % #7 Closing
+
+\end{document}

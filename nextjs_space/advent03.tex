@@ -1,0 +1,206 @@
+% advent03.tex
+% December 3, 2025 – G2 as the minimal exceptional symmetry
+
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage{titlesec}
+\usepackage{lettrine}
+\usepackage{eso-pic}
+\usepackage{geometry}
+\usepackage{multicol}
+\usepackage{lmodern}
+\usepackage{hyperref}
+
+\geometry{margin=2.0cm}
+
+\input{advent-layout}
+
+\begin{document}
+
+\AdventPageBackground
+\AdventAuthor
+
+\AdventSheetTwoCol
+  {December 3, 2025} % #1 Date
+  {}                 % #2 unused
+  {G\textsubscript{2} as the minimal exceptional symmetry} % #3 Main title
+  {The 14-dimensional gatekeeper of the octonions} % #4 Subtitle
+  {G\textsubscript{2} is the smallest exceptional Lie group and the full
+   automorphism group of the octonions. Every map in G\textsubscript{2}
+   preserves octonionic multiplication and the norm. In the model, this
+   makes G\textsubscript{2} the \emph{gatekeeper} of the internal
+   structure: any internal operator, symmetry or interaction must respect
+   G\textsubscript{2} invariance. Today we meet G\textsubscript{2} as the
+   minimal exceptional symmetry from which the larger exceptional group
+   F\textsubscript{4} will later emerge.} % #5 Key Insight
+  { % #6 body (two columns)
+
+\section*{What is G\texorpdfstring{$_2$}{G2}?}
+
+\AdventInitial{T}{he} group $G_2$ can be defined in many equivalent ways.
+For the octonionic story, the most natural is:
+
+\[
+  G_2 = \mathrm{Aut}(\mathbb{O}),
+\]
+
+the group of all linear transformations of $\mathbb{O}$ that preserve the
+octonionic product and the norm. It is a 14-dimensional, compact,
+connected, simply-connected Lie group and the smallest of the five
+exceptional Lie groups.
+
+Concretely:
+
+\begin{itemize}
+  \item $G_2$ preserves the multiplication table of the seven imaginary
+        units $e_1,\dots,e_7$.
+  \item It preserves the standard norm $|x|^2 = x\bar{x}$.
+  \item It acts transitively on the unit sphere of imaginary octonions,
+        with stabiliser isomorphic to $SU(3)$.
+\end{itemize}
+
+In other words, $G_2$ is the full continuous symmetry group of the
+octonionic number system itself.
+
+\section*{Why ``minimal exceptional'' matters}
+
+As a Lie group, $G_2$ is:
+
+\begin{itemize}
+  \item too small to host all Standard Model symmetries directly,
+  \item but large enough to control the essential nonassociative structure
+        of $\mathbb{O}$,
+  \item and exceptional—meaning it does not fit into the infinite $A_n$,
+        $B_n$, $C_n$, $D_n$ series.
+\end{itemize}
+
+This makes $G_2$ an ideal starting point:
+
+\begin{itemize}
+  \item It is restrictive enough to strongly constrain internal operators.
+  \item It is flexible enough to embed subgroups that resemble
+        $SU(3)_C\times SU(2)_L\times U(1)_Y$ in appropriate ways.
+  \item It naturally sits inside the larger exceptional group
+        $F_4$, the automorphism group of the Albert algebra
+        $H_3(\mathbb{O})$.
+\end{itemize}
+
+\section*{G\texorpdfstring{$_2$}{G2} as a gatekeeper of allowed operators}
+
+In the model, internal operators (heptagon operator, radius operator,
+rotors, compressors) are not arbitrary matrices; they must be compatible
+with the $G_2$-structure. Informally:
+
+\begin{quote}
+  If an operator would break $G_2$ in an uncontrolled way, it is not part
+  of the fundamental toolbox.
+\end{quote}
+
+This has two important consequences:
+
+\begin{enumerate}
+  \item \textbf{Restricted parameter space:}
+    many couplings and mass terms that are allowed in a generic
+    field-theory Lagrangian are simply forbidden by $G_2$.
+  \item \textbf{Natural subgroups:}
+    gauge groups that actually appear (or approximate) in low-energy
+    physics are precisely those that can be embedded in $G_2$ (and later
+    in $F_4$) in a structurally compatible way.
+\end{enumerate}
+
+G\textsubscript{2} thus serves as a first filter between ``any algebraic
+construction on $\mathbb{R}^8$'' and ``constructions that respect the
+octonionic number system''.
+
+\section*{From G\texorpdfstring{$_2$}{G2} to F\texorpdfstring{$_4$}{F4}}
+
+Later in the calendar, the Albert algebra $H_3(\mathbb{O})$ will appear,
+and with it the larger exceptional group $F_4$:
+
+\[
+  F_4 = \mathrm{Aut}\big(H_3(\mathbb{O})\big).
+\]
+
+The relationship is hierarchical:
+
+\begin{itemize}
+  \item $G_2$ controls the algebra of $\mathbb{O}$ itself.
+  \item $H_3(\mathbb{O})$ builds $3\times3$ Hermitian matrices over
+        $\mathbb{O}$.
+  \item $F_4$ controls the automorphisms of this larger Jordan algebra.
+\end{itemize}
+
+From the perspective of the calendar:
+
+\begin{itemize}
+  \item early days: $G_2$ and triality structure the octonionic stage,
+  \item middle days: $F_4$ organises the symmetry atlas on the Albert
+        algebra,
+  \item later days: potentials and equilibria on this atlas fix physical
+        scales and constants.
+\end{itemize}
+
+G\textsubscript{2} is the first rung on this exceptional ladder.
+
+\section*{Conceptual gain from G\texorpdfstring{$_2$}{G2}}
+
+Putting $G_2$ at the base of the internal symmetry story has clear
+advantages:
+
+\begin{enumerate}
+  \item \textbf{Uniqueness:} There is only one real division algebra with
+    7 imaginary units, and only one connected Lie group that preserves it:
+    $G_2$. This is about as far from ``model building by choice'' as one
+    can get.
+  \item \textbf{Rigidity:} Once octonions are chosen, $G_2$ is fixed.
+    Internal symmetries are no longer free groups to be dialled but are
+    inherited from this starting point.
+  \item \textbf{Roadmap:} The inclusion $G_2\subset F_4$ provides a clear
+    path from basic number system to full symmetry atlas.
+\end{enumerate}
+
+In this sense, $G_2$ is not just an exotic group in a classification
+table; it is the minimal exceptional guardian of the octonionic world.
+
+\small
+\begin{thebibliography}{9}
+
+\bibitem{Engel1900}
+F.~Engel,
+\newblock ``Ein neues, dem linearen Komplexe analoges Gebilde,''
+\newblock {\em Ber.\ Verh.\ K\"onigl.\ S\"achs.\ Ges.\ Wiss.\ Leipzig}
+\textbf{52}, 63--74 (1900).
+
+\bibitem{Bryant1987}
+R.~L.~Bryant,
+\newblock ``Metrics with exceptional holonomy,''
+\newblock {\em Ann.\ Math.} \textbf{126}, 525--576 (1987).
+
+\bibitem{Baez2002}
+J.~C.~Baez,
+\newblock ``The octonions,''
+\newblock {\em Bull.\ Amer.\ Math.\ Soc.} \textbf{39}, 145--205 (2002).
+
+\bibitem{Internal}
+[Internal notes on $G_2$ and its role in the symmetry atlas:
+{\tt chap02\_neu.tex; appB\_neu.tex; oktonionen-basen.tex}.]
+
+\end{thebibliography}
+\normalsize
+
+  } % end #6 body
+  {G\textsubscript{2} is the 14-dimensional automorphism group of the
+   octonions and the minimal exceptional symmetry. In the model it acts as
+   a gatekeeper: only operators and symmetries compatible with
+   G\textsubscript{2} are admitted into the internal stage on which all
+   later structures are built.} % #7 Closing
+
+\end{document}

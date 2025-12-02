@@ -1,0 +1,326 @@
+% advent00.tex
+% First Advent Sunday: November 30, 2025 – First Light: Octonions, G2 and Triality
+% Two-page hero: p.1 technical theme, p.2 one-column series introduction
+
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage{titlesec}
+\usepackage{lettrine}
+\usepackage{eso-pic}
+\usepackage{geometry}
+\usepackage{multicol}
+\usepackage{lmodern}
+
+\geometry{margin=2.0cm}
+
+\input{advent-layout}
+
+\begin{document}
+
+\AdventPageBackground
+\AdventAuthor
+
+%--------------------------------------------------
+% Page 1: Two-column hero about O, G2, triality
+%--------------------------------------------------
+
+\AdventSheetTwoCol
+  {November 30, 2025 \large (First Advent Sunday)} % #1 Date + occasion
+  {}                                              % #2 unused
+  {First Light: Octonions, $G_2$ and Triality}    % #3 Main title
+  {100 years after Heisenberg's matrix mechanics} % #4 Subtitle
+  {One hundred years ago, Heisenberg replaced continuous orbits by
+   discrete matrices and discovered noncommutativity. In this Advent
+   story we go one step further: we anchor physics in an
+   eight-dimensional number system --- the octonions $\mathbb{O}$ ---
+   whose automorphisms form the exceptional group $G_2$ and whose
+   triality-related Spin(8) structure organises an entire generation of
+   matter. The surprising claim is that this rigid internal stage is
+   already ``almost'' the Standard Model plus gravity.} % #5 Key Insight
+  { % #6 main body (two columns)
+
+\section*{From noncommutativity to nonassociativity}
+
+\AdventInitial{I}{n} 1925, Heisenberg's matrix mechanics marked a clean
+break with classical intuitions: position and momentum were no longer
+numbers but noncommuting operators. This was a first ``algebraic turn'' in
+physics. Today, noncommutativity is standard language in quantum theory.
+
+The next turn is less familiar. There exists a unique real division algebra
+of dimension eight, the octonions $\mathbb{O}$, which is not only
+noncommutative but also \emph{nonassociative}. Multiplying three octonions
+depends on how we place the brackets. At first sight this seems like a
+mathematical curiosity, far removed from physics.
+
+However, nonassociativity comes with a remarkable compensation: the
+octonions still admit a multiplicative norm,
+\[
+  N(xy) \;=\; N(x)\,N(y),
+\]
+and their automorphism group is the smallest exceptional Lie group $G_2$.
+This rigid internal symmetry makes $\mathbb{O}$ a natural candidate for a
+hidden layer beneath the familiar complex Hilbert spaces of quantum
+theory.
+
+\section*{The octonionic stage}
+
+The real vector space underlying the octonions is $\mathbb{R}^8$. As a
+stage for physics it brings several features at once:
+
+\begin{itemize}
+  \item An 8-dimensional structure that can host vectors and spinors of
+        $\mathrm{Spin}(8)$, the double cover of $\mathrm{SO}(8)$.
+  \item A distinguished subgroup $G_2 \subset \mathrm{SO}(8)$ that fixes the
+        multiplication table of $\mathbb{O}$.
+  \item A triality symmetry of $\mathrm{Spin}(8)$ that permutes its three
+        eight-dimensional irreducible representations:
+        vector, left-handed spinor, right-handed spinor.
+\end{itemize}
+
+Physically, this means that:
+
+\begin{itemize}
+  \item Internal degrees of freedom can be arranged in three correlated
+        eight-component blocks.
+  \item Rotations in the internal space can mix these blocks in a highly
+        constrained way.
+\end{itemize}
+
+Later in the Advent calendar, these three blocks will be read as three
+generations of fermions, and specific subgroups will be identified with
+$SU(3)\times SU(2)\times U(1)$.
+
+\section*{$G_2$ as guardian of the multiplication table}
+
+The group $G_2$ can be defined as the set of all linear maps
+$g:\mathbb{O}\to\mathbb{O}$ that preserve octonionic multiplication:
+\[
+  g(xy) \;=\; g(x)\,g(y)
+  \quad \text{for all } x,y\in\mathbb{O}.
+\]
+This makes $G_2$ the symmetry group of the multiplication table. In a
+physical setting, $G_2$-compatible transformations are those that respect
+the hidden octonionic structure of the internal space.
+
+The existence of $G_2$ has two important consequences:
+
+\begin{itemize}
+  \item It restricts which internal rotations are ``legal'' if we want to
+        keep the multiplication law intact.
+  \item It provides a natural environment for embeddings of familiar gauge
+        groups. Subgroups of $G_2$ and related structures can house
+        $SU(3)$-like and $SU(2)\times U(1)$-like symmetries.
+\end{itemize}
+
+In this sense, the octonionic stage with $G_2$ symmetry is already a
+candidate for the internal symmetry space of the Standard Model.
+
+\section*{Triality and the seed of generations}
+
+The group $\mathrm{Spin}(8)$ acts on three eight-dimensional
+representations:
+\[
+  V_8,\quad S_8^+,\quad S_8^-.
+\]
+These correspond to vectors, left-handed spinors and right-handed spinors.
+An exceptional outer automorphism permutes these three representations. This
+is the triality symmetry.
+
+For our purposes, triality can be read as a structural reason for the
+recurrence of the number three in particle physics:
+
+\begin{itemize}
+  \item There is \emph{one} internal eight-dimensional block, but it admits
+        three coherent readings: $V_8$, $S_8^+$, $S_8^-$.
+  \item Later we will see how these three readings unfold into three
+        generations of quarks and leptons when embedded into a larger
+        exceptional algebra.
+\end{itemize}
+
+In this way, the abstract triality of $\mathrm{Spin}(8)$ becomes a seed for
+family replication.
+
+\section*{Why start the Advent story here?}
+
+Starting the Advent calendar with octonions, $G_2$ and triality is not an
+exercise in exotic mathematics for its own sake. It sets up three themes
+that will run through the entire series:
+
+\begin{enumerate}
+  \item \textbf{Rigidity:} Exceptional structures like $\mathbb{O}$ and
+        $G_2$ leave little room for arbitrary choices. This rigidity is a
+        feature if we seek explanations rather than fits.
+
+  \item \textbf{Hidden simplicity:} Behind the zoo of fields and parameters
+        in the Standard Model there might be a much smaller set of algebraic
+        building blocks.
+
+  \item \textbf{Algebra as geometry:} Nonassociative multiplication and
+        its automorphisms can be interpreted as a kind of curved internal
+        geometry, on par with spacetime curvature in general relativity.
+\end{enumerate}
+
+\small
+\begin{thebibliography}{9}
+
+\bibitem{Heisenberg1925}
+W.~Heisenberg,
+\newblock ``Über quantentheoretische Umdeutung kinematischer und
+mechanischer Beziehungen,''
+\newblock {\em Z.\ Phys.} \textbf{33}, 879--893 (1925).
+
+\bibitem{Baez2002}
+J.~C.~Baez,
+\newblock ``The octonions,''
+\newblock {\em Bull.\ Amer.\ Math.\ Soc.} \textbf{39}, 145--205 (2002).
+
+\bibitem{GurseyTze1996}
+F.~Gürsey and H.~C.~Tze,
+\newblock {\em On the Role of Division, Jordan and Related Algebras in Particle
+Physics},
+\newblock World Scientific, 1996.
+
+\end{thebibliography}
+\normalsize
+
+  } % end #6 body
+  {One century after matrix mechanics, we explore a universe whose hidden stage is an exceptional eight-dimensional number system.} % #7 Closing
+
+%--------------------------------------------------
+% Page 2: One-column introduction to the Advent series
+%--------------------------------------------------
+
+\clearpage
+%\AdventPageBackground
+%\AdventAuthor
+
+\begin{AdventFrameTop}
+  \AdventTitleBlock
+    {Advent Calendar 2025}
+    {}
+    {An exceptional algebraic walk through particle physics}
+    {}
+\end{AdventFrameTop}
+
+\AdventStarRule
+
+\section*{How to read this Advent calendar}
+
+\AdventInitial{T}{his} Advent calendar is written for readers who are
+comfortably fluent in theoretical physics and mathematics, but who may or
+may not have worked with octonions and exceptional algebras before. Each
+day is a self-contained sheet, but together they tell a single story:
+
+\begin{itemize}
+  \item that the Standard Model and gravity can be seen as low-energy
+        expressions of a more rigid exceptional structure, and
+  \item that many familiar ``facts'' of particle physics look less arbitrary
+        when viewed from this perspective.
+\end{itemize}
+
+You do \emph{not} need to accept every step as ``the'' final truth to
+benefit from the journey. The purpose is to make plausible that there is a
+coherent algebraic backbone behind the zoo of fields, couplings and
+generations.
+
+\section*{Structure of the four weeks}
+
+The four Advent Sundays mark the main milestones:
+
+\begin{description}
+  \item[First Sunday (today):] We introduce the octonionic stage,
+    the group $G_2$ and triality, and explain why an $8$-dimensional,
+    nonassociative number system is a natural candidate for internal
+    degrees of freedom.
+
+  \item[Second Sunday:] We move to the Albert algebra $H_3(\mathbb{O})$,
+    the unified transport equation $D\Psi=0$ and the idea that Dirac,
+    Yang--Mills and Einstein equations can all be read as projections
+    or consistency conditions of this single operator.
+
+  \item[Third Sunday:] We look at flavour: three generations, CKM and PMNS
+    mixing, and how these structures appear as different charts on the same
+    internal exceptional space.
+
+  \item[Fourth Sunday:] We step back and ask what kind of ``attractor
+    universe'' is selected by this geometry, and how robust the picture
+    is under deformations.
+\end{description}
+
+In between the Sundays, the weekday sheets focus on specific mechanisms,
+numerical prototypes and ``what-if'' universes based on alternative
+algebras.
+
+\section*{What you can expect (and what not)}
+
+This calendar is intentionally modest and ambitious at the same time:
+
+\begin{itemize}
+  \item \textbf{Modest}, because it does not pretend to deliver a full,
+        rigorous theory with all details worked out. Many steps are
+        presented at the level of structure and plausibility rather than
+        polished theorems.
+
+  \item \textbf{Ambitious}, because it aims to show that a surprisingly
+        small set of algebraic ingredients --- octonions, $H_3(\mathbb{O})$,
+        an $\mathfrak{so}(8)$-connection and a vacuum configuration
+        $\langle H\rangle$ --- can organise a large portion of what we
+        know as the Standard Model plus gravity.
+\end{itemize}
+
+You should \emph{not} expect precise numeric predictions for every mass and
+mixing angle on these pages. What you can expect are:
+
+\begin{enumerate}
+  \item clear structural links: why three generations, why particular
+        charge assignments, why certain patterns of couplings;
+  \item concrete numerical prototypes: explicit eigenvalue patterns from
+        simple vacua in $H_3(\mathbb{O})$;
+  \item a comparative view: what is lost when we replace the exceptional
+        algebras by more conventional ones.
+\end{enumerate}
+
+\section*{Who this is written for}
+
+These sheets deliberately sit in between a technical paper and a popular
+article:
+
+\begin{itemize}
+  \item If you are a working physicist or mathematician, you will find
+        enough structure to connect the ideas to your own toolbox:
+        Lie groups, representation theory, spectral geometry, operator
+        algebras.
+  \item If you come from a neighbouring field, you might treat the
+        technical points as signposts rather than obstacles, and focus
+        on the emerging picture: a universe whose internal order is
+        exceptional in a very literal sense.
+\end{itemize}
+
+References at the bottom of each sheet point to the underlying literature.
+You do not need to read them to follow the calendar, but they are there if
+you want to see how the pieces connect to mainstream work on division
+algebras, Jordan algebras and noncommutative geometry.
+
+\section*{An invitation rather than a conclusion}
+
+Finally, this Advent calendar should be read as an invitation, not as a
+finished doctrine. There are many open questions:
+
+\begin{itemize}
+  \item How unique is the proposed exceptional backbone?
+  \item How far can the numerical fits to real-world data be pushed?
+  \item Which aspects of the nonassociative structure survive quantisation?
+\end{itemize}
+
+If, by Christmas, you feel that these questions are worth spending serious
+time on, the calendar has achieved its goal.
+
+\end{document}

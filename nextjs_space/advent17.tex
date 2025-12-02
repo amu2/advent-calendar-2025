@@ -1,0 +1,222 @@
+% advent17.tex
+% December 17, 2025 – Spectral geometry: bridge to gravity
+
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage{titlesec}
+\usepackage{lettrine}
+\usepackage{eso-pic}
+\usepackage{geometry}
+\usepackage{multicol}
+\usepackage{lmodern}
+
+\geometry{margin=2.0cm}
+
+\input{advent-layout}
+
+\begin{document}
+
+\AdventPageBackground
+\AdventAuthor
+
+\AdventSheetTwoCol
+  {December 17, 2025} % #1 Date
+  {}                  % #2 unused
+  {Spectral geometry: a bridge to gravity} % #3 Main title
+  {When a Dirac spectrum encodes both spacetime and octonions} % #4 Subtitle
+  {To pull gravity into the octonionic story, one needs a framework in
+   which spacetime geometry and internal exceptional structure are encoded
+   in a single object. Spectral geometry provides exactly that: a Dirac
+   operator $D$ whose spectrum knows about curvature, gauge fields and
+   matter. A spectral action
+   $$S_{\mathrm{spec}} = \mathrm{Tr}\,f(D^2/\Lambda^2)$$
+   then generates the Einstein--Hilbert term, cosmological constant and
+   gauge dynamics in one stroke. This is the natural bridge between the
+   octonionic operator toolbox and gravitational physics.} % #5 Key Insight
+  { % #6 body (two columns)
+
+\section*{From metrics to spectra}
+
+\AdventInitial{I}{n} Riemannian geometry, a metric $g_{\mu\nu}$ defines
+distances and curvature. Spectral geometry starts from a different object:
+a Dirac operator $D$ acting on spinors. Remarkably, much of the geometric
+information can be recovered from the spectrum of $D$:
+
+\begin{itemize}
+  \item The eigenvalues of $D$ encode the volume and curvature of the
+        manifold.
+  \item Heat-kernel coefficients of $D^2$ reproduce scalar curvature,
+        cosmological constant terms and higher curvature invariants.
+\end{itemize}
+
+The slogan is:
+
+\begin{quote}
+  ``Geometry is what you can hear from the spectrum of $D$.''
+\end{quote}
+
+\section*{The spectral action principle}
+
+Chamseddine and Connes proposed to build the fundamental action of physics
+from the spectrum of $D$:
+\[
+  S_{\mathrm{spec}} = \mathrm{Tr}\,f(D^2/\Lambda^2),
+\]
+where $f$ is a positive cut-off function and $\Lambda$ a large mass scale.
+
+The heat-kernel expansion of this trace yields schematically
+\[
+  S_{\mathrm{spec}}
+  \sim \int d^4x\,\sqrt{|g|}
+       \bigl(
+         \Lambda^4 a_0
+       + \Lambda^2 a_2 R
+       + a_4 (R^2, F_{\mu\nu}F^{\mu\nu}, \ldots)
+       + \cdots
+       \bigr),
+\]
+where $R$ is the scalar curvature, $F_{\mu\nu}$ are gauge field strengths
+and the $a_n$ are Seeley--DeWitt coefficients built from the geometry and
+internal data.
+
+Thus, from a single spectral expression one recovers:
+
+\begin{itemize}
+  \item the cosmological constant term,
+  \item the Einstein--Hilbert term,
+  \item gauge kinetic terms,
+  \item and higher-order corrections.
+\end{itemize}
+
+\section*{Adding internal structure}
+
+In noncommutative geometry, one extends the usual spinor space by an
+internal finite-dimensional Hilbert space $\mathcal{H}_F$ carrying the
+internal degrees of freedom (gauge charges, generations, etc.). The full
+Hilbert space becomes
+\[
+  \mathcal{H} = L^2(\text{spinors on }M) \otimes \mathcal{H}_F,
+\]
+and the Dirac operator factorises as
+\[
+  D = D_M \otimes \mathbf{1}
+    + \gamma^5 \otimes D_F,
+\]
+where $D_M$ is the spacetime Dirac operator and $D_F$ encodes the internal
+structure.
+
+For the Standard Model, a specific choice of $D_F$ reproduces the known
+gauge group and particle content via the spectral action. For the
+octonionic model, $D_F$ should encode:
+
+\begin{itemize}
+  \item the octonionic/Albert structure $H_3(\mathbb{O})$,
+  \item the rotor/compressor operator toolbox,
+  \item triality and $G_2$/$F_4$ symmetries.
+\end{itemize}
+
+\section*{How octonions could enter $D$}
+
+From the perspective of this Advent calendar, we already have the
+ingredients for $D_F$:
+
+\begin{itemize}
+  \item Compressors and rotors acting on the internal space of one
+        generation.
+  \item The mass map $\Pi(\langle H\rangle)$ as a candidate for the
+        fermionic mass block in $D_F$.
+  \item Gauge couplings read from rotor commutators, suggestive of the
+        gauge-covariant part of $D$.
+\end{itemize}
+
+The spectral-geometry programme for the octonionic model can be stated in
+one sentence:
+
+\begin{quote}
+  Build a finite Dirac operator $D_F$ from the existing octonionic
+  operator toolbox, then feed it into the spectral action and see what
+  gravitational and gauge sector emerges.
+\end{quote}
+
+If successful, this would:
+
+\begin{itemize}
+  \item Derive gravitational couplings (and possibly $\kappa=m_p/m_P$)
+        from the same internal data that set masses and couplings.
+  \item Turn the ``missing gravity corner'' of the previous day into a
+        computed part of the spectrum of $D$.
+\end{itemize}
+
+\section*{What is realistic to expect}
+
+The spectral-geometry approach is ambitious but not magic. Realistically,
+one might hope for:
+
+\begin{itemize}
+  \item \textbf{Structural results:} identification of which combinations
+        of internal invariants control the effective Newton constant and
+        cosmological constant in the spectral action.
+  \item \textbf{Order-of-magnitude estimates:} showing that the same
+        operator scales that fix internal hierarchies also produce a
+        plausible separation between proton, electroweak and Planck
+        scales.
+  \item \textbf{Consistency checks:} demonstrating that the octonionic
+        $D_F$ reproduces the known gauge content and anomaly structure in
+        the low-energy limit.
+\end{itemize}
+
+A full, detailed computation of all spectral coefficients is a long-term
+project, but the direction is clear.
+
+\section*{Why this is the natural next step}
+
+The spectral-day message is simple:
+
+\begin{enumerate}
+  \item We already think in terms of operators (rotors, compressors, mass
+        maps) on an exceptional internal space.
+  \item Spectral geometry says that the \emph{spectrum} of a combined
+        Dirac operator captures both internal and spacetime geometry.
+  \item The spectral action then turns this spectrum into an effective
+        action with gravity, gauge fields and matter.
+\end{enumerate}
+
+In other words, spectral geometry is not an add-on but the natural language
+in which the octonionic model can talk to gravity. It is the mathematical
+framework in which yesterday's ``missing corner'' can, in principle, be
+filled.
+
+\small
+\begin{thebibliography}{9}
+
+\bibitem{ConnesChamseddine1997}
+A.~Connes and A.~H.~Chamseddine,
+\newblock ``The spectral action principle,''
+\newblock {\em Commun.\ Math.\ Phys.} \textbf{186}, 731--750 (1997).
+
+\bibitem{ChamseddineConnesMarcolli2007}
+A.~H.~Chamseddine, A.~Connes and M.~Marcolli,
+\newblock ``Gravity and the standard model with neutrino mixing,''
+\newblock {\em Adv.\ Theor.\ Math.\ Phys.} \textbf{11}, 991--1089 (2007).
+
+\bibitem{Internal}
+[Internal notes on spectral geometry and gravity:
+{\tt appE\_neu.tex; chap20\_neu.tex}.]
+
+\end{thebibliography}
+\normalsize
+
+  } % end #6 body
+  {Spectral geometry offers exactly what the octonionic model needs next:
+   a Dirac operator whose spectrum unifies internal exceptional structure
+   with spacetime curvature and gravity.} % #7 Closing
+
+\end{document}

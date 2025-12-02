@@ -1,0 +1,191 @@
+% advent10.tex
+% December 10, 2025 – Weinberg angle and couplings from rotor norms
+
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage{titlesec}
+\usepackage{lettrine}
+\usepackage{eso-pic}
+\usepackage{geometry}
+\usepackage{multicol}
+\usepackage{lmodern}
+
+\geometry{margin=2.0cm}
+
+\input{advent-layout}
+
+\begin{document}
+
+\AdventPageBackground
+\AdventAuthor
+
+\AdventSheetTwoCol
+  {December 10, 2025} % #1 Date
+  {}                  % #2 unused
+  {Weinberg angle and couplings from rotor norms} % #3 Main title
+  {When $\alpha$, $\alpha_s$ and $\sin^2\theta_W$ are geometric overlaps} % #4 Subtitle
+  {In the Standard Model, the fine-structure constant $\alpha$, the strong
+   coupling $\alpha_s$ and the Weinberg angle $\theta_W$ are independent
+   running parameters. In the octonionic rotor picture, they have a common
+   geometric origin: they are read off from norms and mutual angles of
+   commutators in the internal operator algebra. The electroweak mixing
+   angle $\theta_W$ becomes a literal angle between two rotor directions
+   that define hypercharge and weak isospin inside the exceptional
+   stage.} % #5 Key Insight
+  { % #6 body (two columns)
+
+\section*{Rotor generators for internal forces}
+
+\AdventInitial{T}{he} internal symmetries of one generation are encoded by
+rotor-like operators $G_a$ acting on the octonionic internal space. In
+this setting,
+
+\begin{itemize}
+  \item color $SU(3)_C$ corresponds to one set of rotor directions,
+  \item weak $SU(2)_L$ to another set,
+  \item hypercharge $U(1)_Y$ to a particular combination of internal
+        rotations.
+\end{itemize}
+
+The basic data are the commutators
+\[
+  [G_a,G_b],
+\]
+whose norms and mutual angles in operator space reflect the structure
+constants and coupling strengths of the effective gauge theory.
+
+\section*{Couplings as norms in operator space}
+
+Schematically, one defines an inner product on the space of rotor
+operators, for example via a trace on the internal Hilbert space:
+\[
+  \langle A,B\rangle := \mathrm{Tr}(A^\dagger B)
+  \quad\text{(up to normalisation).}
+\]
+
+With this structure, the effective gauge couplings can be associated with
+the sizes of commutators:
+
+\begin{itemize}
+  \item the electromagnetic coupling $\alpha$ with a suitable abelian
+        combination of rotors,
+  \item the strong coupling $\alpha_s$ with the norm of $SU(3)$ commutator
+        directions,
+  \item the weak coupling $g$ with the norm of $SU(2)$ rotors.
+\end{itemize}
+
+Symbolically,
+\[
+  \alpha \sim \|\,[Q,Q']\,\|^2,\qquad
+  \alpha_s \sim \|[T_a,T_b]\|^2,
+\]
+where $Q$ is an electromagnetic charge operator and $T_a$ are color
+generators. The proportionality constants depend on normalisation
+conventions, but the qualitative statement is: \emph{couplings measure
+the non-commutativity of appropriate rotor directions}.
+
+\section*{Weinberg angle as an internal angle}
+
+Electroweak unification mixes weak isospin $SU(2)_L$ and hypercharge
+$U(1)_Y$ into the physical photon $A_\mu$ and $Z_\mu$ boson. In the
+octonionic rotor picture, this mixing is literally an angle in operator
+space.
+
+Let $G_W$ denote the (properly normalised) weak-isospin rotor in the
+relevant direction and $G_Y$ the hypercharge rotor constructed from the
+internal algebra. Then one can define an angle $\theta$ by
+\[
+  \cos\theta =
+  \frac{\langle G_W, G_Y\rangle}
+       {\|G_W\|\,\|G_Y\|}.
+\]
+
+Up to renormalisation effects, this geometric angle is identified with the
+Weinberg angle $\theta_W$, and the usual electroweak relations
+\[
+  e = g\sin\theta_W,\qquad
+  g' = g\tan\theta_W
+\]
+are reinterpreted as relations between norms and inner products of rotor
+directions.
+
+\section*{Relations among $\alpha$, $\alpha_s$ and $\sin^2\theta_W$}
+
+Because all three quantities are read from the same operator space, they
+are not arbitrary:
+
+\begin{itemize}
+  \item The relative normalisation of $SU(3)$, $SU(2)$ and $U(1)$ generators
+        is fixed by the representation of the exceptional algebra.
+  \item This fixes ratios of norms like
+        $\|T_a\|^2 : \|G_W\|^2 : \|G_Y\|^2$.
+  \item Consequently, at an appropriate reference scale, the couplings
+        are correlated.
+\end{itemize}
+
+Schematisch:
+\[
+  \alpha : \alpha_s : \frac{1}{\sin^2\theta_W}
+  \;\sim\;
+  \|Q\|^2 : \|T_a\|^2 : \frac{\|G_W\|^2}{\|G_Y\|^2},
+\]
+mit allen Größen aus demselben Operatorraum gelesen. Laufende mit der
+Energie kommt zusätzlich durch Renormierungsgruppeneffekte; die
+Ausgangswerte sind jedoch geometrisch eingeengt.
+
+\section*{Was das konzeptionell ändert}
+
+Die Weinberg-Winkel-Tag soll weniger eine neue Zahl liefern als den
+Blickwinkel ändern:
+
+\begin{enumerate}
+  \item $\alpha$, $\alpha_s$ und $\sin^2\theta_W$ sind keine völlig
+        unabhängigen Parameter, sondern verschiedene Projektionen derselben
+        internen Operatorgeometrie.
+  \item Der Weinberg-Winkel wird zu dem, was sein Name verspricht:
+        einem \emph{Winkel} zwischen zwei ausgezeichneten Rotorrichtungen.
+  \item Mögliche Relationen zwischen Kopplungen sind keine Zufälle, sondern
+        Fingerabdrücke der Einbettung von
+        $SU(3)_C\times SU(2)_L\times U(1)_Y$ in die Ausnahmegeometrie.
+\end{enumerate}
+
+Wenn spätere Rechnungen zeigen, dass die experimentell gemessenen Werte
+von $\alpha$, $\alpha_s$ und $\sin^2\theta_W$ sich gut als Rotor-Normen
+und -Winkel eines konkreten Oktaven-/Albert-Embeddings rekonstruieren
+lassen, wäre das ein starkes Indiz dafür, dass „innere Geometrie“ mehr ist
+als eine Metapher.
+
+\small
+\begin{thebibliography}{9}
+
+\bibitem{Weinberg1967}
+S.~Weinberg,
+\newblock ``A model of leptons,''
+\newblock {\em Phys.\ Rev.\ Lett.} \textbf{19}, 1264--1266 (1967).
+
+\bibitem{Furey2018}
+C.~Furey,
+\newblock ``$SU(3)_C\times SU(2)_L \times U(1)_Y$ from division algebras,''
+\newblock {\em Phys.\ Lett.\ B} \textbf{785}, 84--89 (2018).
+
+\bibitem{Internal}
+[Internal notes on rotor norms and couplings:
+{\tt arxiv-const.tex; appK\_neu.tex}.]
+
+\end{thebibliography}
+\normalsize
+
+  } % end #6 body
+  {In the rotor picture, couplings and the Weinberg angle are not
+   arbitrary constants but norms and mutual angles of commutators in the
+   exceptional internal operator space.} % #7 Closing
+
+\end{document}

@@ -1,0 +1,200 @@
+% advent04.tex
+% December 4, 2025 – Heptagon operator: seven directions, one spectrum
+
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage{titlesec}
+\usepackage{lettrine}
+\usepackage{eso-pic}
+\usepackage{geometry}
+\usepackage{multicol}
+\usepackage{lmodern}
+
+\geometry{margin=2.0cm}
+
+\input{advent-layout}
+
+\begin{document}
+
+\AdventPageBackground
+\AdventAuthor
+
+\AdventSheetTwoCol
+  {December 4, 2025} % #1 Date
+  {}                 % #2 unused
+  {Heptagon operator: seven directions, one spectrum} % #3 Main title
+  {From seven imaginary units to three eigenvalues $(\alpha,\beta,\gamma)$} % #4 Subtitle
+  {The seven imaginary octonion units can be arranged on a heptagon that
+   encodes their multiplication rules. From this data one constructs the
+   \emph{heptagon operator} $H_7$, a single linear operator whose
+   eigenvalues $(\alpha,\beta,\gamma)$ summarise the internal geometry.
+   These three numbers are not free parameters; they are geometric
+   invariants that will later feed into coupling constants and mixing
+   angles. Today we introduce $H_7$ and its spectrum as a compact
+   fingerprint of the sevenfold structure of $\mathbb{O}$.} % #5 Key Insight
+  { % #6 body (two columns)
+
+\section*{Seven imaginary units on a heptagon}
+
+\AdventInitial{O}{ctonions} $\mathbb{O}$ have seven imaginary units
+$e_1,\dots,e_7$. Their multiplication can be depicted on an oriented
+heptagon: each directed edge (and certain chords) carries a triple
+$(e_i,e_j,e_k)$ with
+
+\[
+  e_i e_j = e_k,\qquad
+  e_j e_k = e_i,\qquad
+  e_k e_i = e_j,
+\]
+
+and reversed order introduces a minus sign. This Fano-type diagram is more
+than a mnemonic; it packages the nonassociative multiplication table into
+a single geometric picture.
+
+\section*{Constructing the heptagon operator}
+
+From the seven units $e_i$ and the heptagon geometry, one defines a linear
+operator $H_7$ on the underlying real 8-dimensional space. Schematic
+example:
+
+\[
+  H_7 = \sum_{i=1}^7 c_i\,L_{e_i},
+\]
+
+where $L_{e_i}:x\mapsto e_i x$ denotes left multiplication by $e_i$, and
+the coefficients $c_i$ are chosen to respect the heptagon symmetry (for
+instance, equal on edges belonging to the same orbit under $G_2$).
+
+The important facts are:
+
+\begin{itemize}
+  \item $H_7$ encodes all seven directions in a single operator.
+  \item $H_7$ is constrained by $G_2$ symmetry, so its spectrum is highly
+        structured.
+\end{itemize}
+
+Details of the precise coefficients are not needed on this page; they are
+spelled out in the technical notes.
+
+\section*{Spectrum: three eigenvalues $(\alpha,\beta,\gamma)$}
+
+A key feature of $H_7$ is that its eigenspectrum is much simpler than an
+arbitrary $8\times8$ matrix would allow. In favourable constructions,
+
+\[
+  \mathrm{spec}(H_7) = \{\alpha,\beta,\gamma\},
+\]
+
+with appropriate multiplicities that add up to 8. The numbers
+
+\[
+  (\alpha,\beta,\gamma)
+\]
+
+are then \emph{heptagon eigenvalues}: geometric invariants that capture
+how the seven imaginary directions are arranged relative to each other.
+
+Qualitatively:
+
+\begin{itemize}
+  \item $\alpha$ may correspond to an eigen-subspace aligned with a
+        particular family of edges.
+  \item $\beta$ and $\gamma$ correspond to other symmetry-related
+        subspaces.
+\end{itemize}
+
+The crucial point: instead of seven arbitrary numbers, we get only three
+characteristic eigenvalues.
+
+\section*{Why $(\alpha,\beta,\gamma)$ matter for physics}
+
+Later in the calendar, $(\alpha,\beta,\gamma)$ will reappear in several
+contexts:
+
+\begin{itemize}
+  \item In the construction of the \emph{radius operator} $R$ and its
+        spectrum $(a_0,b_0,c_0)$ (5 December).
+  \item In geometric expressions for coupling constants, such as the
+        fine-structure constant $\alpha$ and the strong coupling
+        $\alpha_s$.
+  \item In defining angles between rotor directions that enter the
+        Weinberg angle $\theta_W$.
+\end{itemize}
+
+In other words, the heptagon eigenvalues are a compact \emph{seed} from
+which many later observables can be grown. They serve as a small set of
+internal numbers that eventually manifest as physical constants.
+
+\section*{Heptagon operator within the operator toolbox}
+
+On the second Advent Sunday (7 December), the calendar will present a full
+\emph{operator toolbox}:
+
+\begin{itemize}
+  \item heptagon operator $H_7$ with eigenvalues $(\alpha,\beta,\gamma)$,
+  \item radius operator $R$ with radii $(a_0,b_0,c_0)$,
+  \item sign/signature operators,
+  \item rotors (antisymmetric generators of forces),
+  \item compressors (symmetric mass and mixing operators).
+\end{itemize}
+
+The heptagon operator is the first piece of this toolbox to appear
+explicitly. Its role is to turn the combinatorial data ``seven imaginary
+units on a heptagon'' into spectral data that can be plugged into
+operators, potentials and eventually quantitative formulas.
+
+\section*{Conceptual gain from $H_7$}
+
+Compared to working directly with seven basis elements $e_i$, the
+heptagon-operator viewpoint offers:
+
+\begin{enumerate}
+  \item \textbf{Compression:} seven directions are summarised by three
+    eigenvalues.
+  \item \textbf{Invariants:} $(\alpha,\beta,\gamma)$ are invariant under
+    $G_2$-compatible re-labellings of the heptagon—they are not artefacts
+    of a particular basis choice.
+  \item \textbf{Spectral language:} we move from basis-dependent
+    multiplication tables to basis-independent spectral data, which is
+    the natural language for later spectral geometry.
+\end{enumerate}
+
+Thus, $H_7$ is the first place where the octonionic multiplication table
+starts to look like something a physicist would recognise as ``spectral
+parameters''.
+
+\small
+\begin{thebibliography}{9}
+
+\bibitem{Baez2002}
+J.~C.~Baez,
+\newblock ``The octonions,''
+\newblock {\em Bull.\ Amer.\ Math.\ Soc.} \textbf{39}, 145--205 (2002).
+
+\bibitem{Furey2016}
+C.~Furey,
+\newblock ``Charge quantization from a number operator,''
+\newblock {\em Phys.\ Lett.\ B} \textbf{742}, 195--199 (2015).
+
+\bibitem{Internal}
+[Internal notes on the heptagon operator and its spectrum:
+{\tt chap03\_neu.tex; appK\_neu.tex; oktonionen-basen.tex}.]
+
+\end{thebibliography}
+\normalsize
+
+  } % end #6 body
+  {The heptagon operator $H_7$ compresses the seven imaginary directions
+   of $\mathbb{O}$ into three eigenvalues $(\alpha,\beta,\gamma)$. These
+   invariants are the first internal numbers that will later reappear in
+   couplings, scales and mixing angles.} % #7 Closing
+
+\end{document}

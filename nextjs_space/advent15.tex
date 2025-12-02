@@ -1,0 +1,216 @@
+% advent15.tex
+% Hero day: December 15, 2025 – Numerical prototypes (Ersatzbank)
+
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage{titlesec}
+\usepackage{lettrine}
+\usepackage{eso-pic}
+\usepackage{geometry}
+\usepackage{multicol}
+\usepackage{lmodern}
+
+\geometry{margin=2.0cm}
+
+\input{advent-layout}
+
+\begin{document}
+
+\AdventPageBackground
+\AdventAuthor
+
+\AdventSheetTwoCol
+  {December 15, 2025 \large (Numerical prototypes)} % #1 Date + occasion
+  {}                                                % #2 unused
+  {First Numerical Prototypes from $H_3(\mathbb{O})$} % #3 Main title
+  {Simple vacua, concrete spectra}                  % #4 Subtitle
+  {The octonionic model is not only an abstract Playground of exceptional
+   algebras. Already for very simple vacuum configurations $\langle H\rangle$
+   in the Albert algebra $H_3(\mathbb{O})$ one can compute explicit
+   eigenvalue multiplets of the mass map $\Pi(\langle H\rangle)$. These
+   multiplets form ``numerical prototypes'' for fermion mass spectra:
+   banded, hierarchical, and organised in patterns that resemble quark and
+   lepton families.}                                % #5 Key Insight
+  { % #6 main body (two columns)
+
+\section*{From symbols to numbers}
+
+\AdventInitial{S}{o} far, the exceptional structures have been presented in
+a largely symbolic way: octonions, the Albert algebra $H_3(\mathbb{O})$, the
+mass map $\Pi(H)$ and its relation to vacuum configurations $\langle H\rangle$.
+At some point, however, the model must leave the realm of pure algebra and
+produce numbers that can be compared, at least qualitatively, to particle
+physics.
+
+The good news is that this can already be done with remarkably simple
+choices of $\langle H\rangle$. By freezing most degrees of freedom and
+retaining only a few dominant internal directions, one obtains toy vacua
+that are simple enough to diagonalise exactly, but rich enough to display
+hierarchical spectra.
+
+\section*{Diagonal prototype vacua}
+
+The cleanest starting point is a diagonal configuration in $H_3(\mathbb{O})$:
+\[
+  \langle H\rangle
+  \;=\;
+  \begin{pmatrix}
+    \lambda_1 & 0         & 0 \\
+    0         & \lambda_2 & 0 \\
+    0         & 0         & \lambda_3
+  \end{pmatrix},
+  \qquad
+  \lambda_i \in \mathbb{R}.
+\]
+Such a vacuum preserves a maximal amount of internal symmetry: off-diagonal
+octonionic entries are set to zero, and only three real parameters remain.
+Despite this simplicity, the induced mass map
+\[
+  \Pi(\langle H\rangle) : \mathcal{H}_{\text{int}} \longrightarrow \mathcal{H}_{\text{int}}
+\]
+already exhibits a nontrivial eigenvalue structure.
+
+In the eigenvalue problem
+\[
+  \Pi(\langle H\rangle)\,\Psi = m\,\Psi,
+\]
+the internal Hilbert space $\mathcal{H}_{\text{int}}$ decomposes into
+sectors that correspond to quark-like and lepton-like states, coloured and
+colourless states, left- and right-handed components, and so on. Each
+sector contributes a set of eigenvalues $m$.
+
+For suitable choices of $(\lambda_1,\lambda_2,\lambda_3)$ one observes:
+
+\begin{itemize}
+  \item Eigenvalues cluster into a few \emph{bands}, separated by gaps.
+  \item Within each band, degeneracies and small splittings appear, induced
+        by the residual internal symmetry.
+  \item The overall pattern can be read as ``light, medium, heavy'' families,
+        evocative of the observed hierarchy between generations.
+\end{itemize}
+
+\section*{Off-diagonal perturbations and splitting patterns}
+
+To go beyond the simplest diagonal picture, one can add controlled
+off-diagonal octonionic entries to $\langle H\rangle$:
+\[
+  \langle H\rangle
+  \;=\;
+  \begin{pmatrix}
+    \lambda_1 & x         & 0 \\
+    \bar{x}   & \lambda_2 & y \\
+    0         & \bar{y}   & \lambda_3
+  \end{pmatrix},
+  \qquad
+  x,y \in \mathbb{O}.
+\]
+Even when $x$ and $y$ are chosen along a single imaginary octonion unit,
+the eigenvalue structure of $\Pi(\langle H\rangle)$ changes qualitatively:
+
+\begin{itemize}
+  \item Degenerate bands split into sub-bands.
+  \item Some states are pushed up or down in mass, mimicking the effect of
+        mixing between different internal directions.
+  \item Eigenvectors acquire nontrivial support across different
+        triality-related components, foreshadowing the mixing phenomena
+        associated with CKM and PMNS matrices.
+\end{itemize}
+
+These controlled deformations are the ``numerical workhorses'' of the
+model: they allow us to scan how the spectrum responds when the vacuum
+is moved inside $H_3(\mathbb{O})$.
+
+\section*{Prototype spectra and their interpretation}
+
+The resulting eigenvalue sets are not yet to be interpreted as precise
+predictions for Standard Model fermion masses. Instead, they serve as
+\emph{prototypes} that illustrate what the exceptional machinery tends to
+produce generically:
+
+\begin{enumerate}
+  \item \textbf{Banded hierarchies:} eigenvalues group into bands with
+        ratios that are naturally large or small, depending on how many
+        internal directions contribute coherently.
+  \item \textbf{Sector-dependent patterns:} quark-like and lepton-like
+        sectors display different splitting patterns, reflecting their
+        different embedding in the internal algebra.
+  \item \textbf{Robustness under deformation:} certain qualitative
+        hierarchies persist under a wide range of small changes in
+        $(\lambda_1,\lambda_2,\lambda_3,x,y)$, suggesting that they are
+        structural rather than fine-tuned.
+\end{enumerate}
+
+From this perspective, the complicated observed mass spectrum is seen as
+one point in a structured space of possible spectra generated by the
+octonionic geometry.
+
+\section*{The role of the Ersatzbank}
+
+Within the larger Advent project, these numerical prototypes form an
+``Ersatzbank'' of ready-made examples:
+
+\begin{itemize}
+  \item They can be used to replace more philosophical or qualitative
+        discussion days by concrete numerical sheets.
+  \item They demonstrate to the reader that the abstract constructions
+        genuinely lead to computable spectra with clear patterns.
+  \item They provide anchor points for later, more refined fits where
+        the parameters of $\langle H\rangle$ and the definition of
+        $\Pi(H)$ are tuned to approximate real-world data.
+\end{itemize}
+
+In teaching or outreach contexts, such an Ersatzbank is particularly
+valuable: it allows one to show explicit tables of ``eigenvalues from an
+exceptional universe'' without requiring the audience to follow every
+technical step.
+
+\section*{An invitation to explore}
+
+Technically, numerical exploration of $\Pi(\langle H\rangle)$ is
+straightforward: once a concrete basis for $H_3(\mathbb{O})$ and the
+relevant operators is chosen, the problem reduces to diagonalising large
+but structured matrices. Modern linear algebra libraries can handle this
+comfortably.
+
+Conceptually, the challenge is to interpret the resulting patterns in a
+way that respects both the algebraic symmetries and the phenomenological
+constraints. The prototypes presented here are first steps in that
+direction: they show that the exceptional machinery is capable of
+producing spectra that look qualitatively like what one expects from
+quark and lepton masses, without any artificial ``by hand'' hierarchies
+inserted into the Lagrangian.
+
+\small
+\begin{thebibliography}{9}
+
+\bibitem{GurseyTze1996}
+F.~Gürsey and H.~C.~Tze,
+\newblock {\em On the Role of Division, Jordan and Related Algebras in Particle
+Physics},
+\newblock World Scientific, 1996.
+
+\bibitem{Baez2002}
+J.~C.~Baez,
+\newblock ``The octonions,''
+\newblock {\em Bull.\ Amer.\ Math.\ Soc.} \textbf{39}, 145--205 (2002).
+
+\bibitem{ConnesMarcolli2008}
+A.~Connes and M.~Marcolli,
+\newblock {\em Noncommutative Geometry, Quantum Fields and Motives},
+\newblock American Mathematical Society, 2008.
+
+\end{thebibliography}
+\normalsize
+
+  } % end #6 body
+  {Even very simple vacua in $H_3(\mathbb{O})$ already yield banded, hierarchical spectra: numerical prototypes of a world built from exceptional geometry.} % #7 Closing
+
+\end{document}

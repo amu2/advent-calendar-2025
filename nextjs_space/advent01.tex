@@ -1,0 +1,218 @@
+% advent01.tex
+% December 1, 2025 – Quaternions as prototype for SU(2) and the weak force
+
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage{titlesec}
+\usepackage{lettrine}
+\usepackage{eso-pic}
+\usepackage{geometry}
+\usepackage{multicol}
+\usepackage{lmodern}
+
+\geometry{margin=2.0cm}
+
+\input{advent-layout}
+
+\begin{document}
+
+\AdventPageBackground
+\AdventAuthor
+
+\AdventSheetTwoCol
+  {December 1, 2025} % #1 Date
+  {}                 % #2 unused
+  {Quaternions as a prototype: $SU(2)$ and the weak force} % #3 Main title
+  {The $1\oplus3$ pattern that scales up to octonions}     % #4 Subtitle
+  {Before we climb to the eight-dimensional octonions, it is worth
+   pausing at their four-dimensional cousins, the quaternions
+   $\mathbb{H}\cong\mathbb{R}^4$. The quaternion units realise a rigid
+   $1\oplus3$ split of scalar and vector parts, and their automorphism
+   group contains $SU(2)$—the very group of weak isospin. The octonionic
+   $8\times8$ action simply doubles this pattern: what $\mathbb{H}$ does
+   for $SU(2)$, $\mathbb{O}$ does for the full internal structure of one
+   generation.} % #5 Key Insight
+  { % #6 body (two columns)
+
+\section*{A gentle introduction: Why quaternions matter for physics}
+
+\AdventInitial{I}{magine} you want to describe the internal structure of
+elementary particles—not where they are in space, but the hidden properties
+that make a left-handed electron different from a right-handed one, or a
+neutrino different from a quark. One natural question is: what kind of
+``number system'' could serve as the stage for these internal degrees of
+freedom?
+
+The usual real numbers $\mathbb{R}$ give us one dimension: a single number.
+Complex numbers $\mathbb{C}$ give us two dimensions and have proven essential
+in quantum mechanics. But what if we need more dimensions, and what if we
+want something that behaves like multiplication—where combining two elements
+gives another element of the same type?
+
+This is where quaternions enter the story. Discovered in 1843 by William
+Rowan Hamilton, quaternions extend complex numbers to four dimensions. You
+can think of them as having one ``real'' part and three ``imaginary''
+parts, which we call $\mathbf{i}$, $\mathbf{j}$, and $\mathbf{k}$. These
+three imaginary units are like coordinates in 3D space, but with a special
+multiplication rule that makes them noncommutative: $\mathbf{ij} \neq
+\mathbf{ji}$.
+
+Why does this matter for particle physics? The key observation is that the
+group of symmetries preserving quaternion multiplication contains
+$SU(2)$—the exact mathematical structure describing weak nuclear force and
+the distinction between left- and right-handed particles. In other words,
+weak isospin is not an arbitrary label we invented; it is built into the
+structure of a four-dimensional number system.
+
+The split into one real part and three imaginary parts ($1\oplus3$) mirrors
+the splitting we see in nature: one neutral component and three charged
+components in weak interactions. Before we tackle the full complexity of
+eight-dimensional octonions, which host an entire generation of particles,
+quaternions give us a familiar ``rehearsal'' of the same pattern at half
+the size.
+
+Think of today's sheet as a warm-up exercise: if four dimensions and
+quaternions give us $SU(2)$ and the structure of weak interactions, then
+eight dimensions and octonions will give us the full Standard Model
+structure. Let us see how this works in detail.
+
+\section*{The quaternion stage in four dimensions}
+
+\AdventInitial{T}{he} quaternions
+\[
+  \mathbb{H} = \{\, a + b\,\mathbf{i} + c\,\mathbf{j} + d\,\mathbf{k}
+            \mid a,b,c,d\in\mathbb{R}\,\}
+\]
+form a four-dimensional division algebra with basis
+$1,\mathbf{i},\mathbf{j},\mathbf{k}$ and relations
+\[
+  \mathbf{i}^2=\mathbf{j}^2=\mathbf{k}^2 = \mathbf{ijk} = -1.
+\]
+
+Two structural facts are important for physics:
+
+\begin{itemize}
+  \item $\mathbb{H}$ splits as scalar $\oplus$ vector:
+        \[
+          \mathbb{H} \cong \mathbb{R}\,\oplus\,\mathbb{R}^3,
+        \]
+        i.e.\ $1\oplus3$.
+  \item Left and right multiplication by unit quaternions act as
+        rotations on the vector part $\mathbb{R}^3$.
+\end{itemize}
+
+This already looks like a toy model for spin and isospin: one distinguished
+scalar component, three correlated vector components.
+
+\section*{$SU(2)$ inside the quaternion automorphisms}
+
+Unit quaternions form a group isomorphic to $SU(2)$:
+\[
+  \{q\in\mathbb{H} \mid |q|=1\} \;\simeq\; SU(2).
+\]
+Left multiplication by such a unit quaternion acts as an $SU(2)$ matrix on
+the $(\mathbf{i},\mathbf{j},\mathbf{k})$ components. Concretely:
+
+\begin{itemize}
+  \item The scalar part $a$ stays invariant.
+  \item The vector part $(b,c,d)$ transforms as a 3-vector under $SO(3)$,
+        double-covered by $SU(2)$.
+\end{itemize}
+
+In this language, weak isospin $SU(2)$ is not an abstract label group; it
+is \emph{literally} the automorphism group of a number system.
+
+\section*{Action matrices and the $1\oplus3$ pattern}
+
+In the full model, internal degrees of freedom are encoded via action
+matrices built from left and right multiplication:
+\[
+  L_q: x \mapsto qx,\qquad
+  R_q: x \mapsto xq.
+\]
+
+Already for $\mathbb{H}$, these left/right actions decompose the
+four-dimensional real space into a scalar plus a three-dimensional
+subspace. In matrix form this appears as a rigid $1\oplus3$ block
+structure in the $4\times4$ representation of $L_q$ and $R_q$.
+
+Physically:
+
+\begin{itemize}
+  \item The singlet direction (scalar part) is a natural candidate for
+        an isospin-neutral component.
+  \item The triplet directions (vector part) form a weak isospin
+        triplet under $SU(2)$.
+\end{itemize}
+
+This is the exact pattern that will be reused and doubled when we move to
+the octonionic $8\times8$ actions.
+
+\section*{From quaternions to octonions}
+
+The step from $\mathbb{H}$ to $\mathbb{O}$ looks dramatic—nonassociativity,
+seven imaginary units—but in the action-matrix picture it becomes
+transparent:
+
+\begin{itemize}
+  \item The four real components of $\mathbb{H}$ become eight real
+        components for $\mathbb{O}$.
+  \item The $1\oplus3$ pattern of scalar/vector parts becomes a richer
+        pattern that can host one full generation of internal quantum
+        numbers.
+  \item The role of $SU(2)\subset\mathrm{Aut}(\mathbb{H})$ is taken over by
+        $G_2\subset\mathrm{Aut}(\mathbb{O})$.
+\end{itemize}
+
+From this vantage point, $SU(2)$-weak is not an isolated gauge factor; it
+is the visible shadow of quaternionic automorphisms inside a larger
+octonionic structure.
+
+\section*{Why this detour matters}
+
+The quaternion day serves three purposes in the Advent story:
+
+\begin{enumerate}
+  \item \textbf{Familiarity:} it connects the exotic octonionic picture
+        to the well-known role of $SU(2)$ in spin and weak isospin.
+  \item \textbf{Pattern recognition:} it highlights the $1\oplus3$
+        structure that later scales up to the more intricate block
+        structure of the octonionic action.
+  \item \textbf{Continuity:} it shows that the leap to $\mathbb{O}$ is a
+        continuation of a number-theoretic line, not a wild guess.
+\end{enumerate}
+
+After this quaternion warm-up, the following days return to the full
+octonionic stage, now with a clearer sense of where $SU(2)$ ``comes from''
+in the algebraic background.
+
+\small
+\begin{thebibliography}{9}
+
+\bibitem{ConwaySmith2003}
+J.~H.~Conway and D.~A.~Smith,
+\newblock {\em On Quaternions and Octonions},
+\newblock A.K.~Peters, 2003.
+
+\bibitem{Hamilton1844}
+W.~R.~Hamilton,
+\newblock ``On quaternions; or on a new system of imaginaries in algebra,''
+\newblock {\em Philos.\ Mag.} \textbf{25}, 489--495 (1844).
+
+\end{thebibliography}
+\normalsize
+
+  } % end #6 body
+  {Quaternions provide a four-dimensional rehearsal: a rigid $1\oplus3$
+   pattern and an $SU(2)$ of unit quaternions that foreshadow the full
+   octonionic stage of one generation.} % #7 Closing
+
+\end{document}

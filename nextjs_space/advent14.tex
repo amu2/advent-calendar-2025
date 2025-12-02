@@ -1,0 +1,216 @@
+% advent14.tex
+% Hero day: December 14, 2025 – CKM and PMNS
+
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage{titlesec}
+\usepackage{lettrine}
+\usepackage{eso-pic}
+\usepackage{geometry}
+\usepackage{multicol}
+\usepackage{lmodern}
+
+\geometry{margin=2.0cm}
+
+\input{advent-layout}
+
+\begin{document}
+
+\AdventPageBackground
+\AdventAuthor
+
+\AdventSheetTwoCol
+  {December 14, 2025}      % #1 Date + occasion
+  {}                                           % #2 unused
+  {CKM and PMNS from an Exceptional Atlas}     % #3 Main title
+  {Mixing matrices as transition charts on $H_3(\mathbb{O})$} % #4 Subtitle
+  {Quark and lepton mixings are usually encoded in two unitary matrices,
+   CKM and PMNS, introduced as phenomenological parameters. In the
+   octonionic model, these matrices are reinterpreted as transition maps
+   between different eigenbases of operators on the Albert algebra
+   $H_3(\mathbb{O})$. The pattern of mixings is constrained by how the
+   mass map, flavor projectors and compressor operators fit together in
+   the exceptional geometry.}                   % #5 Key Insight
+  { % #6 main body (two columns)
+
+\section*{Two mysterious unitary matrices}
+
+\AdventInitial{T}{he} Standard Model describes quark and lepton mixings by
+two unitary matrices:
+\[
+  V_{\text{CKM}} \quad\text{for quarks},\qquad
+  U_{\text{PMNS}} \quad\text{for leptons}.
+\]
+Empirically, $V_{\text{CKM}}$ is close to the identity with small off-diagonal
+elements, while $U_{\text{PMNS}}$ shows large mixings between neutrino
+flavors. In the usual formulation, both matrices are introduced by hand
+when diagonalising Yukawa matrices. They are indispensable in
+phenomenology, but their structure appears accidental.
+
+The octonionic model offers a different viewpoint. It treats mixing angles
+and phases not as arbitrary complex numbers, but as geometric data attached
+to how different preferred bases in the exceptional internal space
+intersect.
+
+\section*{The internal atlas picture}
+
+The internal degrees of freedom live in the Albert algebra $H_3(\mathbb{O})$,
+with automorphism group $F_4$. On this space, several distinguished
+operators are defined:
+
+\begin{itemize}
+  \item The \emph{mass map} $\Pi(H)$, built from a vacuum configuration
+        $\langle H\rangle$, whose eigenvectors encode mass eigenstates.
+  \item \emph{Flavor projectors} which single out quark-like and
+        lepton-like subspaces.
+  \item \emph{Compressor} and \emph{rotor} operators that encode hierarchies
+        and couplings.
+\end{itemize}
+
+Different physical questions prefer different eigenbases:
+
+\begin{itemize}
+  \item Gauge interactions ``see'' eigenbases aligned with flavor projectors.
+  \item Mass measurements ``see'' eigenbases of $\Pi(H)$.
+\end{itemize}
+
+The resulting misalignment between these bases is what phenomenologists
+call ``mixing''. In the geometric language, it is nothing but a transition
+map between charts on the internal space.
+
+\section*{CKM as a transition map in the quark sector}
+
+Focus first on the quark sector. Consider two orthonormal bases of the
+relevant internal subspace:
+
+\begin{itemize}
+  \item $\{\,|d_i\rangle\,\}$, $i=1,2,3$, adapted to flavor (interaction)
+        eigenstates: these diagonalise the couplings to $W^\pm$ and gluons.
+  \item $\{\,|d_i'\rangle\,\}$, $i=1,2,3$, adapted to mass eigenstates:
+        these diagonalise the restriction of $\Pi(H)$ to the down-type quark
+        sector.
+\end{itemize}
+
+By definition, there exists a unitary matrix $V_{\text{CKM}}$ such that
+\[
+  |d_i\rangle \;=\; \sum_j (V_{\text{CKM}})_{ij}\,|d_j'\rangle.
+\]
+In the octonionic setting, both bases arise from eigenproblems for
+operators that live in the same exceptional algebra and are constrained by
+its structure. As a result:
+
+\begin{itemize}
+  \item The allowed pattern of overlaps $(V_{\text{CKM}})_{ij}$ is not
+        arbitrary; some entries are naturally suppressed or enhanced.
+  \item Small quark mixing angles become a consequence of how the quark
+        flavor projectors and the mass map almost commute within the
+        relevant subspace of $H_3(\mathbb{O})$.
+\end{itemize}
+
+The hierarchical structure of $V_{\text{CKM}}$ thus reflects an almost
+compatible choice of charts in the internal atlas.
+
+\section*{PMNS and the special role of neutrinos}
+
+For leptons, the situation is different. The PMNS matrix connects charged
+lepton mass eigenstates to neutrino flavor eigenstates. In many models,
+neutrinos are Majorana particles with a mass matrix that has a different
+origin from the charged lepton masses.
+
+In the octonionic model, this difference is encoded in the way neutrino
+directions sit inside $H_3(\mathbb{O})$:
+
+\begin{itemize}
+  \item Neutrino-like internal directions may be associated with subspaces
+        that are more strongly affected by nonassociative chains in the
+        octonionic structure.
+  \item The corresponding projectors onto neutrino subspaces can fail to
+        commute more strongly with the mass map and with certain rotor
+        operators.
+\end{itemize}
+
+As a result, the overlap matrix $U_{\text{PMNS}}$ between flavor and mass
+eigenbases for leptons can naturally have large off-diagonal entries: the
+relevant operators pick eigenbases that are more misaligned than in the
+quark case.
+
+\section*{Qualitative patterns from exceptional constraints}
+
+The goal of the octonionic approach is not to predict every mixing angle
+and phase numerically from first principles in a single stroke. Instead, it
+aims to explain why certain \emph{patterns} appear robust:
+
+\begin{enumerate}
+  \item \textbf{Quark mixings are small:} quark flavor projectors and the
+        quark part of $\Pi(H)$ are nearly simultaneously diagonalisable
+        within the exceptional algebra, leading to small mixing angles.
+  \item \textbf{Lepton mixings are large:} leptonic projectors, especially
+        in the neutrino sector, have a more frustrated relation to the mass
+        map and rotor operators, leading to larger natural mixings.
+  \item \textbf{Correlations between sectors:} because all these operators
+        live in the same $H_3(\mathbb{O})$ and share the same vacuum
+        configuration, patterns in the CKM and PMNS matrices are not
+        independent: a change in the internal geometry affects both.
+\end{enumerate}
+
+This is reminiscent of how coordinate changes on a curved manifold cannot
+be chosen independently in overlapping charts.
+
+\section*{Towards numerical explorations}
+
+Once a concrete vacuum configuration $\langle H\rangle$ and explicit forms
+for the mass map, projectors and compressors are chosen, the model becomes
+numerical:
+
+\begin{itemize}
+  \item One can diagonalise the relevant operators in $H_3(\mathbb{O})$ and
+        compute the induced mixing matrices.
+  \item One can study how these matrices change under deformations of
+        $\langle H\rangle$ or of the internal rotor structure.
+  \item One can search for attractor configurations that yield mixing
+        patterns close to the observed CKM and PMNS matrices.
+\end{itemize}
+
+In this sense, the exceptional geometry provides a \emph{parameter space}
+for mixings that is much more constrained than a generic set of complex
+$3\times3$ unitary matrices.
+
+\small
+\begin{thebibliography}{9}
+
+\bibitem{Cabibbo1963}
+N.~Cabibbo,
+\newblock ``Unitary symmetry and leptonic decays,''
+\newblock {\em Phys.\ Rev.\ Lett.} \textbf{10}, 531--533 (1963).
+
+\bibitem{KobayashiMaskawa1973}
+M.~Kobayashi and T.~Maskawa,
+\newblock ``CP violation in the renormalizable theory of weak interaction,''
+\newblock {\em Prog.\ Theor.\ Phys.} \textbf{49}, 652--657 (1973).
+
+\bibitem{MakiNakagawaSakata1962}
+Z.~Maki, M.~Nakagawa and S.~Sakata,
+\newblock ``Remarks on the unified model of elementary particles,''
+\newblock {\em Prog.\ Theor.\ Phys.} \textbf{28}, 870--880 (1962).
+
+\bibitem{GurseyTze1996}
+F.~Gürsey and H.~C.~Tze,
+\newblock {\em On the Role of Division, Jordan and Related Algebras in Particle
+Physics},
+\newblock World Scientific, 1996.
+
+\end{thebibliography}
+\normalsize
+
+  } % end #6 body
+  {CKM and PMNS are read as transition maps between preferred bases in an exceptional internal space, not as arbitrary phenomenological matrices.} % #7 Closing
+
+\end{document}
