@@ -36,20 +36,20 @@ jobs:
           echo "✓ Conversion complete!"
           ls -lh public/advent_data.json
       
-      # 4. Setup TeX Live for LaTeX Compilation
+      # 4. Setup TeX Live (Alternative Method)
       - name: Setup TeX Live
-  run: |
-    echo "Installing TeX Live packages..."
-    sudo apt-get update -qq
-    sudo apt-get install -y --no-install-recommends \
-      texlive-latex-base \
-      texlive-latex-extra \
-      texlive-fonts-recommended \
-      texlive-fonts-extra \
-      texlive-lang-german \
-      latexmk
-    echo "✓ TeX Live installed!"
-    pdflatex --version
+        run: |
+          echo "Installing TeX Live packages..."
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends \
+            texlive-latex-base \
+            texlive-latex-extra \
+            texlive-fonts-recommended \
+            texlive-fonts-extra \
+            texlive-lang-german \
+            latexmk
+          echo "✓ TeX Live installed!"
+          pdflatex --version
       
       # 5. Compile LaTeX Files (double pass for indices)
       - name: Compile LaTeX PDFs
@@ -67,17 +67,17 @@ jobs:
           for file in "${FILES[@]}"; do
             if [ -f "${file}.tex" ]; then
               echo "Compiling ${file}.tex (pass 1)..."
-              pdflatex -interaction=nonstopmode "${file}.tex" > /dev/null || echo "Warning: ${file}.tex failed"
+              pdflatex -interaction=nonstopmode "${file}.tex" > /dev/null 2>&1 || echo "Warning: ${file}.tex pass 1 had warnings"
               
               echo "Compiling ${file}.tex (pass 2 for indices)..."
-              pdflatex -interaction=nonstopmode "${file}.tex" > /dev/null || echo "Warning: ${file}.tex failed"
+              pdflatex -interaction=nonstopmode "${file}.tex" > /dev/null 2>&1 || echo "Warning: ${file}.tex pass 2 had warnings"
               
               # Copy PDF to public directory
               if [ -f "${file}.pdf" ]; then
                 cp "${file}.pdf" "public/pdfs/"
                 echo "✓ ${file}.pdf created and copied"
               else
-                echo "✗ ${file}.pdf not found"
+                echo "✗ ${file}.pdf not found (compilation may have failed)"
               fi
             else
               echo "✗ ${file}.tex not found"
@@ -88,6 +88,7 @@ jobs:
           rm -f *.aux *.log *.out *.toc *.synctex.gz
           
           echo "LaTeX compilation complete!"
+          echo "PDFs created:"
           ls -lh public/pdfs/ | tail -10
       
       # 6. Setup Node.js
@@ -114,6 +115,7 @@ jobs:
           touch out/.nojekyll
           
           echo "Build complete!"
+          echo "Files in out/ directory:"
           ls -lh out/ | head -20
       
       # 9. Deploy to gh-pages branch
