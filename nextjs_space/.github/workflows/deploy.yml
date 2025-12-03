@@ -83,6 +83,9 @@ jobs:
         run: npm install
       
       # 6. Build Next.js for GitHub Pages
+      # NOTE: advent_data.json is maintained manually - do NOT auto-generate
+      # The LaTeX→JSON conversion script produces poor quality output.
+      # Edit public/advent_data.json directly for content changes.
       - name: Build Next.js
         run: |
           # Use export config for static build
