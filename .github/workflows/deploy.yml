@@ -38,25 +38,18 @@ jobs:
       
       # 4. Setup TeX Live for LaTeX Compilation
       - name: Setup TeX Live
-        uses: teatimeguest/setup-texlive-action@v3
-        with:
-          packages: |
-            scheme-basic
-            latex-bin
-            amsmath
-            amsfonts
-            amssymb
-            graphics
-            xcolor
-            geometry
-            hyperref
-            fancyhdr
-            babel
-            babel-german
-            inputenc
-            fontenc
-            lm
-            latexmk
+  run: |
+    echo "Installing TeX Live packages..."
+    sudo apt-get update -qq
+    sudo apt-get install -y --no-install-recommends \
+      texlive-latex-base \
+      texlive-latex-extra \
+      texlive-fonts-recommended \
+      texlive-fonts-extra \
+      texlive-lang-german \
+      latexmk
+    echo "✓ TeX Live installed!"
+    pdflatex --version
       
       # 5. Compile LaTeX Files (double pass for indices)
       - name: Compile LaTeX PDFs
