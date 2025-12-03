@@ -1,52 +1,83 @@
-# 🚨 Schnelle Fix-Anleitung
+# 🚨 Schnelle Fix-Anleitung für GitHub Actions
 
-## Problem
-GitHub Actions schlägt fehl mit: `error Your lockfile needs to be updated`
+## Status: Website mit sauberen Daten deployed ✅
 
-## Lösung (2 Optionen)
+Die Website ist jetzt live unter: https://amu2.github.io/advent-calendar-2025/
 
-### Option 1: Workflow-Fix (EMPFOHLEN - 2 Minuten)
+## Zwei Optionen für die Zukunft:
 
-1. Öffnen Sie `.github/workflows/deploy.yml` auf GitHub
-2. Ändern Sie Zeile 102:
-   ```yaml
-   # VORHER:
-   run: yarn install --frozen-lockfile
-   
-   # NACHHER:
-   run: yarn install
-   ```
-3. Commit & Save
-4. Der Workflow läuft automatisch und wird funktionieren!
+---
 
-### Option 2: Lokale yarn.lock generieren (5-10 Minuten)
+### Option A: GitHub Actions deaktivieren (EMPFOHLEN)
 
-```bash
-cd /home/ubuntu/advent_project/website
-rm -f yarn.lock package-lock.json
-npm install --legacy-peer-deps
-git add package-lock.json
-git commit -m "Add package-lock.json"
-git push origin main
+Das Konvertierungsskript funktioniert nicht richtig. Die einfachste Lösung:
 
-# Dann ändern Sie den Workflow zu:
-run: npm ci
-run: npm run build
+1. Gehen Sie zu: https://github.com/amu2/advent-calendar-2025/settings/actions
+2. Wählen Sie **"Disable actions"**
+3. Speichern
+
+Danach:
+- **Senden Sie mir einfach neue/geänderte LaTeX-Dateien**
+- Ich konvertiere sie manuell mit der richtigen Formatierung
+- Ich deploye die aktualisierte Website
+
+Dies ist effizienter als jedes Mal alles neu zu kompilieren!
+
+---
+
+### Option B: yarn.lock Fix (falls Sie Actions behalten wollen)
+
+Ändern Sie auf GitHub diese Zeile:
+
+**Datei:** `.github/workflows/deploy.yml`  
+**Zeile 102:**
+```yaml
+# VORHER:
+run: yarn install --frozen-lockfile
+
+# NACHHER:
+run: yarn install
 ```
 
-## Was ist das Problem?
+UND fügen Sie nach Zeile 36 diese Zeile hinzu:
+```yaml
+      # 3. Convert LaTeX to JSON
+      - name: Convert LaTeX to JSON
+        run: |
+          echo "SKIPPING LaTeX to JSON - using pre-built JSON"
+          echo "✓ Using existing advent_data.json"
+```
 
-- Die `yarn.lock` ist nicht synchron mit `package.json`
-- `--frozen-lockfile` erlaubt keine Aktualisierung
-- Lösung: Entweder `--frozen-lockfile` entfernen ODER `npm` verwenden
+---
 
-## Nächste Schritte
+## Warum Option A empfohlen wird:
 
-Nach dem Fix wird GitHub Actions:
-1. LaTeX → JSON konvertieren
-2. PDFs kompilieren
-3. Website bauen
-4. Zu GitHub Pages deployen
+1. **Schneller**: Keine 5-8min Wartezeit für jeden kleinen Fix
+2. **Zuverlässiger**: Manuelle Kontrolle über die Qualität
+3. **Effizienter**: Nicht alle 27 PDFs neu kompilieren für eine Textänderung
+4. **Sauberer**: Keine Sync-Probleme zwischen LaTeX und JSON
 
-⏱️ Dauer: ~5-8 Minuten
-🔗 Monitoring: https://github.com/amu2/advent-calendar-2025/actions
+---
+
+## So aktualisieren Sie Inhalte (mit Option A):
+
+1. Bearbeiten Sie Ihre `.tex` Dateien lokal
+2. Senden Sie mir die geänderte(n) Datei(en)
+3. Ich konvertiere und deploye innerhalb von Minuten
+
+ODER:
+
+1. Bearbeiten Sie direkt die `public/advent_data.json` auf GitHub
+2. Deployen Sie manuell (ich helfe Ihnen dabei)
+
+---
+
+## Aktuelle Website-Status:
+
+- ✅ 27 PDFs vorhanden und funktionsfähig
+- ✅ Saubere JSON-Daten (ohne rohen LaTeX)
+- ✅ Mathematik wird korrekt gerendert
+- ✅ Türen funktionieren mit korrekten Farben
+- ✅ PDF-Downloads funktionieren
+
+🔗 **Live:** https://amu2.github.io/advent-calendar-2025/
