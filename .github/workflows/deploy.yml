@@ -96,7 +96,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '18'
-          cache: 'yarn'
       
       # 7. Install Dependencies
       - name: Install dependencies
