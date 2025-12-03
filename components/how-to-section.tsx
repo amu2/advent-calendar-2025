@@ -11,7 +11,7 @@ export function HowToSection() {
   const content = `
 <h3>Welcome to the Exceptional Advent</h3>
 
-<p>This calendar invites you on a journey through the mathematical structures underlying particle physics. Whether you're already familiar with octonions and exceptional algebras or encountering them for the first time, each day offers a self-contained exploration. Together, the 27 sheets tell one coherent story:</p>
+<p>This calendar invites you on a journey through the mathematical structures underlying particle physics. Whether you're already familiar with octonions and exceptional algebras or encountering them for the first time, each day offers a self-contained exploration. Together, the 31 sheets tell one coherent story:</p>
 
 <ul>
   <li>that the Standard Model and gravity can be seen as low-energy expressions of a more rigid exceptional structure, and</li>
