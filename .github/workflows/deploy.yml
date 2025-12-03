@@ -99,7 +99,7 @@ jobs:
       
       # 7. Install Dependencies
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: yarn install
       
       # 8. Build Next.js for GitHub Pages
       - name: Build Next.js
