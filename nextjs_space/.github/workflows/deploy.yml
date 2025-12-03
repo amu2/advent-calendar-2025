@@ -21,22 +21,7 @@ jobs:
         with:
           fetch-depth: 0
       
-      # 2. Setup Python for LaTeX → JSON Conversion
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-      
-      # 3. Convert LaTeX to JSON
-      - name: Convert LaTeX to JSON
-        run: |
-          echo "Converting advent*.tex files to advent_data.json..."
-          cd ${{ github.workspace }}
-          python3 convert_tex_to_json.py
-          echo "✓ Conversion complete!"
-          ls -lh public/advent_data.json
-      
-      # 4. Setup TeX Live (Alternative Method)
+      # 2. Setup TeX Live for PDF compilation
       - name: Setup TeX Live
         run: |
           echo "Installing TeX Live packages..."
@@ -47,14 +32,14 @@ jobs:
             texlive-fonts-recommended \
             texlive-fonts-extra \
             texlive-lang-german \
-            latexmk
+            texlive-lang-english
           echo "✓ TeX Live installed!"
           pdflatex --version
       
-      # 5. Compile LaTeX Files (double pass for indices)
+      # 3. Compile LaTeX Files (double pass for indices)
       - name: Compile LaTeX PDFs
         run: |
-          echo "Compiling 27 LaTeX files..."
+          echo "Compiling LaTeX files..."
           cd ${{ github.workspace }}
           
           # Create output directory
@@ -66,58 +51,54 @@ jobs:
           # Compile each file twice
           for file in "${FILES[@]}"; do
             if [ -f "${file}.tex" ]; then
-              echo "Compiling ${file}.tex (pass 1)..."
-              pdflatex -interaction=nonstopmode "${file}.tex" > /dev/null 2>&1 || echo "Warning: ${file}.tex pass 1 had warnings"
-              
-              echo "Compiling ${file}.tex (pass 2 for indices)..."
-              pdflatex -interaction=nonstopmode "${file}.tex" > /dev/null 2>&1 || echo "Warning: ${file}.tex pass 2 had warnings"
+              echo "Compiling ${file}.tex..."
+              pdflatex -interaction=nonstopmode "${file}.tex" > /dev/null 2>&1 || true
+              pdflatex -interaction=nonstopmode "${file}.tex" > /dev/null 2>&1 || true
               
               # Copy PDF to public directory
               if [ -f "${file}.pdf" ]; then
                 cp "${file}.pdf" "public/pdfs/"
-                echo "✓ ${file}.pdf created and copied"
+                echo "✓ ${file}.pdf"
               else
-                echo "✗ ${file}.pdf not found (compilation may have failed)"
+                echo "✗ ${file}.pdf not found"
               fi
-            else
-              echo "✗ ${file}.tex not found"
             fi
           done
           
           # Clean up auxiliary files
           rm -f *.aux *.log *.out *.toc *.synctex.gz
           
-          echo "LaTeX compilation complete!"
-          echo "PDFs created:"
-          ls -lh public/pdfs/ | tail -10
+          echo "✓ LaTeX compilation complete!"
+          echo "PDFs in public/pdfs/:"
+          ls public/pdfs/ | wc -l
       
-      # 6. Setup Node.js
+      # 4. Setup Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '18'
       
-      # 7. Install Dependencies
+      # 5. Install Dependencies with npm (more reliable than yarn on CI)
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: npm install
       
-      # 8. Build Next.js for GitHub Pages
+      # 6. Build Next.js for GitHub Pages
       - name: Build Next.js
         run: |
           # Use export config for static build
           cp next.config.export.js next.config.js
           
-          # Build with GitHub Pages settings
-          yarn build
+          # Build
+          npm run build
           
           # Add .nojekyll to prevent GitHub from processing files
           touch out/.nojekyll
           
-          echo "Build complete!"
-          echo "Files in out/ directory:"
-          ls -lh out/ | head -20
+          echo "✓ Build complete!"
+          echo "Files in out/:"
+          ls out/ | head -20
       
-      # 9. Deploy to gh-pages branch
+      # 7. Deploy to gh-pages branch
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
