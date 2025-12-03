@@ -1,114 +1,58 @@
-name: Build and Deploy to GitHub Pages
+name: Build and Deploy Advent Calendar
 
 on:
   push:
     branches: [ main ]
   workflow_dispatch:
 
-permissions:
-  contents: write
-  pages: write
-  id-token: write
-
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     
     steps:
-      # 1. Checkout Source Code
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      
-      # 2. Setup TeX Live for PDF compilation
-      - name: Setup TeX Live
-        run: |
-          echo "Installing TeX Live packages..."
-          sudo apt-get update -qq
-          sudo apt-get install -y --no-install-recommends \
-            texlive-latex-base \
-            texlive-latex-extra \
-            texlive-fonts-recommended \
-            texlive-fonts-extra \
-            texlive-lang-german \
-            texlive-lang-english
-          echo "✓ TeX Live installed!"
-          pdflatex --version
-      
-      # 3. Compile LaTeX Files (double pass for indices)
-      - name: Compile LaTeX PDFs
-        run: |
-          echo "Compiling LaTeX files..."
-          cd ${{ github.workspace }}
-          
-          # Create output directory
-          mkdir -p public/pdfs
-          
-          # Array of all advent files
-          FILES=("advent00" "advent01" "advent02" "advent03" "advent04" "advent05" "advent06" "advent07" "advent08" "advent09" "advent10" "advent11" "advent12" "advent13" "advent14" "advent15" "advent16" "advent17" "advent18" "advent19" "advent20" "advent21" "advent22" "advent23" "advent24" "advent25" "advent31")
-          
-          # Compile each file twice
-          for file in "${FILES[@]}"; do
-            if [ -f "${file}.tex" ]; then
-              echo "Compiling ${file}.tex..."
-              pdflatex -interaction=nonstopmode "${file}.tex" > /dev/null 2>&1 || true
-              pdflatex -interaction=nonstopmode "${file}.tex" > /dev/null 2>&1 || true
-              
-              # Copy PDF to public directory
-              if [ -f "${file}.pdf" ]; then
-                cp "${file}.pdf" "public/pdfs/"
-                echo "✓ ${file}.pdf"
-              else
-                echo "✗ ${file}.pdf not found"
-              fi
-            fi
-          done
-          
-          # Clean up auxiliary files
-          rm -f *.aux *.log *.out *.toc *.synctex.gz
-          
-          echo "✓ LaTeX compilation complete!"
-          echo "PDFs in public/pdfs/:"
-          ls public/pdfs/ | wc -l
-      
-      # 4. Setup Node.js
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-      
-      # 5. Install Dependencies with npm (more reliable than yarn on CI)
-      - name: Install dependencies
-        run: npm install
-      
-      # 6. Build Next.js for GitHub Pages
-      # NOTE: advent_data.json is maintained manually - do NOT auto-generate
-      # The LaTeX→JSON conversion script produces poor quality output.
-      # Edit public/advent_data.json directly for content changes.
-      - name: Build Next.js
-        run: |
-          # Use export config for static build
-          cp next.config.export.js next.config.js
-          
-          # Build
-          npm run build
-          
-          # Add .nojekyll to prevent GitHub from processing files
-          touch out/.nojekyll
-          
-          echo "✓ Build complete!"
-          echo "Files in out/:"
-          ls out/ | head -20
-      
-      # 7. Deploy to gh-pages branch
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./out
-          publish_branch: gh-pages
-          force_orphan: true
-          user_name: 'github-actions[bot]'
-          user_email: 'github-actions[bot]@users.noreply.github.com'
-          commit_message: 'Deploy from main: ${{ github.sha }}'
+    - name: Checkout repository
+      uses: actions/checkout@v3
+    
+    - name: Setup TeX Live
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y texlive-latex-extra texlive-fonts-recommended texlive-science
+    
+    - name: Compile LaTeX to PDF
+      run: |
+        for file in advent*.tex; do
+          if [ -f "$file" ]; then
+            echo "Compiling $file..."
+            pdflatex -interaction=nonstopmode "$file" || true
+            pdflatex -interaction=nonstopmode "$file" || true
+            rm -f *.aux *.log *.out *.toc
+          fi
+        done
+        mkdir -p public/pdfs
+        mv *.pdf public/pdfs/ || true
+    
+    - name: Convert LaTeX to JSON
+      run: |
+        python3 convert_tex_to_json_v2.py
+        echo "✓ Generated advent_data.json"
+        ls -lh public/advent_data.json
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+    
+    - name: Install dependencies
+      run: npm install
+    
+    - name: Build Next.js
+      run: |
+        npm run build
+        touch out/.nojekyll
+    
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./out
+        force_orphan: true
