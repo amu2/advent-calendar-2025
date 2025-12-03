@@ -1,0 +1,207 @@
+% advent07.tex
+% Second Advent Sunday: December 7, 2025 – Operator toolbox
+
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage{titlesec}
+\usepackage{lettrine}
+\usepackage{eso-pic}
+\usepackage{geometry}
+\usepackage{multicol}
+\usepackage{lmodern}
+
+\geometry{margin=2.0cm}
+
+\input{advent-layout}
+
+\begin{document}
+
+\AdventPageBackground
+\AdventAuthor
+
+\AdventSheetTwoCol
+  {December 7, 2025 \large (Second Advent Sunday)} % #1 Date + occasion
+  {}                                               % #2 unused
+  {Heptagon, Radii and Attractor}                  % #3 Main title
+  {The rotor/compressor toolbox for all observables} % #4 Subtitle
+  {In the octonionic model, all observable quantities—couplings, masses,
+   mixings and scales—are traced back to invariants of two operator
+   families on the internal space: antisymmetric \emph{rotors} (forces)
+   and symmetric \emph{compressors} (masses and mixings). The heptagon
+   operator encodes the seven imaginary octonion directions; the radius
+   operator $R$ with spectrum $(a_0,b_0,c_0)$ defines an attractor
+   mechanism for fundamental scales. Together they form a minimal but
+   sufficient operator toolbox: nothing else is added by hand.} % #5 Key Insight
+  { % #6 body (two columns)
+
+\section*{From algebra to operators}
+
+\AdventInitial{O}{ctonions} and their automorphism group $G_2$ give us a
+rigid internal stage. But physical predictions are not read directly from
+the multiplication table; they arise from \emph{operators} acting on the
+internal space. In this model, two operator families play the central role:
+
+\begin{itemize}
+  \item \textbf{Rotors} — antisymmetric operators $G_a$ generating internal
+        rotations: they encode forces and couplings.
+  \item \textbf{Compressors} — symmetric operators $C$ with real spectra:
+        they encode masses and mixing patterns.
+\end{itemize}
+
+Once this toolbox is in place, every later sheet becomes a story about
+eigenvalues, eigenvectors, commutators and norms of these operators.
+
+\section*{The heptagon operator: seven directions, three invariants}
+
+The seven imaginary octonion units are arranged on the Fano-plane
+heptagon. Instead of handling them one by one, the model packages them
+into a single \emph{heptagon operator} $H_7$ acting on the internal space:
+\[
+  H_7 \;=\; \sum_{i=1}^7 c_i E_i,
+\]
+where the $E_i$ encode the seven directions and the $c_i$ are fixed by the
+vacuum and $G_2$-symmetry.
+
+Despite being built from seven directions, $H_7$ has only three independent
+eigenvalues,
+\[
+  \mathrm{Spec}(H_7) = (\alpha,\beta,\gamma),
+\]
+which are invariants of the $G_2$-orbit of $H_7$. These three numbers will
+reappear as seeds for:
+
+\begin{itemize}
+  \item gauge couplings (fine-structure, strong coupling, weak mixing),
+  \item relative positions of flavour sectors,
+  \item and parts of the hierarchy structure.
+\end{itemize}
+
+\section*{The radius operator and three fundamental scales}
+
+From the heptagon structure one constructs a \emph{radius operator} $R$.
+It measures how far internal directions sit from preferred axes. Its
+spectrum is
+\[
+  \mathrm{Spec}(R) = (a_0,b_0,c_0),
+  \quad a_0 > b_0 > c_0.
+\]
+
+Exponentials of these radii define three characteristic energy scales:
+\[
+  E_{\text{Planck}} \sim e^{a_0},\qquad
+  E_{\text{EW}}     \sim e^{b_0},\qquad
+  E_{\text{QCD}}    \sim e^{c_0}.
+\]
+Thus, the familiar hierarchy of Planck, electroweak and QCD scales is
+encoded in a few geometric invariants of $R$ rather than inserted as three
+independent inputs.
+
+\section*{Rotors: forces from commutator norms}
+
+Rotors are antisymmetric operators $G_a$ generating continuous internal
+symmetries. Their commutators measure how two internal directions fail to
+commute. The squared norm of a commutator,
+\[
+  \bigl\|[G_a,G_b]\bigr\|^2,
+\]
+acts as the prototype for a coupling constant. Symbolically,
+\[
+  \alpha \sim \bigl\|[G_{\text{em}},G_{\text{ref}}]\bigr\|^2,\quad
+  \alpha_s \sim \bigl\|[G_{\text{color}},G_{\text{ref}}]\bigr\|^2,\quad
+  \sin^2\theta_W \sim \bigl\|[G_{\text{weak}},G_{\text{ref}}]\bigr\|^2.
+\]
+
+Choosing different rotor pairs recovers different interactions. In this
+view, a ``strong'' force is literally a large commutator norm in the
+internal algebra; a ``weak'' one corresponds to nearly commuting rotors.
+
+\section*{Compressors: masses and mixings as spectra}
+
+Compressors are symmetric operators with real eigenvalues. The most
+important example is the mass map $\Pi(\langle H\rangle)$ constructed from
+a vacuum configuration $\langle H\rangle \in H_3(\mathbb{O})$:
+\[
+  \Pi(\langle H\rangle)\Psi = m\,\Psi.
+\]
+
+Its eigenvalues $m$ provide prototype fermion masses; its eigenvectors
+define the associated mass eigenstates. Additional compressors act in
+flavour subspaces; misalignment between their eigenbases produces mixing
+matrices:
+
+\begin{itemize}
+  \item down- vs. up-quark compressors $\Rightarrow$ CKM matrix,
+  \item charged-lepton vs. neutrino compressors $\Rightarrow$ PMNS matrix.
+\end{itemize}
+
+Masses and mixings thus share a common origin: they are different ways of
+reading the same symmetric operators.
+
+\section*{Attractor behaviour of scales and hierarchies}
+
+The combination of radius operator and compressors suggests an
+\emph{attractor} picture:
+
+\begin{itemize}
+  \item The spectrum $(a_0,b_0,c_0)$ singles out preferred scales.
+  \item Renormalisation-group flow tends to pull effective parameters
+        towards these scales.
+  \item Small deformations of $\langle H\rangle$ move eigenvalues, but
+        certain patterns (like the large gap between Planck and EW) remain
+        stable.
+\end{itemize}
+
+Hierarchies thus become \emph{fixed points} of a dynamical process in
+operator space, not arbitrary distances between hand-picked numbers.
+
+\section*{Why this toolbox is minimal and sufficient}
+
+What makes the toolbox attractive is its balance between simplicity and
+power:
+
+\begin{itemize}
+  \item It is \emph{minimal}: no independent Yukawa matrices, no
+        unmotivated extra symmetries, no long list of unrelated constants.
+  \item It is \emph{sufficient}: in principle, all quantities that enter
+        phenomenology—masses, mixing angles, couplings, scales—can be
+        expressed in terms of the invariants of these operators.
+\end{itemize}
+
+The remaining Advent days flesh out this claim with concrete examples:
+from specific couplings (fine-structure, strong, Weinberg angle) to
+numerical mass prototypes and flavour structures.
+
+\small
+\begin{thebibliography}{9}
+
+\bibitem{DrayManogue1999}
+T.~Dray and C.~A.~Manogue,
+\newblock {\em The Geometry of the Octonions},
+\newblock World Scientific, 1999.
+
+\bibitem{Dixon1994}
+G.~M.~Dixon,
+\newblock {\em Division Algebras: Octonions, Quaternions, Complex Numbers and
+the Algebraic Design of Physics},
+\newblock Kluwer, 1994.
+
+\bibitem{ChamseddineConnesMarcolli2007}
+A.~H.~Chamseddine, A.~Connes and M.~Marcolli,
+\newblock ``Gravity and the standard model with neutrino mixing,''
+\newblock {\em Adv.\ Theor.\ Math.\ Phys.} \textbf{11}, 991--1089 (2007).
+
+\end{thebibliography}
+\normalsize
+
+  } % end #6 body
+  {One toolbox, two operator families: rotors and compressors turn octonionic geometry into concrete numbers for couplings, masses and scales.} % #7 Closing
+
+\end{document}

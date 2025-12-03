@@ -1,0 +1,206 @@
+% advent09.tex
+% Hero day: December 9, 2025 – 137-day (fine-structure constant)
+
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage{titlesec}
+\usepackage{lettrine}
+\usepackage{eso-pic}
+\usepackage{geometry}
+\usepackage{multicol}
+\usepackage{lmodern}
+
+\geometry{margin=2.0cm}
+
+\input{advent-layout}
+
+\begin{document}
+
+\AdventPageBackground
+\AdventAuthor
+
+\AdventSheetTwoCol
+  {December 9, 2025} % #1 Date + occasion
+  {}                                   % #2 unused
+  {Why $\alpha \approx 1/137$?}        % #3 Main title
+  {Fine-structure from rotor norms}    % #4 Subtitle
+  {The fine-structure constant $\alpha$ does not enter as a free
+   input parameter. In the octonionic model, $\alpha$ is understood
+   as the squared norm of a specific rotor commutator in the internal
+   geometry. The same mechanism also fixes the strong coupling and the
+   weak mixing angle. The famous number $1/137$ becomes a geometric
+   shadow of how internal directions are arranged in the exceptional
+   algebra.}                             % #5 Key Insight
+  { % #6 Main body (two columns)
+
+\section*{From mysterious constant to geometric norm}
+
+\AdventInitial{F}{ew} numbers in physics have attracted as much fascination
+as the fine-structure constant,
+\[
+  \alpha \;=\; \frac{e^2}{4\pi\varepsilon_0\hbar c}
+  \;\approx\; \frac{1}{137.035999\ldots}.
+\]
+Historically, $\alpha$ enters quantum electrodynamics as a dimensionless
+coupling: it controls the strength of electromagnetic interactions and
+the convergence of perturbation theory. For decades, it has been treated
+as a parameter to be measured, not derived.
+
+In the octonionic model, $\alpha$ is no longer a free parameter. It
+appears as the squared norm of a commutator built from internal
+\emph{rotors} in the exceptional geometry. The value of $\alpha$ is
+tied to how certain planes inside the octonionic/Albert algebra are
+oriented with respect to each other.
+
+\section*{Internal rotors and commutators}
+
+The internal space of the model is not a simple Lie algebra like
+$\mathfrak{su}(2)$ or $\mathfrak{su}(3)$ in isolation. Instead, it sits
+inside the exceptional Lie algebra associated with the Albert algebra
+$H_3(\mathbb{O})$ and its symmetry group $F_4$.
+
+Within this setting, one considers special operators $R_a$, $R_b$, \dots,
+which act as \emph{rotors} on selected internal subspaces. Schematically,
+one writes
+\[
+  R_a \;\sim\; \exp(\theta_a X_a),
+  \qquad
+  R_b \;\sim\; \exp(\theta_b X_b),
+\]
+where $X_a$, $X_b$ are generators associated with particular internal
+directions (for instance, those tied to weak isospin and hypercharge).
+
+The key object is the commutator
+\[
+  [R_a, R_b]
+  \;\approx\;
+  \theta_a\theta_b [X_a,X_b]
+\]
+in an appropriate small-angle limit. The \emph{norm} of this commutator
+defines an effective coupling:
+\[
+  \alpha \;\propto\; \bigl\|[R_a,R_b]\bigr\|^2.
+\]
+Choosing $R_a$ and $R_b$ according to the embedding of $U(1)_{\text{em}}$
+inside the internal algebra singles out the electromagnetic coupling.
+
+\section*{From abstract norm to a concrete number}
+
+The statement that $\alpha$ is given by a squared norm would be empty if
+the norm could be tuned at will. The nontrivial part is that in the
+octonionic/Albert setting the relevant rotors are highly constrained:
+
+\begin{itemize}
+  \item Triality and $G_2$-compatibility fix how vector and spinor
+        directions in $\mathbb{R}^8$ are related.
+  \item The Jordan structure of $H_3(\mathbb{O})$ restricts which
+        combinations of internal directions can appear as ``legal''
+        rotors.
+  \item The vacuum configuration $\langle H\rangle$ selects preferred
+        eigen-directions and thereby preferred planes in which the
+        rotors act.
+\end{itemize}
+
+Under these constraints, the norm $\bigl\|[R_a,R_b]\bigr\|^2$ is not a
+continuously tunable parameter. It falls into discrete bands determined
+by the eigenvalues of certain internal projectors and compressor
+operators. One of these bands lands numerically in the vicinity of
+$1/137$, and this is identified with the observed fine-structure
+constant at a particular reference scale.
+
+\section*{Relations to strong and weak couplings}
+
+The same construction can be repeated for other choices of rotors:
+
+\begin{itemize}
+  \item Rotors associated with the $SU(3)$ color directions lead to an
+        effective strong coupling $\alpha_s$.
+  \item Rotors associated with the weak isospin and hypercharge mixture
+        lead to $\sin^2\theta_W$, the weak mixing angle.
+\end{itemize}
+
+The guiding principle is that \emph{all} gauge couplings arise as norms
+of commutators of rotors in the same internal algebra. This leads to
+relations of the symbolic form
+\[
+  \alpha \;\sim\; \|[R_{\text{em}},R_{\text{ref}}]\|^2,
+  \qquad
+  \alpha_s \;\sim\; \|[R_{\text{color}},R_{\text{ref}}]\|^2,
+  \qquad
+  \sin^2\theta_W \;\sim\; \|[R_{\text{weak}},R_{\text{ref}}]\|^2,
+\]
+where $R_{\text{ref}}$ is a common reference rotor set by the vacuum
+configuration in $H_3(\mathbb{O})$.
+
+In this picture, the observed pattern of couplings is a fingerprint of
+how the vacuum sits inside the exceptional algebra, not a list of
+independent constants.
+
+\section*{Scaling and running}
+
+Of course, $\alpha$ is not a rigid number: in quantum field theory it
+runs with energy scale. The octonionic model does not deny this; instead
+it separates two roles:
+
+\begin{enumerate}
+  \item The \emph{bare geometric value}, determined by the internal
+        rotor norm at a natural reference scale.
+  \item The \emph{renormalized value} seen in experiments at a given
+        energy, obtained by standard running from that reference scale.
+\end{enumerate}
+
+The contribution of the geometry is to fix the starting point and the
+relative pattern of couplings. The quantum field theoretic machinery of
+running and thresholds then dresses these values to the ones we measure.
+
+\section*{A different attitude towards constants}
+
+If $\alpha$ comes from an internal rotor norm, then the traditional
+question ``Why $1/137$\,?'' shifts its focus. Instead of asking for a
+closed-form expression in terms of $\pi$ and $e$ alone, we ask:
+
+\begin{quote}
+  Why does the vacuum select exactly this arrangement of internal
+  directions in the exceptional algebra?
+\end{quote}
+
+In other words, the mystery moves from ``a magic number'' to
+``a specific geometric configuration''. This may or may not be more
+satisfying philosophically, but it is technically more tractable: one
+can compute norms of commutators, study their spectra, and connect them
+to the attractor dynamics discussed later in the Advent series.
+
+\small
+\begin{thebibliography}{9}
+
+\bibitem{Dyson1968}
+F.~Dyson,
+\newblock ``The role of the fine-structure constant in physics,''
+\newblock {\em American Journal of Physics} \textbf{58}, 209--211 (1968).
+
+\bibitem{Furey2018}
+C.~Furey,
+\newblock ``$SU(3)_C \times SU(2)_L \times U(1)_Y$ from division algebras,''
+\newblock {\em Phys.\ Lett.\ B} \textbf{785}, 84--89 (2018).
+
+\bibitem{GurseyTze1996}
+F.~Gürsey and H.~C.~Tze,
+\newblock {\em On the Role of Division, Jordan and Related Algebras in Particle
+Physics},
+\newblock World Scientific, 1996.
+
+\end{thebibliography}
+\normalsize
+
+  } % end #6 body
+  {The famous $1/137$ is read as a norm in an exceptional internal geometry, not as an inexplicable magic number.} % #7 Closing
+
+\end{document}

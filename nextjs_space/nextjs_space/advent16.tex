@@ -1,0 +1,229 @@
+% advent16.tex
+% December 16, 2025 – Gravitation: the missing corner of the model
+
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage{titlesec}
+\usepackage{lettrine}
+\usepackage{eso-pic}
+\usepackage{geometry}
+\usepackage{multicol}
+\usepackage{lmodern}
+
+\geometry{margin=2.0cm}
+
+\input{advent-layout}
+
+\begin{document}
+
+\AdventPageBackground
+\AdventAuthor
+
+\AdventSheetTwoCol
+  {December 16, 2025} % #1 Date
+  {}                  % #2 unused
+  {Gravity: the missing corner of the model} % #3 Main title
+  {Where the octonionic story honestly stops (for now)} % #4 Subtitle
+  {The octonionic/Albert framework goes remarkably far: it organises
+   internal quantum numbers, masses, mixings, couplings and scales in a
+   single operator toolbox. But one major block remains incomplete:
+   gravitation. The proton--Planck mass ratio
+   $$\kappa = \frac{m_p}{m_P}, \qquad
+     m_P = \sqrt{\frac{\hbar c}{G}}$$
+   still enters as an external constant. This is not swept under the rug:
+   the model marks gravity as an open assignment for future spectral
+   geometry and for a unified
+master action $S[D,\Psi]$ in which gravity and the octonionic internal
+sector are treated on the same footing, not as a solved problem.} % #5 Key Insight
+  { % #6 body (two columns)
+
+\section*{How much is already covered}
+
+\AdventInitial{B}{efore} talking about what is missing, it is worth
+recalling what is already under octonionic control:
+
+\begin{itemize}
+  \item Internal quantum numbers are organised on an exceptional stage
+        ($\mathbb{O}$, $H_3(\mathbb{O})$, $G_2$, $F_4$).
+  \item Couplings and mixing angles appear as norms and angles of rotor
+        commutators.
+  \item Fermion masses and flavour structure arise as spectra of
+        compressors derived from a vacuum $\langle H\rangle$.
+  \item Characteristic energy scales (Planck, electroweak, QCD) are linked
+        to invariants of the radius operator and attractor mechanisms.
+\end{itemize}
+
+Within this internal sector, the story is fairly coherent: many quantities
+that used to be independent inputs become different faces of the same
+exceptional geometry.
+
+\section*{Enter gravity: a separate constant}
+
+Gravitation is encoded in general relativity by Newton's constant $G$, or,
+more conveniently, by the Planck mass
+\[
+  m_P = \sqrt{\frac{\hbar c}{G}}.
+\]
+The proton mass $m_p$ then defines a dimensionless ratio
+\[
+  \kappa = \frac{m_p}{m_P},
+\]
+numerically of order $10^{-19}$.
+
+In the present octonionic framework, $m_p$ is accessible in principle via
+the compressor structure (it is one of the low-lying eigenvalues of the
+mass map), but $m_P$ is not yet derived: it is imported from gravitational
+physics. Consequently, $\kappa$ appears as an external constant rather than
+an internal invariant.
+
+\section*{Why this is not a minor detail}
+
+At first glance, an extra constant might look harmless. But conceptually it
+matters:
+
+\begin{itemize}
+  \item Internally, the model claims a structural explanation of many
+        numbers (charges, couplings, fermion masses).
+  \item Externally, gravity fixes the overall scale at which quantum
+        fields backreact on spacetime.
+\end{itemize}
+
+Without a link between the internal exceptional geometry and spacetime
+geometry, the story is incomplete: we know how fields behave on a given
+background, but we do not yet explain how that background itself emerges
+from the same algebraic structure.
+
+\section*{Spectral geometry as the natural bridge}
+
+There is, however, a natural candidate framework to close this gap:
+\emph{spectral geometry}. Instead of describing spacetime by a metric
+$g_{\mu\nu}$, one describes it by a Dirac operator $D$ on a suitable
+Hilbert space. The spectral action principle then postulates an action
+\[
+  S_{\text{spec}} = \mathrm{Tr}\,f(D^2/\Lambda^2),
+\]
+whose heat-kernel expansion generates:
+
+\begin{itemize}
+  \item the Einstein--Hilbert term (gravity),
+  \item a cosmological constant term,
+  \item gauge and matter kinetic terms,
+  \item and higher-order corrections.
+\end{itemize}
+
+In the octonionic context, the hope is clear:
+
+\begin{quote}
+  Build a Dirac operator $D$ that encodes both spacetime geometry and the
+  internal octonionic/Albert structure, then read gravitational couplings
+  and the scale $\Lambda$ from its spectrum.
+\end{quote}
+
+In the language of this project, such a Dirac operator $D$ is not an
+add-on but the same master operator that already organises the internal
+rotors, compressors and mass maps. Later in the calendar, this idea
+will be made explicit in the form of a single master action $S[D,\Psi]$
+that packages internal and gravitational dynamics into one object.
+Here, we only flag this direction; the actual construction is deferred.
+
+This would turn $G$, $\kappa$ and even aspects of dark energy into
+spectral invariants of the same operator that already knows about internal
+rotors and compressors.
+
+\section*{What is missing right now}
+
+The present model does \emph{not} yet provide a final construction of such
+a Dirac operator. Concretely:
+
+\begin{itemize}
+  \item The exact Hilbert space on which $D$ acts, combining spacetime
+        spinors with octonionic internal data, has not been fixed.
+  \item The interplay between nonassociative internal multiplication and
+        the standard differential-geometric structure of $D$ is not yet
+        fully understood.
+  \item The computation that would derive $\kappa$ from the spectrum of
+        $D$ is not available; $\kappa$ is treated as known input.
+\end{itemize}
+
+This is why gravity is called the ``missing corner'': it is not absent
+because it does not fit, but because the necessary spectral-geometric
+machinery has not yet been fully built.
+
+\section*{Why it is still worth taking the model seriously}
+
+Admitting an open gravitational block is not a weakness of honesty; it is
+a strength of design:
+
+\begin{enumerate}
+  \item It clearly marks where the current octonionic explanations end and
+        where new ideas are needed.
+  \item It suggests a concrete research programme rather than a vague hope:
+        construct an octonionic spectral triple and compute the resulting
+        gravitational sector.
+  \item It prevents overclaiming: the model explains many things about
+        internal structure, but it does not pretend to have solved quantum
+        gravity.
+\end{enumerate}
+
+Seen this way, the gravitational day of the Advent calendar is less a
+conclusion than a pointer: it ties the exceptional internal geometry to
+the next natural step in modern mathematical physics.
+
+\section*{A clear boundary, not a blind spot}
+
+The main message of this sheet is thus intentionally simple:
+
+\begin{quote}
+  The octonionic model currently stops at the boundary of gravity. The
+  ratio $\kappa = m_p/m_P$ is acknowledged as an external input, and a
+  spectral-gravity extension is needed to pull it inside the algebraic
+  story, eventually in the form of a unified action $S[D,\Psi]$ whose
+gravitational coefficients are fixed by the same spectral data as the
+internal ones.
+\end{quote}
+
+The rest of the calendar—especially the spectral-geometry and AQFT days—
+shows that this next step is plausible, but it is not taken yet. One
+hundred years after Heisenberg, it is intellectually healthier to draw a
+sharp line between what has been structurally organised and what remains
+to be done.
+
+\small
+\begin{thebibliography}{9}
+
+\bibitem{Einstein1915}
+A.~Einstein,
+\newblock ``Die Feldgleichungen der Gravitation,''
+\newblock {\em Sitzungsber.\ Preuss.\ Akad.\ Wiss.} (1915), 844--847.
+
+\bibitem{Connes1994}
+A.~Connes,
+\newblock {\em Noncommutative Geometry},
+\newblock Academic Press, 1994.
+
+\bibitem{ConnesChamseddine1997}
+A.~Connes and A.~H.~Chamseddine,
+\newblock ``The spectral action principle,''
+\newblock {\em Commun.\ Math.\ Phys.} \textbf{186}, 731--750 (1997).
+
+\bibitem{Internal}
+[Internal notes on constants and gravity: {\tt arxiv-const.tex;
+appE\_neu.tex; chap20\_neu.tex}.]
+
+\end{thebibliography}
+\normalsize
+
+  } % end #6 body
+  {The octonionic model organises internal physics but leaves gravity as
+   an honest open corner: the ratio $\kappa=m_p/m_P$ still waits for a
+   spectral-geometry explanation.} % #7 Closing
+
+\end{document}

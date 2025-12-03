@@ -1,0 +1,209 @@
+% advent12.tex
+% Hero day: December 12, 2025 – Three generations from triality
+
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage{titlesec}
+\usepackage{lettrine}
+\usepackage{eso-pic}
+\usepackage{geometry}
+\usepackage{multicol}
+\usepackage{lmodern}
+
+\geometry{margin=2.0cm}
+
+\input{advent-layout}
+
+\begin{document}
+
+\AdventPageBackground
+\AdventAuthor
+
+\AdventSheetTwoCol
+  {December 12, 2025} % #1 Date + occasion
+  {}                                             % #2 unused
+  {Three Generations from Triality}              % #3 Main title
+  {One internal block, three consistent readings} % #4 Subtitle
+  {The octonionic model does not postulate three generations by hand.
+   Instead, it starts from a single eight-dimensional internal block with
+   Spin(8) triality. The three triality-related irreducible
+   representations --- vector, left-handed spinor, right-handed spinor ---
+   are read as three coherent ways of organizing the same internal data.
+   When this structure is embedded into the Albert algebra, it naturally
+   unfolds into three fermion generations with correlated mass and mixing
+   patterns.}                                    % #5 Key Insight
+  { % #6 main body (two columns)
+
+\section*{The puzzle of three generations}
+
+\AdventInitial{T}{he} Standard Model contains three generations of quarks and
+leptons. They have identical gauge quantum numbers but very different masses
+and mixings. From the perspective of the usual gauge-group story this is a
+mystery: why not one generation, or five, or an arbitrary number?
+
+Most approaches simply accept three generations as an experimental fact and
+add family indices. The octonionic model takes a different route. It asks
+whether the number three could arise from the internal representation theory
+of the exceptional structures that underlie the model.
+
+The key player is the triality of $\mathrm{Spin}(8)$ and its embedding into
+the Albert algebra $H_3(\mathbb{O})$.
+
+\section*{Spin(8) and triality}
+
+The group $\mathrm{Spin}(8)$, the double cover of $\mathrm{SO}(8)$, has an
+exceptional property: it possesses three inequivalent eight-dimensional
+irreducible representations,
+\[
+  V_8,\qquad S_8^+,\qquad S_8^-,
+\]
+usually called the vector, left-handed spinor, and right-handed spinor
+representations. An outer automorphism of $\mathrm{Spin}(8)$ permutes these
+three representations. This is the triality symmetry.
+
+In abstract group theory, triality is often presented as a curiosity of
+Dynkin type $D_4$. In the present model it is taken seriously as structural
+input:
+
+\begin{itemize}
+  \item We start from \emph{one} internal eight-dimensional block, not three
+        unrelated ones.
+  \item We insist that this block can be read in three coherent ways:
+        as $V_8$, as $S_8^+$, and as $S_8^-$.
+  \item The consistency of these three readings constrains how internal
+        operators can act.
+\end{itemize}
+
+This ``one block, three readings'' principle will later be matched to the
+three observed fermion generations.
+
+\section*{From octonions to the Albert algebra}
+
+The internal degrees of freedom of the model are organised using the Albert
+algebra $H_3(\mathbb{O})$, the Jordan algebra of $3\times 3$ hermitian
+octonionic matrices. Its automorphism group is the exceptional Lie group
+$F_4$:
+\[
+  F_4 \;=\; \mathrm{Aut}\bigl(H_3(\mathbb{O})\bigr).
+\]
+
+Within $H_3(\mathbb{O})$, each diagonal entry can be associated with an
+octonionic ``slot'' hosting an internal Spin(8) structure. Roughly
+speaking:
+
+\begin{itemize}
+  \item One diagonal octonion slot is associated with the vector
+        representation.
+  \item The second diagonal slot carries a left-handed spinor structure.
+  \item The third diagonal slot carries a right-handed spinor structure.
+\end{itemize}
+
+Triality then manifests itself as a structured permutation of these roles,
+implemented by elements of $F_4$ that reshuffle the internal directions in a
+controlled way.
+
+\section*{Reading generations from triality sectors}
+
+When we couple the internal $H_3(\mathbb{O})$ structure to the spacetime
+Dirac operator and the mass map $\Pi(H)$, each triality sector produces a
+family of fermionic modes. Schematicly:
+
+\begin{itemize}
+  \item The \emph{vector-like} reading of the internal block organises one
+        set of states with a characteristic mass pattern.
+  \item The \emph{left-handed spinor} reading gives rise to a second set
+        of states, with masses related but not identical to the first set.
+  \item The \emph{right-handed spinor} reading yields a third set, again
+        correlated but distinct.
+\end{itemize}
+
+These three correlated sets are identified with the three fermion
+generations. The crucial point is not that there are exactly three
+representations, but that they are related by an \emph{outer} automorphism:
+they are three faces of one internal object, not three arbitrary copies.
+
+\section*{Constraints on mass and mixing patterns}
+
+Because the three generations arise from a single internal block with
+triality symmetry, their mass and mixing parameters cannot be chosen
+independently. Several qualitative features follow:
+
+\begin{enumerate}
+  \item \textbf{Hierarchy:} The eigenvalues of the mass map $\Pi(H)$, when
+        restricted to the three triality-related sectors, typically split
+        into bands with a built-in hierarchy. This echoes the observed
+        pattern of light, medium, and heavy generations.
+
+  \item \textbf{Mixing structure:} The allowed off-diagonal couplings
+        between triality sectors are constrained by the Jordan structure of
+        $H_3(\mathbb{O})$ and the embedding of the Standard Model gauge
+        group. This shapes the form of the CKM and PMNS matrices.
+
+  \item \textbf{Stability:} Because the three generations share a common
+        internal origin, small deformations of the vacuum configuration
+        $\langle H\rangle$ tend to move all three in a correlated way,
+        rather than producing arbitrary new families.
+\end{enumerate}
+
+The goal is not to ``explain every digit'' of the mass spectrum, but to
+show that three generations with a hierarchical and mixing-rich structure
+are the \emph{natural} outcome of the exceptional geometry.
+
+\section*{Comparison with ad hoc family replication}
+
+In more conventional settings, one starts from a gauge group and then
+adds three copies of the fermion content:
+\[
+  \psi \;\longrightarrow\; (\psi^{(1)},\psi^{(2)},\psi^{(3)}),
+\]
+with a family index labelling generations. This move works phenomenologically,
+but it does not tell us why there are three copies, nor why their masses
+are ordered the way we see them.
+
+The octonionic approach reverses the logic:
+
+\begin{itemize}
+  \item Start from a single octonionic/Spin(8) block with triality.
+  \item Embed it into an exceptional algebra ($H_3(\mathbb{O})$ with $F_4$
+        symmetry).
+  \item Let the internal mass map and vacuum pick out three correlated
+        triality sectors.
+\end{itemize}
+
+Family replication is not assumed; it is read off from the structure of
+the internal algebra.
+
+\small
+\begin{thebibliography}{9}
+
+\bibitem{Baez2002}
+J.~C.~Baez,
+\newblock ``The octonions,''
+\newblock {\em Bull.\ Amer.\ Math.\ Soc.} \textbf{39}, 145--205 (2002).
+
+\bibitem{GurseyTze1996}
+F.~Gürsey and H.~C.~Tze,
+\newblock {\em On the Role of Division, Jordan and Related Algebras in Particle
+Physics},
+\newblock World Scientific, 1996.
+
+\bibitem{Ramond2010}
+P.~Ramond,
+\newblock {\em Group Theory: A Physicist's Survey},
+\newblock Cambridge University Press, 2010.
+
+\end{thebibliography}
+\normalsize
+
+  } % end #6 body
+  {Three generations appear as three triality-related faces of a single exceptional internal block, not as three arbitrary copies.} % #7 Closing
+
+\end{document}

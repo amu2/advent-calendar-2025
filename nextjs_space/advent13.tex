@@ -1,0 +1,178 @@
+% advent13.tex
+% December 12, 2025 – Top quark: heaviest fermion as vacuum anchor
+
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage{titlesec}
+\usepackage{lettrine}
+\usepackage{eso-pic}
+\usepackage{geometry}
+\usepackage{multicol}
+\usepackage{lmodern}
+
+\geometry{margin=2.0cm}
+
+\input{advent-layout}
+
+\begin{document}
+
+\AdventPageBackground
+\AdventAuthor
+
+\AdventSheetTwoCol
+  {December 13, 2025} % #1 Date
+  {}                 % #2 unused
+  {Top quark: heaviest fermion as vacuum anchor} % #3 Main title
+  {Why $m_t \approx 173\,$GeV sits next to the electroweak scale} % #4 Subtitle
+  {The top quark mass $m_t \approx 173\,$GeV is not an outlier but the
+   largest eigenvalue of the mass map $\Pi(\langle H\rangle)$ associated
+   with the vacuum configuration $\langle H\rangle$ in the Albert algebra
+   $H_3(\mathbb{O})$. It acts as an \emph{anchor} for the electroweak
+   scale: the same structure that fixes the vacuum also singles out the
+   top as the heaviest fermion. Without such an anchor, the electroweak
+   scale would be unstable.} % #5 Key Insight
+  { % #6 body
+
+\section*{Masses from the mass map $\Pi(\langle H\rangle)$}
+
+\AdventInitial{I}{n} the octonionic model, fermion masses are not free
+Yukawa coefficients but eigenvalues of a linear map
+
+\[
+  \Pi : H_3(\mathbb{O}) \longrightarrow \mathrm{End}(\mathbb{R}^8),
+\]
+
+evaluated at the vacuum configuration $\langle H\rangle \in H_3(\mathbb{O})$.
+The physical mass matrix is schematically
+
+\[
+  M = y\,\Pi(\langle H\rangle),
+\]
+
+with $y$ a universal coupling. Its eigenvalues
+
+\[
+  m_i = \lambda_i\big(\Pi(\langle H\rangle)\big)
+\]
+
+are the fermion masses. Among these, the largest eigenvalue is identified
+with the top quark mass $m_t$.
+
+\section*{The top as the maximal eigenvalue}
+
+The spectrum of $\Pi(\langle H\rangle)$ is strongly constrained:
+
+\begin{itemize}
+  \item $\langle H\rangle$ is not arbitrary; it minimises a Jordan
+        potential $V_J(H)$ under symmetry constraints.
+  \item $\Pi$ respects the $F_4$ symmetry of the Albert algebra.
+  \item The resulting eigenvalues come in structured patterns rather than
+        random numbers.
+\end{itemize}
+
+In this setting, the top quark mass appears as
+
+\[
+  m_t = \max \mathrm{spec}\big(\Pi(\langle H\rangle)\big),
+\]
+
+the largest eigenvalue in the relevant sector. This is not just a
+numerical statement; it has a stability interpretation.
+
+\section*{Vacuum anchoring at the electroweak scale}
+
+The electroweak scale $Y_S$ is fixed by the minimum of an internal
+potential. Schematically,
+
+\[
+  Y_S^2 = -\frac{\mu^2}{2(\lambda+\kappa c)},
+\]
+
+with $\mu^2,\lambda,\kappa,c$ determined by the symmetry atlas. The
+vacuum configuration $\langle H\rangle$ sits at this minimum, and
+$\Pi(\langle H\rangle)$ inherits that structure.
+
+The largest eigenvalue $m_t$ then behaves as an \emph{anchor}:
+
+\begin{itemize}
+  \item If $m_t$ were much smaller, the curvature of the potential near
+        the minimum would change, destabilising the electroweak scale.
+  \item If $m_t$ were much larger, the same structure would shift the
+        position of the minimum, again spoiling the observed scale.
+  \item The observed value $m_t\approx 173\,$GeV lies naturally next to
+        the electroweak scale, reflecting the shared origin in
+        $\langle H\rangle$.
+\end{itemize}
+
+\section*{Top quark versus lighter fermions}
+
+Lighter fermions (electron, muon, tau; light quarks) correspond to
+smaller eigenvalues of the same map. Their smallness is explained by the
+geometry of $\langle H\rangle$ in the symmetry atlas:
+
+\begin{itemize}
+  \item Some directions in $H_3(\mathbb{O})$ generate large eigenvalues,
+        associated with heavy fermions.
+  \item Other directions generate exponentially suppressed eigenvalues,
+        associated with light fermions (as discussed for neutrinos on
+        15 December).
+\end{itemize}
+
+The top quark is simply the fermion whose eigenvector aligns best with
+the ``steep'' direction of the potential at the vacuum point.
+
+\section*{Conceptual picture}
+
+In the usual Standard Model narrative, Yukawa couplings are free
+parameters, and the large top Yukawa is a brute fact. In the octonionic
+picture:
+
+\begin{enumerate}
+  \item The vacuum configuration $\langle H\rangle$ is fixed by internal
+    geometry and potential minimisation.
+  \item The mass operator $\Pi(\langle H\rangle)$ is uniquely determined
+    by this vacuum and the symmetry atlas.
+  \item The top quark emerges as the strongest-coupled mode to this
+    vacuum, i.e.\ the maximal eigenvalue.
+\end{enumerate}
+
+The hierarchy ``$m_t$ heavy, others light'' is no longer a collection of
+independent choices but a single structural statement about one operator
+evaluated at one point in the Albert algebra.
+
+\small
+\begin{thebibliography}{9}
+
+\bibitem{CDFD02014}
+CDF and D0 Collaborations,
+\newblock ``Combination of CDF and D0 results on the mass of the top quark,''
+\newblock {\em Phys.\ Rev.\ D} \textbf{89}, 072001 (2014).
+
+\bibitem{JordanVNW1934}
+P.~Jordan, J.~von Neumann and E.~Wigner,
+\newblock ``On an algebraic generalization of the quantum mechanical
+formalism,''
+\newblock {\em Ann.\ Math.} \textbf{35}, 29--64 (1934).
+
+\bibitem{Internal}
+[Internal notes on mass maps and the role of the top quark:
+{\tt unified-agebra.tex; chap10\_neu.tex; appM\_neu.tex}.]
+
+\end{thebibliography}
+\normalsize
+
+  } % end #6 body
+  {The top quark is not an accidental heavy outlier. It is the largest
+   eigenvalue of the mass map $\Pi(\langle H\rangle)$ and thus an anchor
+   of the electroweak vacuum. The same internal structure that fixes the
+   electroweak scale also singles out the top as the heaviest fermion.} % #7 Closing
+   
+\end{document}

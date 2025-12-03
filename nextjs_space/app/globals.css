@@ -1,0 +1,128 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Serif font for Advent content */
+.advent-content {
+  font-family: "Times New Roman", Times, serif;
+}
+
+.advent-content h3 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #003366;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+  font-family: "Times New Roman", Times, serif;
+  break-after: avoid;
+}
+
+.advent-content h4 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #006633;
+  margin-top: 1.25rem;
+  margin-bottom: 0.5rem;
+  font-family: "Times New Roman", Times, serif;
+}
+
+.advent-content p {
+  margin-bottom: 0.75rem;
+  font-family: "Times New Roman", Times, serif;
+}
+
+.advent-content ul, .advent-content ol {
+  font-family: "Times New Roman", Times, serif;
+  margin-bottom: 0.75rem;
+}
+
+:root {
+  --advent-red: #B3001B;
+  --advent-blue: #003366;
+  --advent-green: #006633;
+  --advent-gold: #B59410;
+  --background: #F0F8F0;
+  --text: #1A1A1A;
+}
+
+body {
+  background: linear-gradient(to bottom, #0A4025 0%, #0D5A35 50%, #0A4025 100%);
+  background-attachment: fixed;
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--advent-green);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--advent-red);
+}
+
+/* Math content styling */
+.math-content {
+  line-height: 1.8;
+}
+
+.math-content p {
+  margin-bottom: 1rem;
+}
+
+.math-content h3 {
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.math-content ul {
+  margin-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.math-content li {
+  margin-bottom: 0.5rem;
+}
+
+/* KaTeX formula spacing */
+.katex-display {
+  margin: 1.5rem 0;
+}
+
+.katex {
+  font-size: 1.1em;
+}
+
+/* Print styles */
+@media print {
+  body {
+    background: white;
+  }
+  
+  .no-print {
+    display: none;
+  }
+}
+
+/* Smooth transitions */
+.transition-all {
+  transition: all 0.3s ease;
+}

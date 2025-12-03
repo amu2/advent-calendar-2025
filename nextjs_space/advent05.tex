@@ -1,0 +1,221 @@
+% advent05.tex
+% December 5, 2025 – Radius operator: scales as geometric invariants
+
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage{titlesec}
+\usepackage{lettrine}
+\usepackage{eso-pic}
+\usepackage{geometry}
+\usepackage{multicol}
+\usepackage{lmodern}
+
+\geometry{margin=2.0cm}
+
+\input{advent-layout}
+
+\begin{document}
+
+\AdventPageBackground
+\AdventAuthor
+
+\AdventSheetTwoCol
+  {December 5, 2025} % #1 Date
+  {}                 % #2 unused
+  {Radius operator: scales as geometric invariants} % #3 Main title
+  {From $(\alpha,\beta,\gamma)$ to $(a_0,b_0,c_0)$ and energy hierarchies} % #4 Subtitle
+  {The radius operator $R$ is built from the heptagon geometry and the
+   octonionic structure. Its spectrum
+   $\mathrm{spec}(R)=(a_0,b_0,c_0)$ produces three characteristic
+   dimensionless radii. Exponentials of these radii can serve as
+   prototypes for the Planck, electroweak and QCD scales. For the first
+   time, fundamental energy hierarchies appear as \emph{geometric
+   invariants} of an internal operator, not as arbitrary input
+   parameters.} % #5 Key Insight
+  { % #6 body (two columns)
+
+\section*{From directions to radii}
+
+\AdventInitial{Y}{esterday's} heptagon operator $H_7$ compressed the seven
+imaginary directions of the octonions into three eigenvalues
+$(\alpha,\beta,\gamma)$. Today we take the next step: we pass from
+\emph{angular} information to \emph{radial} information.
+
+Intuitively:
+
+\begin{itemize}
+  \item $H_7$ encodes how the seven directions are oriented relative to
+        each other.
+  \item The radius operator $R$ encodes how far typical internal
+        configurations lie from certain preferred centres in this
+        7-dimensional structure.
+\end{itemize}
+
+The precise construction of $R$ is technical, but its qualitative role is
+simple: it measures distance in the internal symmetry atlas defined by the
+heptagon and $G_2$.
+
+\section*{Defining the radius operator $R$}
+
+In the internal 8-dimensional space, one can construct an operator $R$
+whose definition is constrained by:
+
+\begin{itemize}
+  \item $G_2$-invariance (it must respect the octonionic automorphisms),
+  \item compatibility with the heptagon structure,
+  \item positivity or at least a well-defined spectrum that can be
+        interpreted as squared radii.
+\end{itemize}
+
+Schematically, one may think of $R$ as a function of the heptagon
+operator and related data:
+
+\[
+  R = F(H_7),
+\]
+
+where $F$ is chosen such that $R$ has only three distinct eigenvalues:
+
+\[
+  \mathrm{spec}(R) = \{a_0, b_0, c_0\},
+\]
+
+with multiplicities adding up to 8. The triple
+
+\[
+  (a_0,b_0,c_0)
+\]
+
+is then the \emph{radius spectrum}: three characteristic internal radii
+associated with the geometry encoded by the heptagon.
+
+\section*{From radii to energy scales}
+
+In quantum field theory, length scales and energy scales are inversely
+related. It is therefore natural to turn dimensionless radii into
+dimensionless energy scales by exponentiation:
+
+\[
+  \Lambda_i \;\sim\; \exp(a_0),\quad
+  \Lambda_j \;\sim\; \exp(b_0),\quad
+  \Lambda_k \;\sim\; \exp(c_0),
+\]
+
+up to overall normalisations. With a suitable choice of units, one can
+associate:
+
+\begin{itemize}
+  \item one radius with the \emph{Planck scale},
+  \item one with the \emph{electroweak scale},
+  \item one with the \emph{QCD/confinement scale}.
+\end{itemize}
+
+The key message is not the exact fit (that requires detailed numerics)
+but the \emph{structural fact}:
+
+\begin{quote}
+  There exist three distinguished internal radii $(a_0,b_0,c_0)$ from
+  which three physically relevant energy scales can naturally be
+  constructed.
+\end{quote}
+
+\section*{Why three scales?}
+
+Empirically, particle physics is organised around three strikingly
+different characteristic scales:
+
+\begin{enumerate}
+  \item The Planck scale, where gravity becomes comparable to other
+        interactions.
+  \item The electroweak scale, where $SU(2)_L \times U(1)_Y$ symmetry is
+        broken.
+  \item The QCD scale, where confinement and chiral symmetry breaking
+        dominate.
+\end{enumerate}
+
+In the model, this triad is mirrored by the triad $(a_0,b_0,c_0)$:
+
+\begin{itemize}
+  \item The number of qualitatively distinct scales is fixed by the
+        structure of $R$, not by phenomenological needs.
+  \item The relative ordering and separation of these scales can be traced
+        back to differences between $a_0$, $b_0$ and $c_0$.
+\end{itemize}
+
+This turns a long-standing ``why these three?'' question into a statement
+about the eigenstructure of an internal operator.
+
+\section*{Radius operator within the attractor picture}
+
+On the second Advent Sunday (7 December), the calendar will present the
+idea of an \emph{attractor} for scales. In that picture:
+
+\begin{itemize}
+  \item The triple $(a_0,b_0,c_0)$ defines three preferred radii in the
+        internal space.
+  \item Renormalisation-group (RG) flow in the physical theory is naturally
+        attracted to energy values constructed from these radii.
+  \item The observed scales are stable fixed points rather than arbitrary
+        initial conditions.
+\end{itemize}
+
+The radius operator $R$ is thus the internal, geometric backbone of this
+attractor story. Without $R$ and its discrete spectrum, the attractor
+mechanism would have nothing to lock onto.
+
+\section*{Conceptual gain from $\mathrm{spec}(R)=(a_0,b_0,c_0)$}
+
+Introducing $R$ and its spectrum brings several conceptual benefits:
+
+\begin{enumerate}
+  \item \textbf{Geometric origin of hierarchies:}
+    large ratios between energy scales (Planck vs.\ electroweak vs.\ QCD)
+    are no longer mere accidents but are linked to differences between
+    eigenvalues of a symmetry-constrained operator.
+  \item \textbf{Minimality:}
+    three radii suffice—no large list of independent scale parameters is
+    needed at the fundamental level.
+  \item \textbf{Spectral language:}
+    scale information is encoded spectrally, aligning with the later use
+    of spectral geometry and spectral actions.
+\end{enumerate}
+
+This is why the XLS lists the radius operator as the first explicit bridge
+from abstract octonionic geometry to physically observed hierarchies.
+
+\small
+\begin{thebibliography}{9}
+
+\bibitem{ChamseddineConnesMarcolli2007}
+A.~H.~Chamseddine, A.~Connes and M.~Marcolli,
+\newblock ``Gravity and the standard model with neutrino mixing,''
+\newblock {\em Adv.\ Theor.\ Math.\ Phys.} \textbf{11}, 991--1089 (2007).
+
+\bibitem{Wilson1971}
+K.~G.~Wilson,
+\newblock ``Renormalization group and critical phenomena,''
+\newblock {\em Phys.\ Rev.\ B} \textbf{4}, 3174--3183 (1971).
+
+\bibitem{Internal}
+[Internal notes on the radius operator and scale hierarchies:
+{\tt chap03\_neu.tex; appK\_neu.tex; konstanten-hierarchie.tex}.]
+
+\end{thebibliography}
+\normalsize
+
+  } % end #6 body
+  {The radius operator $R$ translates the heptagon geometry into three
+   characteristic radii $(a_0,b_0,c_0)$. Exponentials of these radii
+   provide natural candidates for the Planck, electroweak and QCD scales,
+   turning energy hierarchies into geometric invariants rather than
+   arbitrary inputs.} % #7 Closing
+
+\end{document}

@@ -1,0 +1,226 @@
+% advent20.tex
+% December 20, 2025 – Dark matter as a shadow sector of compressors
+
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage{titlesec}
+\usepackage{lettrine}
+\usepackage{eso-pic}
+\usepackage{geometry}
+\usepackage{multicol}
+\usepackage{lmodern}
+
+\geometry{margin=2.0cm}
+
+\input{advent-layout}
+
+\begin{document}
+
+\AdventPageBackground
+\AdventAuthor
+
+\AdventSheetTwoCol
+  {December 20, 2025} % #1 Date
+  {}                  % #2 unused
+  {Dark matter: a shadow of the compressors?} % #3 Main title
+  {Invisible eigenvalues in an exceptional corner} % #4 Subtitle
+  {If masses and mixings of visible matter arise from the spectra of
+   symmetric compressors derived from $\langle H\rangle\in H_3(\mathbb{O})$,
+   it is natural to ask whether the same operator family could also
+   generate a dark sector. The octonionic model suggests a speculative but
+   structurally simple answer: dark matter corresponds to eigenvalues of
+   \emph{sterile} compressors—modes that couple only gravitationally,
+   because their eigenvectors sit in a corner of the Albert algebra that
+   is decoupled from the rotor network.} % #5 Key Insight
+  { % #6 body (two columns)
+
+\section*{Visible matter from compressors}
+
+\AdventInitial{B}{y} now, the compressor picture of visible matter is
+familiar:
+
+\begin{itemize}
+  \item A vacuum configuration $\langle H\rangle$ in the Albert algebra
+        $H_3(\mathbb{O})$ defines a mass map $\Pi(\langle H\rangle)$.
+  \item Its eigenvalues give prototype fermion masses,
+        $m_i \sim \mathrm{eig}_i\bigl(\Pi(\langle H\rangle)\bigr)$.
+  \item Misalignment between different compressors yields flavour mixing
+        (CKM, PMNS).
+\end{itemize}
+
+The crucial point is that all of this uses the \emph{same} operator
+toolbox: symmetric compressors built from $\langle H\rangle$, living on the
+same internal octonionic stage that also hosts rotors.
+
+\section*{Where is the dark sector?}
+
+Astronomy and cosmology tell us that there is about five times more dark
+matter than ordinary baryonic matter. In the octonionic setting, the most
+economical question is not ``What exotic field should we add?'', but:
+
+\begin{quote}
+  Which parts of the existing compressor structure remain invisible to
+  rotors and Standard-Model charges?
+\end{quote}
+
+The Albert algebra $H_3(\mathbb{O})$ is large enough to contain subspaces
+that do not talk directly to the visible sector. Geometrically, one can
+distinguish:
+
+\begin{itemize}
+  \item \textbf{bright directions:} eigenvectors that carry nontrivial
+        rotor charges and thus couple to known forces;
+  \item \textbf{shadow directions:} eigenvectors that are neutral under all
+        rotors associated with $SU(3)\times SU(2)\times U(1)$, but still
+        present in the compressor spectra.
+\end{itemize}
+
+Eigenvalues along these shadow directions contribute mass, but not
+electromagnetic or color charge. They are prime candidates for a dark
+sector.
+
+\section*{Sterile compressors}
+
+Formally, a \emph{sterile compressor} $C_{\text{sterile}}$ is a symmetric
+operator on the internal space with the following properties:
+
+\begin{itemize}
+  \item Its eigenvectors are eigenstates of all relevant rotors with
+        \emph{trivial} eigenvalues (no charge, no weak isospin, no color).
+  \item It appears in the same algebraic representation as the visible
+        compressors $C_{\text{vis}}$, but in a different block that does
+        not mix with them at tree level.
+\end{itemize}
+
+We can symbolically write the mass eigenvalues as
+\[
+  m_{\text{DM}} \;\sim\; \mathrm{eig}\bigl(C_{\text{sterile}}\bigr),\qquad
+  m_{\text{vis}} \;\sim\; \mathrm{eig}\bigl(C_{\text{vis}}\bigr),
+\]
+with
+\[
+  [C_{\text{sterile}},G_a] \approx 0
+  \quad\text{for all visible rotors }G_a,
+\]
+while $[C_{\text{vis}},G_a]$ is generically nonzero.
+
+Such a sterile compressor creates mass without visible force couplings:
+its eigenmodes are massive but dark.
+
+\section*{Mass ranges and stability}
+
+The octonionic model itself does not yet predict an absolute dark-matter
+mass scale; that would require a detailed choice of $\langle H\rangle$ and
+its embedding in $H_3(\mathbb{O})$. But structurally, it constrains \emph{how}
+dark matter can look:
+
+\begin{itemize}
+  \item Dark modes share the same Jordan invariants as visible ones; they
+        are not arbitrary fields but live in the same exceptional algebra.
+  \item Stability is natural: if shadow eigenvectors do not couple to
+        rotors, there are no fast decay channels into visible particles.
+  \item Interactions among dark modes can still exist via their own rotor
+        network in the sterile block, potentially leading to self-interacting
+        dark matter scenarios.
+\end{itemize}
+
+Cosmologically, such a sector would gravitate like ordinary matter, but be
+invisible to electromagnetic and strong probes—precisely what astronomical
+data suggest.
+
+\section*{Why this is not just ``add a scalar''}
+
+Many dark-matter models add new fields or symmetries by hand. The
+compressor picture is conceptually different:
+
+\begin{itemize}
+  \item No new algebraic ingredient is introduced beyond the existing
+        exceptional structure.
+  \item Dark matter arises as an \emph{unused corner} of the same mass map
+        that generates visible fermion spectra.
+  \item The number of dark degrees of freedom, their charges (or lack
+        thereof) and their possible self-interactions are constrained by
+        the representation theory of $H_3(\mathbb{O})$ and $F_4$.
+\end{itemize}
+
+In that sense, the model does not explain ``why there is dark matter'' from
+first principles, but it offers a natural place for it to live—with much
+less arbitrariness than a generic beyond-the-Standard-Model scenario.
+
+\section*{What could falsify this picture?}
+
+A compressor-based dark sector makes several expectations that can, in
+principle, be tested:
+
+\begin{itemize}
+  \item \textbf{Gravitational only (to first approximation):}
+        direct electromagnetic signatures (e.g.\ electric charge of dark
+        matter) should be absent or extremely suppressed.
+  \item \textbf{Structured mass spectrum:}
+        the dark sector should not be a completely flat continuum, but
+        exhibit a discrete spectrum or at least preferred mass scales,
+        echoing the structure of visible masses.
+  \item \textbf{Possible self-interactions:}
+        the same formalism that builds rotors for the visible sector can
+        build a sterile rotor network; this opens the door to dark
+        self-interaction signals (e.g.\ in halo shapes or cluster mergers).
+\end{itemize}
+
+If future observations conclusively ruled out any such patterns—e.g.\ if
+dark matter were shown to be almost featureless, perfectly cold and
+non-interacting even with itself—the compressor-shadow picture would lose
+much of its appeal.
+
+\section*{A structural, not final, proposal}
+
+This Advent sheet is deliberately cautious:
+
+\begin{itemize}
+  \item It does not claim to have \emph{the} dark-matter candidate, with a
+        precise mass and cross section ready for exclusion plots.
+  \item It does claim that, once you take the octonionic/Albert structure
+        seriously, a dark sector is almost unavoidable: there are simply
+        too many directions that do not couple to visible rotors.
+\end{itemize}
+
+Dark matter thus appears less as an alien addition and more as a
+structural shadow of the same exceptional geometry that organises quarks
+and leptons. The same operator toolbox—rotors and compressors on
+$H_3(\mathbb{O})$—carries both visible and dark sectors; the difference
+lies in which eigenvectors we are able to illuminate.
+
+\small
+\begin{thebibliography}{9}
+
+\bibitem{Zwicky1933}
+F.~Zwicky,
+\newblock ``Die Rotverschiebung von extragalaktischen Nebeln,''
+\newblock {\em Helv.\ Phys.\ Acta} \textbf{6}, 110–127 (1933).
+
+\bibitem{Rubin1970}
+V.~Rubin and W.~K.~Ford Jr.,
+\newblock ``Rotation of the Andromeda nebula from a spectroscopic survey of
+emission regions,''
+\newblock {\em Astrophys.\ J.} \textbf{159}, 379 (1970).
+
+\bibitem{Chap14}
+[Internal notes on compressor sectors and dark modes, see {\tt chap14\_neu.tex;
+chap20\_neu.tex}.]
+
+\end{thebibliography}
+\normalsize
+
+  } % end #6 body
+  {If masses come from compressors, dark matter is naturally a shadow:
+   eigenvalues of sterile compressors that live in an exceptional corner
+   of the same Albert algebra as visible matter.} % #7 Closing
+
+\end{document}

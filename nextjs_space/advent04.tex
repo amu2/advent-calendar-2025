@@ -1,0 +1,183 @@
+% advent04.tex
+% December 4, 2025 – Heptagon operator: seven directions, one spectrum
+
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage{titlesec}
+\usepackage{lettrine}
+\usepackage{eso-pic}
+\usepackage{geometry}
+\usepackage{multicol}
+\usepackage{lmodern}
+
+\geometry{margin=2.0cm}
+
+\input{advent-layout}
+
+\begin{document}
+
+\AdventPageBackground
+\AdventAuthor
+
+\AdventSheetTwoCol
+  {December 4, 2025} % #1 Date
+  {}    % #2 unused
+  {Heptagon operator: seven directions, one spectrum} % #3 Main title
+  {From seven imaginary units to three eigenvalues ($\alpha_1, \alpha_2, \alpha_3$)}    % #4 Subtitle
+  {The seven imaginary octonion units can be arranged on a heptagon that encodes their multiplication rules. From this geometry one extracts three special numbers: the \emph{heptagon eigenvalues} $(\alpha_1,\alpha_2,\alpha_3)$. They arise as ratios of heptagon diagonals, satisfy a simple cubic equation, and are completely fixed by the shape of the regular heptagon. Later they will be used as the spectrum of a heptagon operator that feeds into coupling constants and mixing angles. Today we introduce these three numbers as a compact fingerprint of the sevenfold structure of $\mathbb{O}$.} % #5 Key Insight
+  { % #6 body (two columns)
+
+\AdventInitial{T}{he octonions} have seven imaginary units, and their multiplication rules can be visualised on an oriented heptagon — a Fano-type diagram that packages the entire nonassociative multiplication table into a single geometric picture. Hidden in this heptagon there is a simpler description: instead of seven separate directions, we can summarise the internal geometry by just three distinguished numbers.
+
+These three numbers will later appear as the eigenvalues of a \emph{heptagon operator}: an octonionic linear operator whose action on a suitable three-dimensional subspace is completely described by that spectrum. For the Advent calendar, we do not need the full operator construction. What matters is that the heptagon geometry singles out a triple $(\alpha_1,\alpha_2,\alpha_3)$ that already encodes the essential shape data.
+
+Why does this matter? Because $(\alpha_1,\alpha_2,\alpha_3)$ will reappear throughout the calendar: in the construction of the radius operator $R$ and its spectrum $(a_0,b_0,c_0)$ (5 December), in geometric expressions for coupling constants such as the fine-structure constant $\alpha$ and the strong coupling $\alpha_s$, and in defining angles between rotor directions that enter the Weinberg angle $\theta_W$. The heptagon eigenvalues are a compact \emph{seed} from which many later observables can be grown.
+
+Conceptually, this marks the transition from combinatorial data — ``seven imaginary units on a heptagon'' — to spectral data that can be plugged into operators, potentials and eventually quantitative formulas. The heptagon eigenvalues are the first piece of the operator toolbox that will be fully assembled on the second Advent Sunday (7 December), alongside the radius operator, rotors, compressors and sign operators.
+
+The heptagon spectrum thus serves three roles at once:
+
+\begin{enumerate}
+  \item \textbf{Compression:} seven directions are summarised by three eigenvalues.
+  \item \textbf{Invariance:} $(\alpha_1,\alpha_2,\alpha_3)$ are invariant under heptagon symmetries and $G_2$-compatible re-labellings—they are not artefacts of a particular basis choice.
+  \item \textbf{Spectral language:} we move from basis-dependent multiplication tables to basis-independent spectral data, which is the natural language for later spectral geometry.
+\end{enumerate}
+
+In short, the heptagon eigenvalues are the first place where the octonionic multiplication table starts to look like something a physicist would recognise as ``spectral parameters''. They turn abstract algebra into a small set of internal numbers that eventually manifest as physical constants.
+
+\section*{Seven imaginary units on a heptagon}
+
+Octonions $\mathbb{O}$ have seven imaginary units
+$e_1,\dots,e_7$. Their multiplication can be depicted on an oriented
+heptagon: each directed edge (and certain chords) carries a triple
+$(e_i,e_j,e_k)$ with
+\[
+  e_i e_j = e_k,\qquad
+  e_j e_k = e_i,\qquad
+  e_k e_i = e_j,
+\]
+and reversed order introduces a minus sign. This Fano-type diagram is more
+than a mnemonic; it packages the nonassociative multiplication table into
+a single geometric picture.
+
+\section*{Heptagon geometry and diagonal ratios}
+
+A regular heptagon has not only seven vertices, but also several types of diagonals. If we fix its circumradius, then all edge lengths and diagonal lengths are pure shape data. In particular, there are three distinguished diagonal lengths, which we call $u, d, t$ like the French \emph{un, deux, trois}. Starting at one vertex, we walk one, two, three vertices along the heptagon and eventually connect start and end point.
+%\[
+%  d \quad\text{(short diagonal)},\qquad
+%  t \quad\text{(intermediate diagonal)},\qquad
+%  u \quad\text{(long diagonal)}.
+%\]
+From them we form three dimensionless ratios:
+\[
+  \alpha_1 = \frac{t}{d},\qquad
+  \alpha_2 = -\,\frac{u}{t},\qquad
+  \alpha_3 = \frac{d}{-u}.
+\]
+They fulfill the elementary symmetric functions
+\[
+  S_1 = \alpha_1 + \alpha_2 + \alpha_3 = -1, \quad
+  S_2 = -2, \quad
+  S_3 = \alpha_1\alpha_2\alpha_3 = +1
+\]
+so the triple $(\alpha_1,\alpha_2,\alpha_3)$ is not arbitrary. These three numbers are completely fixed by the shape of the regular heptagon. They satisfy a simple cubic equation,
+\[
+  x^3 + x^2 - 2x - 1 = 0,
+\]
+and its three real roots are exactly $\alpha_1,\alpha_2,\alpha_3$.
+
+In other words: the combinatorial data ``seven vertices with their diagonals'' collapses to three pure shape invariants. They are the \emph{heptagon eigenvalues} in geometric form.
+
+\section*{From seven directions to three modes}
+
+The imaginary octonions span a seven-dimensional space. Each imaginary unit corresponds to a vertex of the heptagon. At first sight, one might think that all seven directions are independent.
+
+The heptagon geometry, however, tells us that there is a simpler description. When we look at patterns that respect the cyclic symmetry of the heptagon, seven directions naturally fall into three symmetry-adapted ``modes''. Exactly these three modes are quantified by the heptagon ratios $(\alpha_1,\alpha_2,\alpha_3)$: they are the three characteristic values of how such a symmetry-adapted pattern ``spreads out'' along the heptagon.
+
+In more technical language, one can construct an octonionic linear operator whose action on these three modes is diagonal with eigenvalues $\alpha_1,\alpha_2,\alpha_3$. The detailed construction is deferred to the main text; what matters here is the conceptual picture: a seven-dimensional internal space is encoded by three heptagon eigenvalues.
+
+\section*{Why $(\alpha_1,\alpha_2,\alpha_3)$ matter for physics}
+
+Later in the calendar, $(\alpha_1,\alpha_2,\alpha_3)$ will reappear in several
+contexts:
+
+\begin{itemize}
+  \item In the construction of the \emph{radius operator} $R$ and its
+        spectrum $(a_0,b_0,c_0)$ (tomorrow).
+  \item In geometric expressions for coupling constants, such as the
+        fine-structure constant $\alpha$ and the strong coupling
+        $\alpha_s$.
+  \item In defining angles between rotor directions that enter the
+        Weinberg angle $\theta_W$.
+\end{itemize}
+
+In other words, the heptagon eigenvalues are a compact \emph{seed} from
+which many later observables can be grown. They serve as a small set of
+internal numbers that eventually manifest as physical constants.
+
+\section*{Heptagon spectrum within the operator toolbox}
+
+On the second Advent Sunday (7 December), the calendar will present a full
+\emph{operator toolbox}:
+
+\begin{itemize}
+  \item heptagon operator with eigenvalues $(\alpha_1,\alpha_2,\alpha_3)$,
+  \item radius operator $R$ with radii $(a_0,b_0,c_0)$,
+  \item sign/signature operators,
+  \item rotors (antisymmetric generators of forces),
+  \item compressors (symmetric mass and mixing operators).
+\end{itemize}
+
+The heptagon data are the first piece of this toolbox to appear
+explicitly. Their role is to turn the combinatorial data ``seven imaginary
+units on a heptagon'' into spectral data that can be plugged into
+operators, potentials and eventually quantitative formulas.
+
+\section*{Conceptual gain from the heptagon eigenvalues}
+
+Compared to working directly with seven basis elements $e_i$, the
+heptagon-eigenvalue viewpoint offers:
+
+\begin{enumerate}
+  \item \textbf{Compression:} seven directions are summarised by three
+        eigenvalues.
+  \item \textbf{Invariants:} $(\alpha_1,\alpha_2,\alpha_3)$ are invariant under
+        heptagon symmetries and $G_2$-compatible re-labellings—they are not artefacts
+        of a particular basis choice.
+  \item \textbf{Spectral language:} we move from basis-dependent
+        multiplication tables to basis-independent spectral data, which is
+        the natural language for later spectral geometry.
+\end{enumerate}
+
+Thus, the heptagon eigenvalues are the first place where the octonionic multiplication table
+starts to look like something a physicist would recognise as ``spectral
+parameters''.
+
+\small
+\begin{thebibliography}{9}
+
+\bibitem{Baez2002}
+J.~C.~Baez,
+\newblock ``The octonions,''
+\newblock {\em Bull.\ Amer.\ Math.\ Soc.} \textbf{39}, 145--205 (2002).
+
+\bibitem{Furey2016}
+C.~Furey,
+\newblock ``Charge quantization from a number operator,''
+\newblock {\em Phys.\ Lett.\ B} \textbf{742}, 195--199 (2015).
+
+\end{thebibliography}
+\normalsize
+
+  } % end #6 body
+  {The heptagon eigenvalues $(\alpha_1,\alpha_2,\alpha_3)$ compress the seven imaginary directions of $\mathbb{O}$ into three geometric invariants. These numbers will later reappear in couplings, scales and mixing angles.} % #7 Closing
+
+\end{document}

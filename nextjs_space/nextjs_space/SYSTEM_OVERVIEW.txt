@@ -1,0 +1,224 @@
+╔═══════════════════════════════════════════════════════════════════════════════╗
+║                  TOE ADVENT CALENDAR - SYSTEM OVERVIEW                        ║
+╚═══════════════════════════════════════════════════════════════════════════════╝
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ 1. SINGLE SOURCE OF TRUTH                                                   │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+    LaTeX-Dateien (.tex)
+    ├── advent00.tex  (Einleitung)
+    ├── advent01.tex  (Tag 1: Quaternions)
+    ├── advent02.tex  (Tag 2: Triality)
+    ├── ...
+    ├── advent25.tex  (Tag 25: Weihnachten)
+    └── advent31.tex  (Tag 31: Silvester)
+         │
+         ├─────────────────────────────────────┐
+         │                                     │
+         ▼                                     ▼
+    ┌─────────────┐                    ┌──────────────────┐
+    │  pdflatex   │                    │ Python Converter │
+    │  (2-pass)   │                    │ (LaTeX → JSON)   │
+    └─────────────┘                    └──────────────────┘
+         │                                     │
+         ▼                                     ▼
+    advent01.pdf                       advent_data.json
+    advent02.pdf                       {
+    ...                                  "day": 1,
+    advent25.pdf                         "title": "...",
+         │                               "content": "..."
+         ▼                             }
+    public/pdfs/                            │
+                                            ▼
+                                       Website-Anzeige
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ 2. AUTOMATISCHER BUILD-PROZESS                                              │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+    [Sie bearbeiten]          [GitHub Actions]           [Ergebnis]
+    
+    advent05.tex  ────push───▶ 1. Python Setup          ──▶ JSON updated
+    app/page.tsx    to main    2. LaTeX Compilation     ──▶ PDFs updated
+                              3. Next.js Build          ──▶ Website rebuilt
+                              4. Deploy gh-pages        ──▶ Live in ~5 min
+
+    Monitoring:
+    ├─ GitHub Actions: github.com/amu2/advent-calendar-2025/actions
+    ├─ Live Website: amu2.github.io/advent-calendar-2025/
+    └─ Build-Zeit: ~5-8 Minuten
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ 3. KONFLIKTFREIES ARBEITEN                                                  │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+    Sie (Ihr Rechner)          DeepAgent (Cloud)         GitHub
+    
+    [edit advent05.tex]        [edit components.tsx]
+           │                            │
+           │ git pull                   │ git pull
+           │◄───────────────────────────┼──────────────────────┐
+           │                            │                      │
+           │ git push                   │                      │
+           └──────────────────────────► │ main Branch         │
+                                        │◄─────────────────────┘
+                                        │
+                                        ▼
+                                  GitHub Actions
+                                        │
+                                        ▼
+                                   gh-pages
+                                   (niemand ändert
+                                    diesen manuell!)
+
+    REGEL: Immer "git pull origin main" VOR dem Pushen!
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ 4. DATEI-STRUKTUR                                                           │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+website/
+├── 📝 LaTeX Quellen (QUELLE)
+│   ├── advent00.tex - advent31.tex
+│   └── advent-layout.tex
+│
+├── 🔧 Konvertierung
+│   └── convert_tex_to_json.py
+│
+├── ⚙️  GitHub Actions
+│   └── .github/workflows/deploy.yml
+│
+├── 📂 Public Assets
+│   ├── advent_data.json  (⚠️ AUTO-GENERIERT)
+│   ├── pdfs/              (⚠️ AUTO-GENERIERT)
+│   │   ├── advent01.pdf
+│   │   └── ...
+│   └── sounds/
+│       ├── door-open.mp3
+│       └── background-music.mp3
+│
+├── 🎨 Next.js App
+│   ├── app/
+│   │   ├── page.tsx               (Hauptseite)
+│   │   ├── how-to/page.tsx        (Anleitung)
+│   │   └── impressum/page.tsx     (Impressum)
+│   │
+│   ├── components/
+│   │   ├── advent-door.tsx        (Tür-Komponente)
+│   │   ├── content-modal.tsx      (Modal-Dialog)
+│   │   └── ...
+│   │
+│   └── lib/
+│       └── types.ts
+│
+├── 📄 Dokumentation
+│   ├── WORKFLOW.md              (Vollständige Anleitung)
+│   ├── README_WORKFLOW.md       (Deutsche Kurzanleitung)
+│   ├── README_GITHUB.md         (GitHub-spezifisch)
+│   └── SYSTEM_OVERVIEW.txt      (Diese Datei)
+│
+└── 🛠️  Build Scripts
+    └── update-website.sh        (Lokaler Build)
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ 5. TYPISCHE WORKFLOWS                                                       │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+Workflow A: LaTeX-Inhalt ändern
+    1. cd /home/ubuntu/advent_project/website
+    2. git pull origin main
+    3. nano advent12.tex
+    4. git add advent12.tex
+    5. git commit -m "Update Day 12"
+    6. git push origin main
+    → GitHub Actions aktualisiert: PDF + JSON + Website
+
+Workflow B: React-Komponente ändern
+    1. git pull origin main
+    2. nano components/advent-door.tsx
+    3. git add components/advent-door.tsx
+    4. git commit -m "Update door animation"
+    5. git push origin main
+    → GitHub Actions rebuilt Website
+
+Workflow C: Lokaler Test (optional)
+    1. ./update-website.sh
+    2. Überprüfen Sie: public/advent_data.json, public/pdfs/
+    3. yarn dev  (localhost:3000)
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ 6. CHECKLISTE: SYSTEM-STATUS                                               │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+✅ LaTeX-Dateien vorhanden:     27 Dateien (advent00 - advent31)
+✅ convert_tex_to_json.py:      Funktioniert (400 Zeilen)
+✅ GitHub Actions konfiguriert: .github/workflows/deploy.yml
+✅ PDF Compilation:             Automatisch (TeX Live)
+✅ JSON Generation:             Automatisch (26/27 erfolgreich)
+✅ Next.js Build:               Funktioniert (static export)
+✅ Deployment:                  Automatisch (gh-pages)
+✅ Website Live:                https://amu2.github.io/advent-calendar-2025/
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ 7. WICHTIGE REGELN                                                          │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+✅ DO:
+   • Immer "git pull origin main" vor dem Pushen
+   • Nur Quelldateien bearbeiten (.tex, .tsx, .css)
+   • Kleine, atomare Commits
+   • GitHub Actions Status überprüfen
+
+❌ DON'T:
+   • Nie public/advent_data.json manuell bearbeiten
+   • Nie gh-pages Branch manuell berühren
+   • Nie generierte Dateien committen (PDFs im root, out/, .next/)
+   • Nie force push (außer im Notfall)
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ 8. SYNCHRONISATION GARANTIE                                                │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+Problem:  PDF und Website nicht synchron
+Ursache:  advent_data.json wurde manuell bearbeitet
+Lösung:   
+    python3 convert_tex_to_json.py
+    git add public/advent_data.json
+    git commit -m "Regenerate JSON from LaTeX"
+    git push origin main
+
+Das System garantiert Synchronisation durch:
+    1. Automatische Regenerierung bei jedem Push
+    2. Kein manuelles Editieren von JSON
+    3. LaTeX als einzige Quelle
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ 9. SUPPORT & DEBUGGING                                                      │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+Lokales Debugging:
+    python3 convert_tex_to_json.py    # Test LaTeX → JSON
+    yarn build                        # Test Next.js Build
+    ls -lh public/advent_data.json    # Prüfe JSON
+    ls -lh public/pdfs/               # Prüfe PDFs
+
+GitHub Actions Logs:
+    https://github.com/amu2/advent-calendar-2025/actions
+
+Dokumentation:
+    - WORKFLOW.md            (Vollständige Anleitung)
+    - README_WORKFLOW.md     (Deutsche Kurzversion)
+    - README_GITHUB.md       (GitHub-spezifisch)
+    - .github/workflows/deploy.yml  (Actions Config)
+
+╔═══════════════════════════════════════════════════════════════════════════════╗
+║                        ✅ SYSTEM IST VOLLSTÄNDIG                              ║
+║                                                                               ║
+║  Sie müssen nur:                                                              ║
+║  1. LaTeX-Dateien bearbeiten                                                  ║
+║  2. git push origin main                                                      ║
+║  3. GitHub Actions macht den Rest                                             ║
+║                                                                               ║
+║  🎄 Viel Erfolg mit dem TOE Advent Calendar! 🎄                               ║
+╚═══════════════════════════════════════════════════════════════════════════════╝

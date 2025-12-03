@@ -1,0 +1,204 @@
+% advent31.tex
+% Hero day: December 31, 2025 – Farewell to the parameter zoo
+
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage{titlesec}
+\usepackage{lettrine}
+\usepackage{eso-pic}
+\usepackage{geometry}
+\usepackage{multicol}
+\usepackage{lmodern}
+
+\geometry{margin=2.0cm}
+
+\input{advent-layout}
+
+\begin{document}
+
+\AdventPageBackground
+\AdventAuthor
+
+\AdventSheetTwoCol
+  {December 31, 2025} % #1 Date
+  {}                 % #2 unused
+  {Farewell to the parameter zoo: bilan 2025} % #3 Main title
+  {100 years after Heisenberg: from matrices to octonions} % #4 Subtitle
+  {Looking back, many seemingly independent parameters of particle physics
+   (couplings, scales, mass ratios, mixing angles) can be traced back to a
+   small set of octonionic and Albert-algebra structures: octaves,
+   $G_2$ and $F_4$, heptagon and radius operators, rotors and compressors,
+   and the vacuum configuration $\langle H\rangle$. One hundred years after
+   Heisenberg's matrix mechanics, the algebraic heritage of quantum theory
+   is alive and extended: from noncommutative matrices to nonassociative
+   octonions. At the dynamical level, this heritage takes the form of a single master
+action $S[D,\Psi]$ whose few coefficients and algebraic invariants
+replace the many ad hoc parameters of the Standard Model.} % #5 Key Insight
+  { % #6 body
+
+\section*{From a zoo of inputs to a structured atlas}
+
+\AdventInitial{T}{he} Standard Model appears to need dozens of free
+parameters: gauge couplings, Yukawas, mixing angles, mass ratios, vacuum
+expectation values, hierarchy scales. Over the course of this Advent
+calendar, many of them have been reinterpreted as:
+
+\begin{itemize}
+  \item invariants of the $F_4$ symmetry atlas on $H_3(\mathbb{O})$,
+  \item eigenvalues of internal operators ($H_7$, $R$, compressors),
+  \item equilibrium values of internal potentials (e.g.\ $Y_S$),
+  \item spectral data of a Dirac operator on a structured vacuum.
+\end{itemize}
+
+What looked like a parameter zoo is largely a shadow of one coherent
+geometric structure.
+
+\section*{The algebraic backbone}
+
+The backbone of the model consists of:
+
+\begin{itemize}
+  \item \textbf{Number system:} octonions $\mathbb{O}$ and their
+        automorphism group $G_2$.
+  \item \textbf{Symmetry atlas:} the Albert algebra $H_3(\mathbb{O})$ and
+        its automorphism group $F_4$.
+  \item \textbf{Operators:} heptagon operator $H_7$, radius operator $R$,
+        rotors and compressors.
+  \item \textbf{Vacuum:} a distinguished configuration $\langle H\rangle$
+        and associated scales $(a_0,b_0,c_0)$, $Y_S$.
+\end{itemize}
+
+From this small list, one can systematically derive:
+
+\begin{itemize}
+  \item the existence of three generations (triality),
+  \item the pattern of gauge couplings (via rotor norms),
+  \item the presence of three main scales (via $\mathrm{spec}(R)$),
+  \item the structure of mass matrices and mixings (via compressors and
+        $\Pi(\langle H\rangle)$),
+  \item candidates for dark sectors and vacuum energy contributions.
+\end{itemize}
+
+\section*{From many parameters to one action}
+
+In a conventional presentation, the Standard Model Lagrangian carries a
+long list of independent couplings, masses and mixing parameters. In the
+octonionic formulation used in this project, the dynamics is organised
+by a single master action
+\[
+  S[D,\Psi]
+  = \int_{M_4} \sqrt{-g}\,\Big(
+      \mathcal{L}_{\text{kin}}[D]
+    + \mathcal{L}_F[D]
+    + \mathcal{L}_G[D]
+    + \mathcal{L}_{\text{Defekt}}[D]
+    + \mathcal{L}_{\text{matter}}[D,\Psi]
+  \Big),
+\]
+where $D$ encodes spin connection, gauge fields and compressor/Yukawa
+blocks, and $\Psi$ collects three generations of fermions.
+
+Most of the ``parameters'' then become:
+
+\begin{itemize}
+  \item discrete choices of vacuum data $(\langle H\rangle; a_0,b_0,c_0; Y_S)$,
+  \item algebraic invariants of the $F_4$ symmetry atlas,
+  \item and a small set of dimensionless coefficients in front of the
+    operator blocks in $S[D,\Psi]$.
+\end{itemize}
+
+The parameter zoo is not abolished, but it is \emph{relocated}: from
+many unrelated input numbers to a handful of structural choices in the
+exceptional master action.
+
+\section*{Open block: gravity}
+
+Not everything is solved. A central open question remains:
+
+\[
+  \kappa = \frac{m_p}{m_P},
+\]
+
+the ratio of proton mass to Planck mass. Together with the cosmological
+scale $\Lambda$, it marks the gravitational block that has not yet been
+fully integrated into the octonionic sector.
+
+The spectral-action approach suggests a path:
+
+\[
+  S_{\text{spec}} = \mathrm{Tr}\, f(D^2/\Lambda^2),
+\]
+
+where $D$ encodes both space-time and internal octonionic geometry. In a
+future project, this may allow $\kappa$ and $\Lambda$ to be understood as
+spectral invariants, closing the remaining gap —in other words, to derive the remaining gravitational coefficients in
+$S[D,\Psi]$ from the same spectral data that govern the internal sector.
+
+\section*{A century after Heisenberg}
+
+In 1925, Heisenberg introduced matrix mechanics, marking the beginning of
+quantum theory as an algebraic theory of observables. One hundred years
+later, the present model can be read as a continuation of that line of
+thought:
+
+\begin{itemize}
+  \item from matrices to nonassociative algebras,
+  \item from $SU(2)$ to $G_2$ and $F_4$,
+  \item from a list of parameters to a structured atlas of invariants.
+\end{itemize}
+
+The core lesson is not that octonions are ``exotic'', but that algebraic
+structure remains a powerful guide for understanding physical reality.
+
+\section*{From fitting to understanding}
+
+The transition can be summarised in one sentence:
+
+\begin{quote}
+  We move from \emph{fitting} independent constants to \emph{understanding}
+  them as coordinates on orbits in an exceptional symmetry atlas.
+\end{quote}
+
+This is not the final word—open questions remain, especially on gravity
+and cosmology—but it marks a coherent step towards a less fragmented
+picture of fundamental physics.
+
+The reduction of the parameter zoo is thus conceptual and structural
+rather than yet numerically complete: many patterns are explained, but
+precise values and quantum corrections remain an open and testable part
+of the programme.
+
+\small
+\begin{thebibliography}{9}
+
+\bibitem{Heisenberg1925}
+W.~Heisenberg,
+\newblock ``\"Uber quantentheoretische Umdeutung kinematischer und
+mechanischer Beziehungen,''
+\newblock {\em Z.\ Phys.} \textbf{33}, 879--893 (1925).
+
+\bibitem{Dirac1937}
+P.~A.~M.~Dirac,
+\newblock ``The cosmological constants,''
+\newblock {\em Nature} \textbf{139}, 323 (1937).
+
+
+\end{thebibliography}
+\normalsize
+
+  } % end #6 body
+  {Many ``free parameters'' of particle physics become invariants of an
+   exceptional symmetry atlas built from octonions and the Albert algebra.
+   One hundred years after Heisenberg, the algebraic spirit of quantum
+   mechanics extends from matrices to nonassociative structures, pointing
+   towards a less fragmented understanding of constants and scales.} % #7 Closing
+
+\end{document}

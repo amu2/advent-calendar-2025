@@ -1,0 +1,228 @@
+% advent22.tex
+% December 22, 2025 – Constants as equilibrium values of exceptional geometry
+
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage{titlesec}
+\usepackage{lettrine}
+\usepackage{eso-pic}
+\usepackage{geometry}
+\usepackage{multicol}
+\usepackage{lmodern}
+
+\geometry{margin=2.0cm}
+
+\input{advent-layout}
+
+\begin{document}
+
+\AdventPageBackground
+\AdventAuthor
+
+\AdventSheetTwoCol
+  {December 22, 2025} % #1 Date
+  {}                  % #2 unused
+  {Constants as equilibrium values of exceptional geometry} % #3 Main title
+  {From ``input parameters'' to attractors and minima}      % #4 Subtitle
+  {In the textbook Standard Model, parameters like the fine-structure
+   constant $\alpha$, the strong coupling $\alpha_s$, the Weinberg angle
+   $\theta_W$, fermion masses and mixing angles appear as independent
+   inputs. In the octonionic/Albert framework, many of them can be read as
+   \emph{equilibrium values}: minima of an $F_4$-symmetric potential,
+   attractor radii of an internal flow, or angles between preferred rotor
+   directions. Physical constants become what the internal exceptional
+   geometry \emph{settles into}, not arbitrary dials.} % #5 Key Insight
+  { % #6 body (two columns)
+
+\section*{Constants vs.\ equilibrium values}
+
+\AdventInitial{I}{n} everyday language, a ``constant of nature'' is a
+number that does not change over time. But for theory building there is a
+deeper question:
+
+\begin{quote}
+  Is the constant a fundamental input, or is it the value that some
+  dynamical or geometric system relaxes to?
+\end{quote}
+
+In statistical mechanics, equilibrium temperatures and densities are not
+fundamental; they are fixed points of microscopic dynamics. The octonionic
+model applies this logic to parts of high-energy physics:
+
+\begin{itemize}
+  \item Couplings and angles become norms and overlaps in rotor space.
+  \item Mass scales become attractor radii of an internal flow.
+  \item Order parameters become minima of an $F_4$-invariant potential.
+\end{itemize}
+
+\section*{Electroweak scale as a potential minimum}
+
+A central example from the 4th Advent (21 December) is the electroweak
+scale $Y_S$. A Jordan potential
+\[
+  V_J(H) = \mu^2 \,\mathrm{Tr}(H^2)
+         + \lambda\,\mathrm{Tr}(H^4)
+         + \kappa\,c\,\det H
+         + \cdots
+\]
+on $H_3(\mathbb{O})$, invariant under $F_4$, has a minimum at some vacuum
+$\langle H\rangle$. Reading $Y_S$ as a suitable component or invariant of
+$\langle H\rangle$ and minimising $V_J$ yields a relation of the type
+\[
+  Y_S^2 = -\frac{\mu^2}{2(\lambda + \kappa c)}.
+\]
+
+Here $Y_S$ is not an arbitrary input; it is the equilibrium value of the
+order parameter in an exceptional potential. The observed electroweak
+scale is then analogous to a lattice spacing in a crystal: an equilibrium
+distance, not a fundamental length.
+
+\section*{Angles and couplings as geometric overlaps}
+
+From 10 December we remember: couplings and the Weinberg angle can be read
+from rotor geometry. With an inner product
+\[
+  \langle A,B\rangle = \mathrm{Tr}(A^\dagger B),
+\]
+and rotor directions $G_W$ (weak isospin) and $G_Y$ (hypercharge), one
+defines
+\[
+  \cos\theta_W =
+  \frac{\langle G_W,G_Y\rangle}
+       {\|G_W\|\,\|G_Y\|}.
+\]
+
+Similarly, $\alpha$ and $\alpha_s$ track the norms of appropriate
+commutators in the internal operator space. Once the embedding of
+$SU(3)_C\times SU(2)_L\times U(1)_Y$ into the exceptional algebra is
+fixed, the \emph{relative} normalisation of these norms is fixed as well.
+Running with energy complicates the picture, but the low-energy values are
+no longer independent dials; they are correlated by the underlying
+geometry.
+
+In this sense, $\theta_W$ and the ratios between $\alpha$ and $\alpha_s$
+are \emph{geometric equilibrium values}: the angles and norms selected by a
+particular embedding of the Standard Model group into the exceptional
+symmetry.
+
+\section*{Mass hierarchies as attractor radii}
+
+The radius operator and attractor mechanism from earlier days provide
+another route to equilibrium values. Internal flows in the space of
+configurations—driven by renormalisation-group or effective potential
+gradients—develop attractors at characteristic radii
+\[
+  R \sim R_{\ast,1},\; R_{\ast,2},\;\ldots
+\]
+corresponding to:
+
+\begin{itemize}
+  \item low-energy QCD scale,
+  \item electroweak scale,
+  \item higher intermediate scales.
+\end{itemize}
+
+Fermion masses then fall into bands or shells around these radii, with the
+precise eigenvalues determined by the compressor spectra. The huge
+hierarchies between these radii (e.g.\ Planck vs.\ electroweak) can be
+traced back to nonassociativity (8 December): strong deviations from
+associativity produce exponential separations between attractor radii.
+
+Thus, mass ratios are not ``inserted by hand''; they are equilibrium
+outcomes of flows on an exceptional internal manifold.
+
+\section*{What remains external}
+
+The equilibrium perspective is powerful but not unlimited. In the current
+state of the model:
+
+\begin{itemize}
+  \item The gravitational coupling—equivalently the Planck mass $m_P$—is
+        still external (16 December).
+  \item The ratio $\kappa = m_p/m_P$ is acknowledged as an input, awaiting
+        a spectral-geometry derivation.
+  \item The cosmological constant is not yet computed from an octonionic
+        spectral action.
+\end{itemize}
+
+So the slogan ``constants are equilibrium values'' is true for many, but
+not yet for all of them. The calendar is explicit about this boundary.
+
+\section*{Conceptual shift: from parameter lists to geometry}
+
+The main conceptual gain of this day is not a new formula but a new
+classification:
+
+\begin{enumerate}
+  \item \textbf{Equilibrium constants:}
+    values fixed by minima of potentials, attractors of flows, or fixed
+    geometric overlaps (e.g.\ $Y_S$, many fermion masses, $\theta_W$,
+    relative couplings).
+  \item \textbf{Spectral constants (future work):}
+    values to be derived from the spectrum of a combined Dirac operator in
+    spectral geometry (e.g.\ $G$, cosmological constant).
+  \item \textbf{Still-external constants:}
+    numbers not yet tied to the exceptional structure in the present
+    model.
+\end{enumerate}
+
+This is a clear upgrade over a flat parameter list: we know which constants
+are already inside the exceptional story, which should be pulled in via
+spectral geometry, and which ones remain open.
+
+\section*{Why this matters for physics, not just for aesthetics}
+
+From a pragmatic viewpoint, one might say: as long as the model matches
+data, who cares whether a parameter is an input or an equilibrium value?
+The answer is twofold:
+
+\begin{itemize}
+  \item \textbf{Predictivity:} Equilibrium values are constrained: small
+        changes in the microscopic setup lead to calculable shifts, not
+        arbitrary variations. This opens the door to quantitative tests.
+  \item \textbf{Stability:} Equilibrium interpretation explains why
+        certain values are robust under perturbations, decoupling of heavy
+        fields, or environmental changes.
+\end{itemize}
+
+If, step by step, more of the Standard Model parameter list can be turned
+into equilibrium values of an exceptional geometry, the notorious
+``fine-tuning'' problems change character: we no longer tune against
+nothing; we characterise which equilibria of which internal structures are
+realised in our Universe.
+
+\small
+\begin{thebibliography}{9}
+
+\bibitem{ConnesChamseddine}
+A.~Connes and A.~H.~Chamseddine,
+\newblock ``The spectral action principle,''
+\newblock {\em Commun.\ Math.\ Phys.} \textbf{186}, 731--750 (1997).
+
+\bibitem{GurseyTze1996}
+F.~G\"ursey and H.~C.~Tze,
+\newblock {\em On the Role of Division, Jordan and Related Algebras in
+Particle Physics},
+\newblock World Scientific, 1996.
+
+\bibitem{Internal}
+[Internal notes on attractors, rotor norms and constants as equilibria:
+{\tt arxiv-const.tex; appK\_neu.tex; appE\_neu.tex}.]
+
+\end{thebibliography}
+\normalsize
+
+  } % end #6 body
+  {In the exceptional picture, many ``constants'' are not arbitrary inputs
+   but equilibrium values: minima of $F_4$-symmetric potentials, attractor
+   radii and geometric angles in an octonionic internal space.} % #7 Closing
+
+\end{document}
