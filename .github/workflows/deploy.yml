@@ -5,6 +5,11 @@ on:
     branches: [ main ]
   workflow_dispatch:
 
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -15,24 +20,13 @@ jobs:
     - uses: actions/setup-node@v4
       with:
         node-version: '18'
-        cache: 'npm'
+        cache: 'yarn'
     
-    - run: npm ci || npm install
+    - run: yarn install --frozen-lockfile
     
     - name: Build
       run: |
-        cat > next.config.js << 'EOF'
-        /** @type {import('next').NextConfig} */
-        const nextConfig = {
-          output: 'export',
-          basePath: '/advent-calendar-2025',
-          assetPrefix: '/advent-calendar-2025/',
-          images: { unoptimized: true },
-          trailingSlash: true,
-        }
-        module.exports = nextConfig
-        EOF
-        npm run build
+        yarn build
         touch out/.nojekyll
     
     - uses: peaceiris/actions-gh-pages@v3
