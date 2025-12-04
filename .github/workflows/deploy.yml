@@ -1,130 +1,42 @@
-name: Build and Deploy to GitHub Pages
+name: Deploy to GitHub Pages
 
 on:
   push:
     branches: [ main ]
   workflow_dispatch:
 
-permissions:
-  contents: write
-  pages: write
-  id-token: write
-
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
     
     steps:
-      # 1. Checkout Source Code
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      
-      # 2. Setup Python for LaTeX → JSON Conversion
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-      
-      # 3. Convert LaTeX to JSON
-      - name: Convert LaTeX to JSON
-        run: |
-          echo "Converting advent*.tex files to advent_data.json..."
-          cd ${{ github.workspace }}
-          python3 convert_tex_to_json.py
-          echo "✓ Conversion complete!"
-          ls -lh public/advent_data.json
-      
-      # 4. Setup TeX Live (Alternative Method)
-      - name: Setup TeX Live
-        run: |
-          echo "Installing TeX Live packages..."
-          sudo apt-get update -qq
-          sudo apt-get install -y --no-install-recommends \
-            texlive-latex-base \
-            texlive-latex-extra \
-            texlive-fonts-recommended \
-            texlive-fonts-extra \
-            texlive-lang-german \
-            latexmk
-          echo "✓ TeX Live installed!"
-          pdflatex --version
-      
-      # 5. Compile LaTeX Files (double pass for indices)
-      - name: Compile LaTeX PDFs
-        run: |
-          echo "Compiling 27 LaTeX files..."
-          cd ${{ github.workspace }}
-          
-          # Create output directory
-          mkdir -p public/pdfs
-          
-          # Array of all advent files
-          FILES=("advent00" "advent01" "advent02" "advent03" "advent04" "advent05" "advent06" "advent07" "advent08" "advent09" "advent10" "advent11" "advent12" "advent13" "advent14" "advent15" "advent16" "advent17" "advent18" "advent19" "advent20" "advent21" "advent22" "advent23" "advent24" "advent25" "advent31")
-          
-          # Compile each file twice
-          for file in "${FILES[@]}"; do
-            if [ -f "${file}.tex" ]; then
-              echo "Compiling ${file}.tex (pass 1)..."
-              pdflatex -interaction=nonstopmode "${file}.tex" > /dev/null 2>&1 || echo "Warning: ${file}.tex pass 1 had warnings"
-              
-              echo "Compiling ${file}.tex (pass 2 for indices)..."
-              pdflatex -interaction=nonstopmode "${file}.tex" > /dev/null 2>&1 || echo "Warning: ${file}.tex pass 2 had warnings"
-              
-              # Copy PDF to public directory
-              if [ -f "${file}.pdf" ]; then
-                cp "${file}.pdf" "public/pdfs/"
-                echo "✓ ${file}.pdf created and copied"
-              else
-                echo "✗ ${file}.pdf not found (compilation may have failed)"
-              fi
-            else
-              echo "✗ ${file}.tex not found"
-            fi
-          done
-          
-          # Clean up auxiliary files
-          rm -f *.aux *.log *.out *.toc *.synctex.gz
-          
-          echo "LaTeX compilation complete!"
-          echo "PDFs created:"
-          ls -lh public/pdfs/ | tail -10
-      
-      # 6. Setup Node.js
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-      
-      # 7. Install Dependencies
-      - name: Install dependencies
-        run: yarn install
-      
-      # 8. Build Next.js for GitHub Pages
-      - name: Build Next.js
-        run: |
-          # Use export config for static build
-          cp next.config.export.js next.config.js
-          
-          # Build with GitHub Pages settings
-          yarn build
-          
-          # Add .nojekyll to prevent GitHub from processing files
-          touch out/.nojekyll
-          
-          echo "Build complete!"
-          echo "Files in out/ directory:"
-          ls -lh out/ | head -20
-      
-      # 9. Deploy to gh-pages branch
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./out
-          publish_branch: gh-pages
-          force_orphan: true
-          user_name: 'github-actions[bot]'
-          user_email: 'github-actions[bot]@users.noreply.github.com'
-          commit_message: 'Deploy from main: ${{ github.sha }}'
+    - uses: actions/checkout@v4
+    
+    - uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+    
+    - run: npm ci || npm install
+    
+    - name: Build
+      run: |
+        cat > next.config.js << 'EOF'
+        /** @type {import('next').NextConfig} */
+        const nextConfig = {
+          output: 'export',
+          basePath: '/advent-calendar-2025',
+          assetPrefix: '/advent-calendar-2025/',
+          images: { unoptimized: true },
+          trailingSlash: true,
+        }
+        module.exports = nextConfig
+        EOF
+        npm run build
+        touch out/.nojekyll
+    
+    - uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./out
+        force_orphan: true
