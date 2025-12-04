@@ -19,7 +19,7 @@ export function MathRenderer({ content }: MathRendererProps) {
 
       let html = content;
 
-      // Render display math \[ ... \]
+      // Display math \[ ... \]
       html = html.replace(/\\\[([\s\S]*?)\\\]/g, (_, formula) => {
         try {
           return katex.renderToString(formula.trim(), {
@@ -27,12 +27,11 @@ export function MathRenderer({ content }: MathRendererProps) {
             throwOnError: false,
           });
         } catch (e) {
-          console.error('KaTeX display error:', e);
-          return `\\[${formula}\\]`;
+          return `<span class="math-error">\\[${formula}\\]</span>`;
         }
       });
 
-      // Render inline math $ ... $
+      // Inline math $ ... $
       html = html.replace(/\$([^$]+)\$/g, (_, formula) => {
         try {
           return katex.renderToString(formula.trim(), {
@@ -40,8 +39,7 @@ export function MathRenderer({ content }: MathRendererProps) {
             throwOnError: false,
           });
         } catch (e) {
-          console.error('KaTeX inline error:', e);
-          return `$${formula}$`;
+          return `<span class="math-error">$${formula}$</span>`;
         }
       });
 
@@ -58,11 +56,7 @@ export function MathRenderer({ content }: MathRendererProps) {
         href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"
         crossOrigin="anonymous"
       />
-      <div
-        ref={containerRef}
-        dangerouslySetInnerHTML={{ __html: content }}
-        className="math-content"
-      />
+      <div ref={containerRef} className="math-content" />
     </>
   );
 }
