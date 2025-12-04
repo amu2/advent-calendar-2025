@@ -21,7 +21,6 @@ jobs:
     - run: yarn install
     - name: Build
       run: |
-        cp next.config.export.js next.config.js
         yarn build
         touch out/.nojekyll
     - uses: peaceiris/actions-gh-pages@v3
