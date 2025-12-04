@@ -64,20 +64,46 @@ export default function HomePage() {
   const decoration = getHeaderDecoration(new Date());
 
   useEffect(() => {
-    fetch(getAssetPath('/advent_data.json'))
-      .then((res) => res.json())
-      .then((data: AdventData) => {
-        setAdventData(data);
+    // Load metadata and all day files
+    const loadData = async () => {
+      try {
+        // Load metadata
+        const metadataRes = await fetch(getAssetPath('/data/metadata.json'));
+        const metadata = await metadataRes.json();
+        
+        // Load all day files (day30, day01-25, day31)
+        const dayNumbers = [30, ...Array.from({ length: 25 }, (_, i) => i + 1), 31];
+        const dayPromises = dayNumbers.map(async (num) => {
+          try {
+            const res = await fetch(getAssetPath(`/data/days/day${num.toString().padStart(2, '0')}.json`));
+            return await res.json();
+          } catch (error) {
+            console.error(`Failed to load day ${num}:`, error);
+            return null;
+          }
+        });
+        
+        const days = (await Promise.all(dayPromises)).filter(Boolean);
+        
+        // Combine metadata and days
+        const combinedData: AdventData = {
+          ...metadata,
+          days
+        };
+        
+        setAdventData(combinedData);
         
         // Calculate unlocked days
-        const unlocked = data?.days
-          ?.filter((day) => isDayUnlocked(day?.date ?? ''))
-          ?.map((day) => day?.day ?? 0) ?? [];
+        const unlocked = days
+          .filter((day) => isDayUnlocked(day?.date ?? ''))
+          .map((day) => day?.day ?? 0);
         setUnlockedDays(unlocked);
-      })
-      .catch((error) => {
+      } catch (error) {
         console.error('Failed to load advent data:', error);
-      });
+      }
+    };
+    
+    loadData();
   }, []);
 
   // Initialize background music

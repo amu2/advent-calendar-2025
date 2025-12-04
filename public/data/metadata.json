@@ -1,0 +1,18 @@
+{
+  "metadata": {
+    "year": 2025,
+    "theme": "An Exceptional Algebraic Walk Through Particle Physics",
+    "subtitle": "100 years after Heisenberg's matrix mechanics",
+    "author": "Andreas Müller, Kempten University of Applied Sciences",
+    "email": "andreas.mueller@hs-kempten.de",
+    "description": "A journey through octonions, exceptional algebras, and the structure of particle physics"
+  },
+  "colorScheme": {
+    "adventRed": "#B3001B",
+    "adventBlue": "#003366",
+    "adventGreen": "#006633",
+    "adventGold": "#B59410",
+    "background": "#FEFEFE",
+    "text": "#1A1A1A"
+  }
+}
