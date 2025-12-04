@@ -13,23 +13,19 @@ permissions:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    
     steps:
     - uses: actions/checkout@v4
-    
     - uses: actions/setup-node@v4
       with:
         node-version: '18'
-    
     - run: yarn install
-    
     - name: Build
       run: |
-        NEXT_OUTPUT_MODE=export yarn build
-        touch .next/.nojekyll
-    
+        cp next.config.export.js next.config.js
+        yarn build
+        touch out/.nojekyll
     - uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./.next
+        publish_dir: ./out
         force_orphan: true
