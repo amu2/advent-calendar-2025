@@ -51,6 +51,7 @@ function getHeaderDecoration(currentDate: Date = new Date()) {
 }
 
 export default function HomePage() {
+  const [forceUnlock, setForceUnlock] = useState(false);
   const [adventData, setAdventData] = useState<AdventData | null>(null);
   const [selectedDay, setSelectedDay] = useState<AdventDay | null>(null);
   const [showLockedMessage, setShowLockedMessage] = useState<string | null>(null);
@@ -62,6 +63,14 @@ export default function HomePage() {
   
   // Get current decoration
   const decoration = getHeaderDecoration(new Date());
+
+  // Check for unlock query parameter (client-side only)
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      setForceUnlock(params.get('unlock') === 'all');
+    }
+  }, []);
 
   useEffect(() => {
     // Load metadata and all day files
@@ -95,7 +104,7 @@ export default function HomePage() {
         
         // Calculate unlocked days
         const unlocked = days
-          .filter((day) => isDayUnlocked(day?.date ?? ''))
+          .filter((day) => isDayUnlocked(day?.date ?? '', forceUnlock))
           .map((day) => day?.day ?? 0);
         setUnlockedDays(unlocked);
       } catch (error) {
@@ -170,7 +179,7 @@ export default function HomePage() {
   };
 
   const handleDoorClick = async (day: AdventDay) => {
-    const isUnlocked = isDayUnlocked(day?.date ?? '');
+    const isUnlocked = isDayUnlocked(day?.date ?? '', forceUnlock);
     
     if (isUnlocked) {
       // Fade out background music first
@@ -191,7 +200,7 @@ export default function HomePage() {
     
     if (currentIndex > 0) {
       const prevDay = adventData.days[currentIndex - 1];
-      if (prevDay && isDayUnlocked(prevDay.date ?? '')) {
+      if (prevDay && isDayUnlocked(prevDay.date ?? '', forceUnlock)) {
         playSound();
         setSelectedDay(prevDay);
       }
@@ -207,7 +216,7 @@ export default function HomePage() {
     
     if (currentIndex < adventData.days.length - 1) {
       const nextDay = adventData.days[currentIndex + 1];
-      if (nextDay && isDayUnlocked(nextDay.date ?? '')) {
+      if (nextDay && isDayUnlocked(nextDay.date ?? '', forceUnlock)) {
         playSound();
         setSelectedDay(nextDay);
       }
@@ -221,7 +230,7 @@ export default function HomePage() {
     );
     if (currentIndex <= 0) return false;
     const prevDay = adventData.days[currentIndex - 1];
-    return !!prevDay && isDayUnlocked(prevDay.date ?? '');
+    return !!prevDay && isDayUnlocked(prevDay.date ?? '', forceUnlock);
   };
 
   const hasNext = () => {
@@ -231,7 +240,7 @@ export default function HomePage() {
     );
     if (currentIndex >= adventData.days.length - 1) return false;
     const nextDay = adventData.days[currentIndex + 1];
-    return !!nextDay && isDayUnlocked(nextDay.date ?? '');
+    return !!nextDay && isDayUnlocked(nextDay.date ?? '', forceUnlock);
   };
 
   if (!adventData) {
@@ -345,7 +354,7 @@ export default function HomePage() {
               <AdventDoor
                 key={day?.day ?? 0}
                 day={day}
-                isUnlocked={isDayUnlocked(day?.date ?? '')}
+                isUnlocked={isDayUnlocked(day?.date ?? '', forceUnlock)}
                 onClick={() => handleDoorClick(day)}
               />
             ))}
