@@ -25,7 +25,7 @@ export function HowToSection() {
 <p>Each Advent Sunday opens a new chapter in our story:</p>
 
 <dl style="margin-left: 1rem;">
-  <dt style="font-weight: bold; margin-top: 0.75rem;"><strong>First Sunday (today):</strong></dt>
+  <dt style="font-weight: bold; margin-top: 0.75rem;"><strong>First Sunday:</strong></dt>
   <dd style="margin-left: 1.5rem; margin-bottom: 0.75rem;">We introduce the octonionic stage, the group $G_2$ and triality, and explain why an $8$-dimensional, nonassociative number system is a natural candidate for internal degrees of freedom.</dd>
 
   <dt style="font-weight: bold; margin-top: 0.75rem;"><strong>Second Sunday:</strong></dt>
