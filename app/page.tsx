@@ -1,7 +1,6 @@
 'use client';
 
-import { useEffect, useState, useRef, Suspense } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { useEffect, useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { Star, Calendar as CalendarIcon, Volume2, VolumeX, Menu, Sparkles, Snowflake } from 'lucide-react';
@@ -51,10 +50,8 @@ function getHeaderDecoration(currentDate: Date = new Date()) {
   return { type: 'stars', count: 1 };
 }
 
-function HomePageContent() {
-  const searchParams = useSearchParams();
-  const forceUnlock = searchParams.get('unlock') === 'all';
-  
+export default function HomePage() {
+  const [forceUnlock, setForceUnlock] = useState(false);
   const [adventData, setAdventData] = useState<AdventData | null>(null);
   const [selectedDay, setSelectedDay] = useState<AdventDay | null>(null);
   const [showLockedMessage, setShowLockedMessage] = useState<string | null>(null);
@@ -66,6 +63,14 @@ function HomePageContent() {
   
   // Get current decoration
   const decoration = getHeaderDecoration(new Date());
+
+  // Check for unlock query parameter (client-side only)
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      setForceUnlock(params.get('unlock') === 'all');
+    }
+  }, []);
 
   useEffect(() => {
     // Load metadata and all day files
@@ -418,14 +423,5 @@ function HomePageContent() {
         />
       )}
     </div>
-  );
-}
-
-
-export default function HomePage() {
-  return (
-    <Suspense fallback={<div className="min-h-screen bg-gradient-to-b from-red-900 via-red-800 to-green-900 flex items-center justify-center"><div className="text-white text-xl">Loading...</div></div>}>
-      <HomePageContent />
-    </Suspense>
   );
 }
