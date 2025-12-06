@@ -1,4 +1,8 @@
-export function isDayUnlocked(dayDate: string): boolean {
+export function isDayUnlocked(dayDate: string, forceUnlock: boolean = false): boolean {
+  if (forceUnlock) {
+    return true;
+  }
+  
   try {
     // Use current date
     const today = new Date();
