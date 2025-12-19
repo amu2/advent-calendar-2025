@@ -15,21 +15,11 @@
   "references": [
     {
       "key": "Zwicky1933",
-      "author": "F. Zwicky",
-      "title": "Die Rotverschiebung von extragalaktischen Nebeln",
-      "journal": "Helv. Phys. Acta",
-      "volume": "6",
-      "pages": "110–127",
-      "year": "1933"
+      "text": "F. Zwicky, Die Rotverschiebung von extragalaktischen Nebeln, Helv. Phys. Acta, 6, 110–127 (1933)."
     },
     {
       "key": "Rubin1970",
-      "author": "V. Rubin and W. K. Ford Jr.",
-      "title": "Rotation of the Andromeda nebula from a spectroscopic survey of emission regions",
-      "journal": "Astrophys. J.",
-      "volume": "159",
-      "pages": "379",
-      "year": "1970"
+      "text": "V. Rubin and W. K. Ford Jr., Rotation of the Andromeda nebula from a spectroscopic survey of emission regions, Astrophys. J., 159, 379–403 (1970)."
     }
   ]
 }
